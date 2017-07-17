@@ -55,6 +55,9 @@
 
 # Routes 
 
+| Path | Component | 
+| - - - | - - - |
+| "sign-up" | "AuthFormContainer" |
 
 
 
