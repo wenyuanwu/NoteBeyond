@@ -29,7 +29,8 @@ NoteBeyond is a note taking web application inspired by Evernote built using Rub
 
 ### Phase 1: Backend setup and Front End User Authentication (2 days)
 
-#### Objective: functioning rails project with front-end Authentication
+#### Objective: 
+functioning rails project with front-end Authentication
 
 ### Phase 2: Notes Model, API, and components (2 days)
 
