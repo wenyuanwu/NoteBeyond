@@ -12,13 +12,11 @@
 
 * ```POST /api/users```
 * ```PATCH /api/users```
-* ```GET /api/users```
 
 ### Session 
 
 * ```POST /api/session```
 * ```DELETE /api/session```
-* ```GET /api/session```
 
 ### Notes 
 

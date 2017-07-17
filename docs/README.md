@@ -14,7 +14,6 @@ NoteBeyond is a note taking web application inspired by Evernote built using Rub
 * Notebooks for organizing notes 
 * Tags
 * Rich Text Editing 
-* Infinite Scroll 
 * Production README
 
 ## Design Docs 
@@ -60,6 +59,7 @@ NoteBeyond is a note taking web application inspired by Evernote built using Rub
 ### Bonus Features (TBD)
 
 ##### 
+* Infinite Scroll 
 * Search notes by content
 * Set reminders on notes 
 
