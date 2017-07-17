@@ -20,5 +20,11 @@ NoteBeyond is a note taking web application inspired by Evernote built using Rub
 ## Design Docs 
 
 * [View Wireframes](./wireframes)
+* [React Components](component-hierarchy.md)
+* [API endpoints](api-endpoints.md)
+* [DB schema](schema.md)
+* [Sample State](sample-state.md)
+
+## Implementation Timeline
 
 
