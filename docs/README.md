@@ -19,6 +19,6 @@ NoteBeyond is a note taking web application inspired by Evernote built using Rub
 
 ## Design Docs 
 
-
+[View Wireframes](./wireframes)
 
 
