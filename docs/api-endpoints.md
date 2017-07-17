@@ -30,5 +30,30 @@
 *  ```PATCH /api/notes/:id```
 *  ```DELETE /api/notes/:id```
 
+### Notebooks 
+
+* ```GET /api/notebooks```
+* ```POST /api/notebooks```
+* ```GET /api/notebooks/:id```
+* ```DELETE /api/notebooks/:id```
+* ```GET /api/notebooks/:id/notes```
+
+### Tags
+
+* ```GET /api/tags```
+* ```POST /api/tags```
+* ```GET /api/tags/:id```
+* ```DELETE /api/tags/:id```
+* ```GET /api/tags/:id/notes```
+	* index of all notes for a tag 
+* ```POST /api/notes/:note_id/tags```
+	* add tag to note by name 
+* ```DELETE /api/notes/:note_id/tags/:tag_name```
+	* remove tag from note by name 
+
+
+
+
+
 
 
