@@ -52,7 +52,7 @@ NoteBeyond is a note taking web application inspired by Evernote built using Rub
 #### 
 **Objective**: Allow rich text editing of notes.
 
-### Phase 6: - Pagination / infinite scroll for Notes Index
+### Phase 6: - Pagination / infinite scroll for Notes Index (1 day)
 
 #### 
 **Objective**: Add infinite scroll to Notes Index
