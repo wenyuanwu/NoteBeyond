@@ -27,7 +27,7 @@
 | ------------- |-------------| -----|
 | id     |integer | not null, primary key |
 | title      | string     |   not null|
-| notebook_id | integer     |  not null, foreign key (references notebooks), indexed |
+| author_id | integer     |  not null, foreign key (references notebooks), indexed |
 | description | string     |    |
 
 ### tags
