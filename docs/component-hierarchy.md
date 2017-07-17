@@ -12,30 +12,17 @@
 * NoteIndex 
 
 ### NoteBookContainer
-* NotesHeader 
-* NoteIndex 
+* NoteBookHeader 
+* NoteBookIndex 
 
 ### TagContainer
-* NotesHeader 
-* NoteIndex 
-
-### SearchResultsContainer
-* Search 
-* NoteIndex 
+* TagsHeader 
+* TagsIndex 
 
 ### NewNoteContainer
 * NewNote 
 * EditTool
 * NewNoteButton
-
-### NoteIndex
-* NoteIndexItem
-* NoteDetail 
-  * NoteTools 
-  * NotebookSearch 
-  * Tags 
-  	* Tags 
-  * Note 
 
 ### NewNotebook
 * NewNotebook
@@ -43,10 +30,31 @@
 ### NewTag 
 * NewTag 
 
-### NotebookSearch 
+### NoteIndex
+* NoteIndexItem
+* NoteDetail 
+  * NoteTools 
+  * NotebookSearch (bonus feature)
+  * Tags 
+  	* Tag
+  * Note 
+
+### SearchResultsContainer (bonus feature)
+* Search 
+* NoteIndex 
+
+### NotebookSearch (bonus feature)
 * AutoSearch 
 * AutoSearchResults 
+* NewNotebook  
 
-### TagsSearch 
+### TagsSearch (bonus feature) 
 * AutoSearch 
 * AutoSearchResults
+* NewTag
+
+# Routes 
+
+
+
+
