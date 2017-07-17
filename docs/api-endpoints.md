@@ -23,8 +23,8 @@
 ### Notes 
 
 * ```GET /api/notes```
- * Notes index/search
- * accepts ```tag_name```, ```notebook_id```query params to list notes by tag 
+ 	* Notes index/search
+ 	* accepts ```tag_name```, ```notebook_id```query params to list notes by tag 
 *  ```POST /api/notes```
 *  ```GET /api/notes/:id```
 *  ```PATCH /api/notes/:id```
