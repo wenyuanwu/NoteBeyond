@@ -55,11 +55,11 @@
 
 # Routes 
 
-| Tables        | Are           | Cool  |
-| ------------- |:-------------:| -----:|
-| col 3 is      | right-aligned | $1600 |
-| col 2 is      | centered      |   $12 |
-| zebra stripes | are neat      |    $1 |
+| Path          | Component     | 
+| ------------- |:-------------:| 
+| "/sign-up"     | "AuthFormContainer" | 
+| "/sign-in"     | "AuthFormContainer"     | 
+| "/home" | "HomeContainer"     | 
 
 
 
