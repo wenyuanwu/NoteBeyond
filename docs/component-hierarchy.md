@@ -39,16 +39,16 @@
   	* Tag
   * Note 
 
-### SearchResultsContainer (bonus feature)
+### SearchResultsContainer 
 * Search 
 * NoteIndex 
 
-### NotebookSearch (bonus feature)
+### NotebookSearch 
 * AutoSearch 
 * AutoSearchResults 
 * NewNotebook  
 
-### TagsSearch (bonus feature) 
+### TagsSearch 
 * AutoSearch 
 * AutoSearchResults
 * NewTag
