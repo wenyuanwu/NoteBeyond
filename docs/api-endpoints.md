@@ -44,10 +44,10 @@
 * ```DELETE /api/tags/:id```
 * ```GET /api/tags/:id/notes```
 	* index of all notes for a tag 
-* ```POST /api/notes/:note_id/tags```
-	* add tag to note by name 
-* ```DELETE /api/notes/:note_id/tags/:tag_name```
-	* remove tag from note by name 
+* ```POST /api/notes/:note_id/tags/:id```
+	* add tag to note by id 
+* ```DELETE /api/notes/:note_id/tags/:id```
+	* remove tag from note by id
 
 
 
