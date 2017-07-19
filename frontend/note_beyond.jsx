@@ -7,7 +7,7 @@ import {login, signup} from './actions/session_actions';
 document.addEventListener('DOMContentLoaded', () => {
   let store;
   if (window.currentUser) {
-    const preloadedState = { session: { currentUser: window.currentUser } };
+    const preloadedState = { session: { currentUser: window.currentUser, errors: [] } };
     store = configureStore(preloadedState);
     delete window.currentUser;
   } else {
