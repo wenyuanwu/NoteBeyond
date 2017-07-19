@@ -3,18 +3,25 @@ import { Link } from 'react-router-dom';
 
 class Greeting extends React.Component {
 
+
 render(){
 
-  let {currentUser, login, logout} = this.props;
+  let {currentUser, login, logout, location} = this.props;
 
-  let demoUser = {"user": {"username":"Guest", "password":"guestpassword"}};
+  if (!location) { return null }
+  let formType = location.pathname.slice(1);
+
+  let login_prop; 
+
+  if (formType === "login"){
+    login_prop = <Link to="/signup">Create Account</Link>;
+  } else {
+    login_prop = <Link to="/login">Sign In</Link>;
+  }
 
   const sessionLinks = () => (
     <nav className="login-signup">
-      <Link to="/login">Login</Link>
-      &nbsp;or&nbsp;
-      <Link to="/signup">Sign up!</Link>
-      <button className="demo-button" onClick={()=>login(demoUser)}> Demo Login</button>;
+      {login_prop}
     </nav>
   );
 
@@ -27,6 +34,7 @@ render(){
 
   return(
     <div>
+      {console.log(formType)}
       {currentUser ? personalGreeting(currentUser, logout) : sessionLinks()}
     </div>  
     );

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
+import GreetingContainer from '../greeting/greeting_container';
 
 class SessionForm extends React.Component {
   constructor(props) {
@@ -9,6 +10,7 @@ class SessionForm extends React.Component {
       password: ''
     };
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.demoUser = {"user": {"username":"Guest", "password":"guestpassword"}};
   }
 
   update(field) {
@@ -35,9 +37,22 @@ class SessionForm extends React.Component {
     );
   }
 
+
 render() {
+    let {formType, login} = this.props;
+    let value;
+
+    if(formType === 'login'){
+      value = "Sign In";
+    } else {
+      value = "Create Account";
+    }
+
+
     return (
       <div className="login-form-container">
+        <GreetingContainer location={this.props.location}/>
+        <h3>{value}</h3>
         <form onSubmit={this.handleSubmit} className="login-form-box">
           <br/>
           {this.renderErrors()}
@@ -59,9 +74,10 @@ render() {
               />
             </label>
             <br/>
-            <input type="submit" value="Submit" />
+            <input type="submit" value={value} />
           </div>
         </form>
+        <button className="demo-button" onClick={()=>login(this.demoUser)}> Demo Login</button>
       </div>
     );
   }
