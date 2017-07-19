@@ -11,12 +11,6 @@ class SessionForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.loggedIn) {
-      this.props.history.push('/');
-    }
-  }
-
   update(field) {
     return e => this.setState({
       [field]: e.currentTarget.value
@@ -41,22 +35,11 @@ class SessionForm extends React.Component {
     );
   }
 
-  navLink(){
-    if(this.props.formType === 'login'){
-      return <Link to="/signup">sign up instead </Link>;
-    }
-    else{
-      return <Link to="/login">log in instead</Link>;
-    }
-  }
-
 render() {
     return (
       <div className="login-form-container">
         <form onSubmit={this.handleSubmit} className="login-form-box">
-          Welcome to NoteBeyond!
           <br/>
-          Please {this.props.formType} or {this.navLink()}
           {this.renderErrors()}
           <div className="login-form">
             <br/>
