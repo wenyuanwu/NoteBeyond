@@ -6,26 +6,7 @@ class Greeting extends React.Component {
 
 render(){
 
-  let {currentUser, login, logout, location} = this.props;
-
-  if (!location) { return null; }
-  let formType = location.pathname.slice(1);
-
-  let login_prop; 
-
-  if (formType === "login"){
-    login_prop = <Link to="/signup">Create Account</Link>;
-  } else {
-    login_prop = <Link to="/login">Sign In</Link>;
-  }
-
-  const sessionLinks = () => (
-    <div>
-      <nav className="login-signup">
-          {login_prop}
-      </nav>
-      </div>
-  );
+  let {currentUser, login, logout} = this.props;
 
   const personalGreeting = (currentUser, logout) => (
     <hgroup className="header-group">
@@ -35,8 +16,9 @@ render(){
   );
 
   return(
+
     <div>
-      {currentUser ? personalGreeting(currentUser, logout) : sessionLinks()}
+       {currentUser && personalGreeting(currentUser, logout)}
     </div>  
     );
   }

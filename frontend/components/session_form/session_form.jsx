@@ -40,12 +40,19 @@ class SessionForm extends React.Component {
 render() {
     let {formType, login} = this.props;
     let value;
+    let login_prop;
 
     if(formType === 'login'){
       value = "Sign In";
     } else {
       value = "Create Account";
     }
+
+    if (formType === "login"){
+    login_prop = <Link to="/signup">Create Account</Link>;
+  } else {
+    login_prop = <Link to="/login">Sign In</Link>;
+  }
 
 
     return (
@@ -84,6 +91,7 @@ render() {
             <button className="demo-button" onClick={()=>login(this.demoUser)}> Demo Login</button>
           </div>
         </form>
+        <div className ="login-signup">{login_prop}</div>
       </div>
     );
   }

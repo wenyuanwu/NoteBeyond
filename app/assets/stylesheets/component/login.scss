@@ -1,23 +1,15 @@
 @import "../base/colors.scss";
 @import "../base/fonts.scss";
 
-body{
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	text-align: center;
-	border-top: 4px solid $green;
-}
-
 .login-form-container {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	text-align: center;
+	border-top: 4px solid $green;
 	flex-direction: column;
 	width: 100%;
 	margin: 0 auto;
-	order: 1;
 	}
 
 .logo{
@@ -80,7 +72,7 @@ body{
 .login-signup{
 	color: $green;	
 	font-size: 16px;
-	order:99;
+	margin-top: 20px;
 	}
 
 .error_msg{
