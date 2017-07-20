@@ -58,7 +58,7 @@ render() {
     return (
       <div className="login-form-container">
         <div className="logo">
-          <img src="/assets/folder_icon.png" />
+          <img src={window.iconUrl} />
         </div>
 
         <h3 className="status">{value}</h3>
