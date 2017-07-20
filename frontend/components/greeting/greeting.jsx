@@ -8,7 +8,7 @@ render(){
 
   let {currentUser, login, logout, location} = this.props;
 
-  if (!location) { return null }
+  if (!location) { return null; }
   let formType = location.pathname.slice(1);
 
   let login_prop; 
@@ -20,9 +20,11 @@ render(){
   }
 
   const sessionLinks = () => (
-    <nav className="login-signup">
-      {login_prop}
-    </nav>
+    <div>
+      <nav className="login-signup">
+          {login_prop}
+      </nav>
+      </div>
   );
 
   const personalGreeting = (currentUser, logout) => (
@@ -34,7 +36,6 @@ render(){
 
   return(
     <div>
-      {console.log(formType)}
       {currentUser ? personalGreeting(currentUser, logout) : sessionLinks()}
     </div>  
     );

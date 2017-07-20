@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
-import GreetingContainer from '../greeting/greeting_container';
 
 class SessionForm extends React.Component {
   constructor(props) {
@@ -51,13 +50,20 @@ render() {
 
     return (
       <div className="login-form-container">
-        <GreetingContainer location={this.props.location}/>
-        <h3>{value}</h3>
+        
+        <div className="logo">
+          <img src="/assets/folder_icon.png"/>
+        </div>
+
+        <h3 className="status">{value}</h3>
+
         <form onSubmit={this.handleSubmit} className="login-form-box">
           <br/>
           {this.renderErrors()}
+          <br/>
+
           <div className="login-form">
-            <br/>
+            
             <label>Username:
               <input type="text"
                 value={this.state.username}
@@ -74,10 +80,11 @@ render() {
               />
             </label>
             <br/>
-            <input type="submit" value={value} />
+            <input className="submit-button" type="submit" value={value} />
           </div>
-        </form>
         <button className="demo-button" onClick={()=>login(this.demoUser)}> Demo Login</button>
+        </form>
+
       </div>
     );
   }

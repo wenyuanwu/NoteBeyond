@@ -21,8 +21,5 @@
 @import "./base/fonts";
 @import "./base/layout";
 
-
-@import "./api/users";
-@import "./api/sessions";
-
-@import "./static_pages";
+/*Component*/
+@import "./component/login";
