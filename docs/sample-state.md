@@ -13,9 +13,10 @@
     1: {
       title: "Sample State",
       body: "is useful to plan",
-      author_id: 1,
+      user_id: 1,
       notebook_id: 1
-      tags_id : [1, 7, 14];
+      tags_id: [1, 7, 14];
+      archived: false;
     }
   },
   tags: {
@@ -27,8 +28,7 @@
   notebooks: {
     1: {
       title: "Redux",
-      author_id: 1,
-      description: "is cool"
+      user_id: 1,
     }
   },
 }

@@ -17,7 +17,7 @@
 | id     |integer | not null, primary key |
 | title      | string     |   not null|
 | body       | text      |  		|
-| author_id | integer      |  not null, foreign key (references users), indexed |
+| user_id | integer      |  not null, foreign key (references users), indexed |
 | notebook_id | integer     |  not null, foreign key (references notebooks), indexed |
 | archived | boolean     |  not null, default: false |
 
@@ -27,7 +27,7 @@
 | ------------- |-------------| -----|
 | id     |integer         | not null, primary key |
 | title     | string     |   not null|
-| author_id | integer     |  not null, foreign key (references notebooks), indexed |
+| user_id | integer     |  not null, foreign key (references notebooks), indexed |
 
 ### tags
 
