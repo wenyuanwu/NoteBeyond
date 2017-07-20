@@ -1,15 +1,23 @@
 @import "../base/colors.scss";
 @import "../base/fonts.scss";
 
-.login-form-container {
+body{
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	text-align: center;
 	border-top: 4px solid $green;
+}
+
+.login-form-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
 	flex-direction: column;
 	width: 100%;
 	margin: 0 auto;
+	order: 1;
 	}
 
 .logo{
@@ -20,36 +28,64 @@
 
 .status{
 	font-size: 32px;
+	font-weight: 300;
+	line-height: 36px;
 	color: $font_dark_grey;
 	}
 
 .login-form-box{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
 	background: white;
 	border-radius: 5px;
-	box-shadow: 0 1,5px 0 0 $dark_grey;
+	border: 1px solid $border_grey;
 	display: flex;
-	flex-direction: column;
-	height: 300px;
+	height: 350px;
 	width:450px;
-	font-size: 22px;
+	font-size: 16px;
+	font-weight: 300;
 	}
+
+.login-form-box input[type="text"], .login-form-box input[type="password"],
+.login-form-box input[type="submit"], .login-form-box button{
+	width:70%;
+	border-radius: 0.25rem;
+  	padding: 1rem;
+  	margin: 15px 15px 0;
+}
+
+.login-form-box input[type="text"], .login-form-box input[type="password"]{
+	border: 1px solid $border_grey;
+}
 
 .submit-button{
 	background-color: $green;
 	border-color: $darker_green;
 	color: white;
-	font-weight: bold;
+	font-weight: normal;
 	padding: 7px 9px;
 	border-radius: 3px;
 	transition: background-color 0.3s;
 	font-family: $sans-serif;
-	text-transform: uppercase;
-	font-size: 11px;
+	text-transform: capitalize;
+	font-size: 16px;
 	text-align: center;
 	}
+.submit-button:hover{
+	background-color: $darker_green;
+}
 
 .login-signup{
 	color: $green;	
 	font-size: 16px;
+	order:99;
 	}
+
+.error_msg{
+	font-size: 12px;
+	margin:5px 5px 0;
+}
+
 

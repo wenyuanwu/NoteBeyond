@@ -50,41 +50,40 @@ render() {
 
     return (
       <div className="login-form-container">
-        
         <div className="logo">
-          <img src="/assets/folder_icon.png"/>
+          <img src="/assets/folder_icon.png" />
         </div>
 
         <h3 className="status">{value}</h3>
 
         <form onSubmit={this.handleSubmit} className="login-form-box">
-          <br/>
-          {this.renderErrors()}
-          <br/>
-
+        
           <div className="login-form">
             
-            <label>Username:
+            <label>
               <input type="text"
                 value={this.state.username}
                 onChange={this.update('username')}
+                placeholder="Username"
                 className="login-input"
               />
             </label>
-            <br/>
-            <label>Password:
+            
+            <label>
               <input type="password"
                 value={this.state.password}
                 onChange={this.update('password')}
+                placeholder ="Password"
                 className="login-input"
               />
             </label>
-            <br/>
+            <div className="error_msg"/>
+              {this.renderErrors()}
+            <div/>
             <input className="submit-button" type="submit" value={value} />
+            <button className="demo-button" onClick={()=>login(this.demoUser)}> Demo Login</button>
           </div>
-        <button className="demo-button" onClick={()=>login(this.demoUser)}> Demo Login</button>
         </form>
-
       </div>
     );
   }
