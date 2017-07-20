@@ -16,7 +16,7 @@
 | ------------- |-------------| -----|
 | id     |integer | not null, primary key |
 | title      | string     |   not null|
-| body| string      |  not null|
+| body       | text      |  		|
 | author_id | integer      |  not null, foreign key (references users), indexed |
 | notebook_id | integer     |  not null, foreign key (references notebooks), indexed |
 | archived | boolean     |  not null, default: false |
@@ -25,10 +25,9 @@
 
 | column name   | data type     | details|
 | ------------- |-------------| -----|
-| id     |integer | not null, primary key |
-| title      | string     |   not null|
+| id     |integer         | not null, primary key |
+| title     | string     |   not null|
 | author_id | integer     |  not null, foreign key (references notebooks), indexed |
-| description | string     |    |
 
 ### tags
 
