@@ -1,5 +1,4 @@
 class Api::NotesController < ApplicationController
-
 	
 	def create 
 		@note = Note.create(note_params)
@@ -34,7 +33,7 @@ class Api::NotesController < ApplicationController
 	end 	
 
 	def index 
-		@note = Note.find_notes_by_user(current_user)
+		@notes = Note.find_notes_by_user(current_user)
 		render "api/notes/index"
 	end 
 

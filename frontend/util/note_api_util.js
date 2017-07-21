@@ -29,9 +29,9 @@ export const fetchAllNotes = () => (
   })
 );
 
-export const deleteNote = id => (
+export const deleteNote = note => (
   $.ajax({
     method: 'DELETE',
-    url: `/api/notes/${id}`
+    url: `/api/notes/${note.id}`
   })
 );
