@@ -12,13 +12,14 @@ Notebook.delete_all
 
 User.delete_all 
 
-User.create!(
-	username: "Guest",
-	password: "guestpassword"
-	)
+user1 = User.create!(username: "Guest", password: "guestpassword")
+user2 = User.create!(username: "user2", password: "123456")
 
-Notebook.create!(
-	title: "Notebook_title_1",
-	user_id: User.first.id
-	)
 
+notebook1 = Notebook.create!(title: "Notebook_title_1",user_id: user1.id)
+notebook2 = Notebook.create!(title: "Notebook_title_2",user_id: user1.id)
+notebook3 = Notebook.create!(title: "Notebook_title_3",user_id: user2.id)
+
+note1 = Note.create!(title:"note1", body:"body1", user_id: user1.id, notebook_id: notebook1.id)
+note2 = Note.create!(title:"note2", body:"body2", user_id: user1.id, notebook_id: notebook2.id)
+note3 = Note.create!(title:"note3", body:"body3", user_id: user2.id, notebook_id: notebook1.id)
