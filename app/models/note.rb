@@ -1,9 +1,9 @@
 class Note < ApplicationRecord
 	belongs_to :user
-	belongs_to :notebooks
+	belongs_to :notebook
 
-	validates :user, :notebooks, presence: true
+	validates :user, :notebook, presence: true
 	validates :title, presence: {message: "must have title for new note"}
-	validates :user, :notebooks, uniqueness: true 
+	validates :user, :notebook, uniqueness: true 
 	
 end

@@ -17,5 +17,8 @@ User.create!(
 	password: "guestpassword"
 	)
 
-
+Notebook.create!(
+	title: "Notebook_title_1",
+	user_id: User.first.id
+	)
 

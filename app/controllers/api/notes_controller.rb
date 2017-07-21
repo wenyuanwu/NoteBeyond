@@ -1,7 +1,8 @@
 class Api::NotesController < ApplicationController
+
 	
 	def create 
-		@note = Note.new(note_params)
+		@note = Note.create(note_params)
 
 		if@note.save 
 			render "api/notes/show"
@@ -26,14 +27,10 @@ class Api::NotesController < ApplicationController
 		@note = Note.find(params[:id])
 		@note.destroy 
 		render "api/notes/show" 
-		# what's the return value 
-
 	end
 
 	def show 
 		@note = Note.find(params[:id])
-		render "api/notes/show"
-		# do we need to render 
 	end 	
 
 	def index 
@@ -46,4 +43,5 @@ class Api::NotesController < ApplicationController
 	def note_params
 		params.require(:note).permit(:title, :body, :archived, :user_id, :notebook_id)
 	end
+
 end
