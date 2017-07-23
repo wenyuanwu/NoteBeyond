@@ -5,8 +5,13 @@ class NoteEdit extends React.Component {
 	render(){
 		
 		const {currentNote} = this.props;
-		
+
+		if(!currentNote){
+   				return null;
+   			}
+	
    		return(
+
 			<div>
 				<header>Current Note</header>
 				<ul className="current-note">

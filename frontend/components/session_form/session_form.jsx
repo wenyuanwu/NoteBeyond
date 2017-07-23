@@ -47,6 +47,7 @@ render() {
     let {formType} = this.props;
     let value;
     let login_prop;
+    let loginPropWord;
 
     if(formType === 'login'){
       value = "Sign In";
@@ -56,8 +57,16 @@ render() {
 
     if (formType === "login"){
     login_prop = <Link to="/signup">Create Account</Link>;
+                
   } else {
     login_prop = <Link to="/login">Sign In</Link>;
+  }
+
+  if (formType === "login"){
+    loginPropWord = "Don't have an account?";
+                
+  } else {
+    loginPropWord = "Already have an account?";
   }
 
 
@@ -97,6 +106,7 @@ render() {
             <button className="demo-button" onClick={this.handleDemoSubmit}> Demo Login</button>
           </div>
         </form>
+        <div className="login-prop-words">{loginPropWord}</div>
         <div className ="login-signup">{login_prop}</div>
       </div>
     );
