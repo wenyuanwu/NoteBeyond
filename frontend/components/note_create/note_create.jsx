@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 class NoteCreate extends React.Component {
 
@@ -30,6 +31,14 @@ class NoteCreate extends React.Component {
 	}
 
 	render(){
+
+		let button;
+		if(this.state.title===""){
+			button = <Link to={"/"}>Cancel</Link>;
+		} else{
+			button = <button>Done</button>; 
+		}
+
 		return(
 			<section className="form">
 		        <form className="post-form" onSubmit={this.handleSubmit}>
@@ -47,8 +56,8 @@ class NoteCreate extends React.Component {
 		              className ="form-body"
 		              value={this.state.body}
 		              placeholder="Drag files here or just start typing..."
-		              onChange={this.update('body')} />  
-		          <button>Done</button>
+		              onChange={this.update('body')} />     
+		          {button}
 		        </form>
 	        </section>
 		);
