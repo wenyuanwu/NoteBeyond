@@ -1,6 +1,4 @@
 import React from 'react';
-import merge from 'lodash/merge';
-import { Link } from 'react-router-dom';
 
 class NoteCreate extends React.Component {
 
@@ -28,6 +26,7 @@ class NoteCreate extends React.Component {
 			notebook_id: this.props.notes[0].notebook_id	
 		}};
 		this.props.createNote(newNote);
+		this.props.history.push('/');
 	}
 
 	render(){
