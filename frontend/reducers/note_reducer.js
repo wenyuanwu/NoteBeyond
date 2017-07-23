@@ -25,7 +25,9 @@ const NoteReducer = (state = nullNote, action) => {
       return merge({}, state, {entities: newNote, currentNote: action.note});
     case REMOVE_NOTE:
       nextState = merge({}, state);
-      delete nextState[action.note.id];
+      console.log(nextState);
+      delete nextState.entities[action.note.id];
+      nextState.currentNote= null;
       return nextState;
     case RECEIVE_ERRORS:
       const errors = action.errors;
