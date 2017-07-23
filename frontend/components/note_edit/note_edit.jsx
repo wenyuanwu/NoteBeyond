@@ -9,6 +9,7 @@ class NoteEdit extends React.Component {
 	   	this.updatetitle = this.updatetitle.bind(this);
   }
 
+
   updatebody(e){
   	let body = e.target.value;
   	let newNote = {id: this.props.currentNote.id,
@@ -23,6 +24,7 @@ class NoteEdit extends React.Component {
 
   updatetitle(e){
   	let title = e.target.value;
+  	console.log("Value title:" + title);
   	let newNote = {id: this.props.currentNote.id,
   					note: {title: title,
 		  				   body: this.props.currentNote.body,
@@ -59,15 +61,15 @@ class NoteEdit extends React.Component {
 					<input
 					  className="title"
 		              type="text"
-		              placeholder = {currentNote.title}
 		              onChange={this.updatetitle}
+		              value={currentNote.title}
 		            />
 
 					<input
 					  className="body"
 		              type="text"
-		              placeholder = {currentNote.body}
 		              onChange={this.updatebody}
+		              value={currentNote.body}
 		            />
 		            
 				</ul>
