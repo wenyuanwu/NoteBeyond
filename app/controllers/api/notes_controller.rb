@@ -13,23 +13,23 @@ class Api::NotesController < ApplicationController
 	end 
 
 	def edit 
-		@note = Note.find(params[:id])
+		@note = current_user.notes.find_by(id: params[:id])
 	end 
 
 	def update 
-		@note = Note.find(params[:id])
+		@note = current_user.notes.find_by(id: params[:id])
 		@note.update_attributes(note_params)
 		render "api/notes/show"
 	end 
 
 	def destroy 
-		@note = Note.find(params[:id])
+		@note = current_user.notes.find_by(id: params[:id])
 		@note.destroy 
 		render "api/notes/show" 
 	end
 
 	def show 
-		@note = Note.find(params[:id])
+		@note = current_user.notes.find_by(id: params[:id])
 	end 	
 
 	def index 

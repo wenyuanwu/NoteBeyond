@@ -1,10 +1,11 @@
-import { RECEIVE_ALL_NOTES, RECEIVE_SINGLE_NOTE, REMOVE_NOTE} from '../actions/note_actions';
+import { RECEIVE_ALL_NOTES, RECEIVE_SINGLE_NOTE, REMOVE_NOTE, RESET_NOTES, UPDATE_CURRENT_NOTE} from '../actions/note_actions';
 import {RECEIVE_ERRORS, CLEAR_ERRORS} from '../actions/error_actions'; 
 import merge from 'lodash/merge';
 
 const nullNote = Object.freeze({
-  note: {},
-  errors: []
+  entities: {},
+  errors: [],
+  currentNote: null
 });
 
 const NoteReducer = (state = nullNote, action) => {
@@ -14,19 +15,24 @@ const NoteReducer = (state = nullNote, action) => {
   switch(action.type){
     case RECEIVE_ALL_NOTES:
       const newNotes = action.notes;
-      return merge({}, state, {note: newNotes});
+      console.log(newNotes[Object.keys(newNotes)[0]]);
+      return merge({}, state, { entities: newNotes, currentNote: newNotes[Object.keys(newNotes)[0]]});
     case RECEIVE_SINGLE_NOTE:
       const newNote = {[action.note.id]: action.note};
-      return merge({}, state, {note:newNote});
+      return merge({}, state, {entities:newNote});
     case REMOVE_NOTE:
       nextState = merge({}, state);
       delete nextState[action.note.id];
       return nextState;
     case RECEIVE_ERRORS:
       const errors = action.errors;
-      return merge({}, nullNote, {
-        errors
-      });
+      return merge({}, nullNote, {errors});
+    case RESET_NOTES:
+      nextState = nullNote;
+      return nextState;  
+    case UPDATE_CURRENT_NOTE: 
+      nextState = action.note;
+      return merge({}, state, {currentNote: nextState});
     default:
       return state;
   }

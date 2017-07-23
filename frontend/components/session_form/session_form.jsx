@@ -9,6 +9,7 @@ class SessionForm extends React.Component {
       password: ''
     };
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleDemoSubmit = this.handleDemoSubmit.bind(this);
     this.demoUser = {"user": {"username":"Guest", "password":"guestpassword"}};
   }
 
@@ -22,6 +23,11 @@ class SessionForm extends React.Component {
     e.preventDefault();
     const user = this.state;
     this.props.processForm({user});
+  }
+
+  handleDemoSubmit(e){
+    e.preventDefault();
+    this.props.login(this.demoUser);
   }
 
   renderErrors() {
@@ -38,7 +44,7 @@ class SessionForm extends React.Component {
 
 
 render() {
-    let {formType, login} = this.props;
+    let {formType} = this.props;
     let value;
     let login_prop;
 
@@ -88,7 +94,7 @@ render() {
               {this.renderErrors()}
             <div/>
             <input className="submit-button" type="submit" value={value} />
-            <button className="demo-button" onClick={()=>login(this.demoUser)}> Demo Login</button>
+            <button className="demo-button" onClick={this.handleDemoSubmit}> Demo Login</button>
           </div>
         </form>
         <div className ="login-signup">{login_prop}</div>

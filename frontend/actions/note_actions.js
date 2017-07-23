@@ -4,6 +4,8 @@ import {receiveErrors, clearErrors} from './error_actions';
 export const RECEIVE_ALL_NOTES = 'RECEIVE_ALL_NOTES';
 export const RECEIVE_SINGLE_NOTE = 'RECEIVE_SINGLE_NOTE';
 export const REMOVE_NOTE = 'REMOVE_NOTE';
+export const RESET_NOTES = 'RESET_NOTES';
+export const UPDATE_CURRENT_NOTE = 'UPDATE_CURRENT_NOTE';
 
 
 //sync actions 
@@ -20,6 +22,16 @@ export const receiveSingleNote = note => ({
 
 export const removeNote = note => ({
   type: REMOVE_NOTE,
+  note
+});
+
+export const resetNotes = () => ({
+  type: RESET_NOTES, 
+  note: null
+}); 
+
+export const updateCurrentNote = note => ({
+  type: UPDATE_CURRENT_NOTE, 
   note
 });
 
@@ -49,6 +61,7 @@ export const updateNote = note => dispatch => (
 export const deleteNote = note => dispatch => (
   APIUtil.deleteNote(note).then(new_note => dispatch(removeNote(new_note)))
 );
+
 
 
 
