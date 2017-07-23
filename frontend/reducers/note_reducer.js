@@ -15,7 +15,6 @@ const NoteReducer = (state = nullNote, action) => {
   switch(action.type){
     case RECEIVE_ALL_NOTES:
       const newNotes = action.notes;
-      console.log(newNotes[Object.keys(newNotes)[0]]);
       return merge({}, state, { entities: newNotes, currentNote: newNotes[Object.keys(newNotes)[0]]});
     case RECEIVE_SINGLE_NOTE:
       const newNote = {[action.note.id]: action.note};
