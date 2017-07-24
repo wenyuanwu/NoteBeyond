@@ -13,6 +13,7 @@
 	flex-direction: row;
 }
 
+/*nav bar style*/
 	
 .navBar{
 	height: 100vh;
@@ -48,6 +49,7 @@
 .logout-button{
 	background-color: transparent;
 	font-size: 10px;
+	margin-top: 15px;
 	}
 
 .logout-button >img{
@@ -59,6 +61,12 @@
 	background-color: transparent;
 }
 
+.header-name{
+	font-size: 9pt;
+	font-family: $sans-serif;
+}
+
+/*noteIndex style*/
 
 .noteIndex{
 	height: 100vh;
@@ -68,15 +76,45 @@
 }
 
 .noteHeader{
+	margin-top: 5%;
+	padding-left: 5%;
+	padding-bottom: 8%;
+	border-bottom: 3px solid $bar-border-grey;
 	color: $index-header-grey;
 	font-size: 21px;
-	font-family: gotham, helvetica, arial, sans-serif;
-	font-weight: 300;
-	letter-spacing: 0.5px;
+	font-family: $sans-serif;
+	font-weight: 100;
+	letter-spacing: 2px;
 	text-transform: uppercase;
 	vertical-align: top;
-	line-height: 26px;
+	line-height: 40px;
 }
+
+.note-list{
+
+}
+
+.note-list-item{
+	padding-top: 5%;
+	padding-left: 5%;
+	border-bottom: 1px solid $bar-border-grey;
+}
+
+.note-title{
+	font-size: 14px;
+	color: $font_black;
+	padding-bottom: 5%
+}
+
+.note-body{
+	font-family: helvetica, arial, sans-serif;
+	letter-spacing: 0.5px;
+	padding-bottom: 5%;
+	font-weight: 200;
+	color: $font_light_grey;
+}
+
+/*note show style*/
 
 .noteShow{
 	height: 100vh;
