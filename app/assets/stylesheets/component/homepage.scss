@@ -45,10 +45,19 @@
 
 }
 
-.logout-botton{
+.logout-button{
 	background-color: transparent;
 	font-size: 10px;
 	}
+
+.logout-button >img{
+	width: 150%;
+	height: 150%
+}
+
+.logout-button:hover{
+	background-color: transparent;
+}
 
 
 .noteIndex{

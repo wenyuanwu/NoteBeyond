@@ -23,7 +23,7 @@ class HomePage extends React.Component {
 		const personalGreeting = (currentUser) => (
 		    <hgroup className="header-group">
 		      <button className="logout-button" onClick={this.handleLogOut}>
-		      	<img src="http://res.cloudinary.com/dltydzsmu/image/upload/v1500915662/logout_tgqm2s.png"/>
+		      	<img src="http://res.cloudinary.com/dltydzsmu/image/upload/v1500916065/logout-16_yg7fr5.png"/>
 		      </button>
 		    </hgroup>);
 
