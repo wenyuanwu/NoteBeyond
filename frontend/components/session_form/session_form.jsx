@@ -73,7 +73,7 @@ render() {
     return (
       <div className="login-form-container">
         <div className="logo">
-          <img src="/assets/folder_icon.png" />
+          <img src="http://res.cloudinary.com/dltydzsmu/image/upload/v1500915656/folder_icon_snyvtd.png" />
         </div>
 
         <h3 className="status">{value}</h3>
