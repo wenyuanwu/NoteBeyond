@@ -82,7 +82,7 @@
 	border-bottom: 3px solid $bar-border-grey;
 	color: $index-header-grey;
 	font-size: 21px;
-	font-family: $sans-serif;
+	font-family: helvetica, arial, sans-serif;
 	font-weight: 100;
 	letter-spacing: 2px;
 	text-transform: uppercase;
@@ -91,13 +91,15 @@
 }
 
 .note-list{
-
+	padding-right: 3%;
+	padding-left: 3%;
 }
 
 .note-list-item{
 	padding-top: 5%;
 	padding-left: 5%;
 	border-bottom: 1px solid $bar-border-grey;
+	height: 100px;
 }
 
 .note-title{
@@ -108,6 +110,13 @@
 
 .note-body{
 	font-family: helvetica, arial, sans-serif;
+	display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+	text-overflow: ellipsis; 
+	overflow: hidden;
+	line-height: 14px;
+	font-size: 12px;
 	letter-spacing: 0.5px;
 	padding-bottom: 5%;
 	font-weight: 200;
