@@ -20,6 +20,7 @@
 	background: $bar-grey;
 	display: flex;
 	flex-direction: column;
+	justify-content: space-around;
 	align-items: center;
 	border-right: 1px solid $bar-border-grey;
 }
@@ -27,13 +28,45 @@
 .navBar >img{
 	padding: 10px;
 	width: 35%;
+} 
+
+.groupOne >img{
+	margin-top: 15px;
 }
+
+.groupTwo >img{
+	margin-top: 20px;
+}
+
+.groupThree {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+
+}
+
+.logout-botton{
+	background-color: transparent;
+	font-size: 10px;
+	}
+
 
 .noteIndex{
 	height: 100vh;
 	width: 30%;
 	background: white;
 	border-right: 1px solid $bar-border-grey;
+}
+
+.noteHeader{
+	color: $index-header-grey;
+	font-size: 21px;
+	font-family: gotham, helvetica, arial, sans-serif;
+	font-weight: 300;
+	letter-spacing: 0.5px;
+	text-transform: uppercase;
+	vertical-align: top;
+	line-height: 26px;
 }
 
 .noteShow{
@@ -49,3 +82,4 @@
 	width: 3%;
 	height: 3%;
 }
+

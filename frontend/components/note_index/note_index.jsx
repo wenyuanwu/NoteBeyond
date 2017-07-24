@@ -17,7 +17,7 @@ class NoteIndex extends React.Component {
 
    		return(
 			<div>
-				<header>Notes</header>
+				<header className="noteHeader">Notes</header>
 				<ul className="note-list">
 					{noteItems}
 				</ul>
