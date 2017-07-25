@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Editor, EditorState, RichUtils, convertToRaw, convertFromRaw, getCurrentContent} from 'draft-js';
+import {Editor, EditorState, RichUtils, convertToRaw, convertFromRaw, getCurrentContent, ContentState} from 'draft-js';
 import { Link } from 'react-router-dom';
 import debounce from 'lodash/debounce';
 
@@ -12,25 +12,32 @@ class NoteEdit extends React.Component {
       		editorState: EditorState.createEmpty(),
     	};
 	   	this.handleKeyCommand = this.handleKeyCommand.bind(this);
-	    this.saveContent = this.saveContent.bind(this);
+	    // this.saveContent = this.saveContent.bind(this);
 	    this.updatebody = this.updatebody.bind(this);
 	   	this.updatetitle = this.updatetitle.bind(this);
 	   	this.onChange = this.onChange.bind(this);
   }
 
   saveContent(contentState){
-  		console.log("saveContent");
+  		// console.log("contentState", contentState);
+  		console.log("convertToRaw", convertToRaw(contentState));
+  		// console.log("blocks", convertToRaw(contentState).blocks);
+  		// console.log("text",convertToRaw(contentState).blocks[0].text);
+  		// console.log(convertToRaw(contentState).blocks.text);
+  		// console.log("saveContent");
   		const JScontent = JSON.stringify(convertToRaw(contentState));
-  		console.log(JScontent);
-
+  		console.log("JSCONTENT", JScontent);
+  		
       	let newBody = {id: this.props.currentNote.id,
   					note: {title: this.props.currentNote.title,
 		  				   body: JScontent,
 		  				   user_id: this.props.currentNote.user_id,
 		  				   notebook_id: this.props.currentNote.notebook_id}
-		  		   };	
+		  		   };
 
-		debounce((newBody) => {this.props.updatNote(newBody)}, 1000);
+		 this.props.updateNote(newBody);	
+
+		  // debounce((newBody) => {this.props.updatNote(newBody)}, 1000);
   }
 
 	
@@ -43,20 +50,24 @@ class NoteEdit extends React.Component {
   }
 
 
-  // componentWillReceiveProps(newProps){
-  // 	if(this.props.currentNote === null && newProps.currentNote){
-  // 		let content = {'content': newProps.currentNote.body};
-  // 		console.log(content);
-  // 		console.log(newProps.currentNote);
-  // 		console.log(newProps.currentNote.body);
-  // 		console.log(convertFromRaw);
-		// if(newProps.currentNote){
-  // 			this.setState({editorState: EditorState.createWithContent(convertFromRaw(content))});
-  // 		} else{
-  // 			this.setState({editorState: EditorState.createEmpty()});
-  // 		}  		
-  // 	}
-  // }
+  componentWillReceiveProps(newProps){
+  	if(this.props.currentNote === null && newProps.currentNote){
+
+  		let content = newProps.currentNote.body;
+
+  		console.log("JSON parse true", typeof JSON.parse(content)=== 'object');
+
+  		if( typeof JSON.parse(content) === 'object'){
+  			this.setState({
+  				editorState: EditorState.createWithContent(convertFromRaw(JSON.parse(content)))
+  			});
+  		} else{
+  			this.setState({
+  				editorState: EditorState.createWithContent(ContentState.createFromText(content))
+  			});
+  		}
+  	}
+  }
 
   updatebody(e){
   	let body = e.target.value;
