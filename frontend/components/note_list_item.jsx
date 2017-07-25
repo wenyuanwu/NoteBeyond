@@ -17,7 +17,7 @@ class NoteListItem extends React.Component {
 	render(){
 		const{note} = this.props;
 		return(
-			< a onClick={this.onClick} className="click-to-show">
+			<a onClick={this.onClick} className="click-to-show">
 				<li className="note-list-item">
 					<div className="note-title">{note.title}</div>
 					<div className="note-body">{note.body}</div>

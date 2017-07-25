@@ -81,7 +81,7 @@
 	padding-bottom: 8%;
 	border-bottom: 3px solid $bar-border-grey;
 	color: $index-header-grey;
-	font-size: 21px;
+	font-size: 24px;
 	font-family: helvetica, arial, sans-serif;
 	font-weight: 100;
 	letter-spacing: 2px;
@@ -118,7 +118,6 @@
 	line-height: 14px;
 	font-size: 12px;
 	letter-spacing: 0.5px;
-	padding-bottom: 5%;
 	font-weight: 200;
 	color: $font_light_grey;
 }
@@ -133,9 +132,40 @@
 	
 }
 
+.note-edit{
+	padding-right: 3%;
+	padding-left: 3%;
+}
+
+.note-edit >header{
+	padding-top: 20px;
+}
+
 .delete-button{
-	padding: 10px;
 	width: 3%;
 	height: 3%;
+	padding-bottom: 15px;
 }
+
+
+.current-note{
+	border-top: 1px solid $bar-border-grey;
+}
+
+.note-edit-title{
+	padding-top: 15px;
+	font-size: 22px;
+	letter-spacing: 0.5px;
+	color: $green;
+}
+
+.note-edit-body{
+	display: inline;
+	padding-top: 15px;
+	font-size: 14px;
+	font-weight: 100;
+	letter-spacing: 0.5px;
+	font-family: helvetica, arial, sans-serif;
+}
+
 
