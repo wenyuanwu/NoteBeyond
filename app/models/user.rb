@@ -10,6 +10,7 @@ class User < ApplicationRecord
 	before_validation :ensure_session_token_uniqueness
 
 	has_many :notes 
+	has_many :notebooks
 	
 	def password=(password)
 		self.password_digest = BCrypt::Password.create(password)

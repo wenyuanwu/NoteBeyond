@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { updateNote, deleteNote, updateCurrentNote } from '../../actions/note_actions';
+import { updateNote, deleteNote, updateCurrentNote, fetchAllNotes } from '../../actions/note_actions';
 import NoteEdit from './note_edit';
 
 const mapStateToProps = ({ note }) => {	
@@ -12,7 +12,8 @@ const mapStateToProps = ({ note }) => {
 const mapDispatchToProps = dispatch => ({
   updateNote: note => dispatch(updateNote(note)),
   deleteNote: note => dispatch(deleteNote(note)),
-  updateCurrentNote: note => dispatch(updateCurrentNote(note))
+  updateCurrentNote: note => dispatch(updateCurrentNote(note)),
+  fetchAllNotes: () => dispatch(fetchAllNotes())
 });
 
 export default connect( 

@@ -1,19 +1,62 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Editor, EditorState, RichUtils} from 'draft-js';
+import {Editor, EditorState, RichUtils, convertToRaw, convertFromRaw, getCurrentContent} from 'draft-js';
 import { Link } from 'react-router-dom';
+import debounce from 'lodash/debounce';
 
 class NoteEdit extends React.Component {
 
   constructor(props) {
 	    super(props);
-	    this.state = {editorState: EditorState.createEmpty()};
-    	this.onChange = (editorState) => this.setState({editorState});
+	    this.state = {
+      		editorState: EditorState.createEmpty(),
+    	};
 	   	this.handleKeyCommand = this.handleKeyCommand.bind(this);
+	    this.saveContent = this.saveContent.bind(this);
 	    this.updatebody = this.updatebody.bind(this);
 	   	this.updatetitle = this.updatetitle.bind(this);
+	   	this.onChange = this.onChange.bind(this);
   }
 
+  saveContent(contentState){
+  		console.log("saveContent");
+  		const JScontent = JSON.stringify(convertToRaw(contentState));
+  		console.log(JScontent);
+
+      	let newBody = {id: this.props.currentNote.id,
+  					note: {title: this.props.currentNote.title,
+		  				   body: JScontent,
+		  				   user_id: this.props.currentNote.user_id,
+		  				   notebook_id: this.props.currentNote.notebook_id}
+		  		   };	
+
+		debounce((newBody) => {this.props.updatNote(newBody)}, 1000);
+  }
+
+	
+  onChange(editorState){
+	    const contentState = editorState.getCurrentContent();
+	    this.saveContent(contentState);
+	    this.setState({
+	      editorState: editorState
+	    });
+  }
+
+
+  // componentWillReceiveProps(newProps){
+  // 	if(this.props.currentNote === null && newProps.currentNote){
+  // 		let content = {'content': newProps.currentNote.body};
+  // 		console.log(content);
+  // 		console.log(newProps.currentNote);
+  // 		console.log(newProps.currentNote.body);
+  // 		console.log(convertFromRaw);
+		// if(newProps.currentNote){
+  // 			this.setState({editorState: EditorState.createWithContent(convertFromRaw(content))});
+  // 		} else{
+  // 			this.setState({editorState: EditorState.createEmpty()});
+  // 		}  		
+  // 	}
+  // }
 
   updatebody(e){
   	let body = e.target.value;
@@ -68,7 +111,7 @@ class NoteEdit extends React.Component {
 		const {currentNote} = this.props;
 
 		if(!currentNote){
-   				return null;
+   				return <h3 className="loading"> Loading...</h3>;
    			}
 	
    		return(
