@@ -1,61 +1,30 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Editor, EditorState, RichUtils, convertToRaw, convertFromRaw, getCurrentContent, ContentState} from 'draft-js';
+import { blockRenderMap, CheckableListItem, CheckableListItemUtils, CHECKABLE_LIST_ITEM } from 'draft-js-checkable-list-item';
+import { InlineStyleControls, BlockStyleControls, styleMap, blocksStyleFn } from '../editor/style_controls';
 import { Link } from 'react-router-dom';
-import debounce from 'lodash/debounce';
 
 class NoteEdit extends React.Component {
 
   constructor(props) {
 	    super(props);
-	    this.state = {
-      		editorState: EditorState.createEmpty(),
-    	};
+	    this.state = {};
 	   	this.handleKeyCommand = this.handleKeyCommand.bind(this);
-	    // this.saveContent = this.saveContent.bind(this);
-	    this.updatebody = this.updatebody.bind(this);
+	    this.saveContent = this.saveContent.bind(this);
 	   	this.updatetitle = this.updatetitle.bind(this);
 	   	this.onChange = this.onChange.bind(this);
+      // this.onTab = e => this._onTab(e);
+      // this.toggleBlockType = type => this._toggleBlockType(type);
+      // this.toggleInlineStyle = style => this._toggleInlineStyle(style);
+      // this.blockRendererFn = this.blockRendererFn.bind(this);
   }
-
-  saveContent(contentState){
-  		// console.log("contentState", contentState);
-  		console.log("convertToRaw", convertToRaw(contentState));
-  		// console.log("blocks", convertToRaw(contentState).blocks);
-  		// console.log("text",convertToRaw(contentState).blocks[0].text);
-  		// console.log(convertToRaw(contentState).blocks.text);
-  		// console.log("saveContent");
-  		const JScontent = JSON.stringify(convertToRaw(contentState));
-  		console.log("JSCONTENT", JScontent);
-  		
-      	let newBody = {id: this.props.currentNote.id,
-  					note: {title: this.props.currentNote.title,
-		  				   body: JScontent,
-		  				   user_id: this.props.currentNote.user_id,
-		  				   notebook_id: this.props.currentNote.notebook_id}
-		  		   };
-
-		 this.props.updateNote(newBody);	
-
-		  // debounce((newBody) => {this.props.updatNote(newBody)}, 1000);
-  }
-
-	
-  onChange(editorState){
-	    const contentState = editorState.getCurrentContent();
-	    this.saveContent(contentState);
-	    this.setState({
-	      editorState: editorState
-	    });
-  }
-
 
   componentWillReceiveProps(newProps){
-  	if(this.props.currentNote === null && newProps.currentNote){
+  	if((newProps.currentNote !== null) && (this.props.currentNote !== newProps.currentNote)){
 
   		let content = newProps.currentNote.body;
-
-  		console.log("JSON parse true", typeof JSON.parse(content)=== 'object');
+      clearInterval(this.idleTimeout);
 
   		if( typeof JSON.parse(content) === 'object'){
   			this.setState({
@@ -69,16 +38,30 @@ class NoteEdit extends React.Component {
   	}
   }
 
-  updatebody(e){
-  	let body = e.target.value;
-  	let newNote = {id: this.props.currentNote.id,
-  					note: {title: this.props.currentNote.title,
-		  				   body: body,
-		  				   user_id: this.props.currentNote.user_id,
-		  				   notebook_id: this.props.currentNote.notebook_id}
-		  		   };
+  componentWillUnmount() {
+    clearInterval(this.idleTimeout);
+  }
 
-    this.props.updateNote(newNote);
+  saveContent(){
+      const JScontent = JSON.stringify(convertToRaw(this.state.editorState.getCurrentContent()));
+      
+        let newBody = {id: this.props.currentNote.id,
+            note: {title: this.props.currentNote.title,
+                 body: JScontent,
+                 user_id: this.props.currentNote.user_id,
+                 notebook_id: this.props.currentNote.notebook_id}
+             };
+      this.props.updateNote(newBody);
+  }
+  
+  onChange(editorState){
+      this.setState({
+        editorState: editorState
+      });
+
+      clearTimeout(this.idleTimeout);
+      this.idleTimeout = setTimeout(this.saveContent, 1800);
+
   }
 
   updatetitle(e){
@@ -92,6 +75,7 @@ class NoteEdit extends React.Component {
 
     this.props.updateNote(newNote);
   }
+
 
   errors() {
     if (this.props.errors) {
@@ -112,30 +96,57 @@ class NoteEdit extends React.Component {
     return 'not-handled';
   }
 
-  _onBoldClick() {
-    this.onChange(RichUtils.toggleInlineStyle(this.state.editorState, 'BOLD'));
+  _onTab(e) {
+    const maxDepth = 4;
+    this.onChange(RichUtils.onTab(e, this.state.editorState, maxDepth));
   }
 
+  _toggleBlockType(blockType) {
+    this.onChange(
+      RichUtils.toggleBlockType(this.state.editorState, blockType)
+    );
+  }
+
+  _toggleInlineStyle(inlineStyle) {
+    this.onChange(
+      RichUtils.toggleInlineStyle(this.state.editorState, inlineStyle)
+    );
+  }
 
   render(){
 		
 		const {currentNote} = this.props;
+    const {editorState} = this.state;
+
 
 		if(!currentNote){
    				return <h3 className="loading"> Loading...</h3>;
    			}
 	
-   		return(
+   	return(
 
 			<div className="note-edit">
 
 			  <div className="editor">	
-				<button onClick={this._onBoldClick.bind(this)}>Bold</button>
-				<Editor editorState={this.state.editorState} 
-						onChange={this.onChange} 
-						placeholder="Start typing..."
-						handleKeyCommand={this.handleKeyCommand}
-				/>
+
+         <div className="richtext-toolbar"> 
+  				<InlineStyleControls
+            editorState={editorState}
+            onToggle={this.toggleInlineStyle}
+          />
+
+          <BlockStyleControls
+            editorState={editorState}
+            onToggle={this.toggleInlineStyle}
+          />
+        </div>
+
+  				<Editor editorState={editorState} 
+  						onChange={this.onChange} 
+  						placeholder="Start typing..."
+  						handleKeyCommand={this.handleKeyCommand}
+  				/>
+
 			  </div>	
 
 				<Link to={`/deletenote`} >
@@ -149,15 +160,6 @@ class NoteEdit extends React.Component {
 		              onChange={this.updatetitle}
 		              value={currentNote.title}
 			            />
-			        <br/>    
-					<textarea
-					  className="note-edit-body"
-		              type="text"
-		              onChange={this.updatebody}
-		              placeholder = "Start typing..."
-		              value={currentNote.body}
-		            />
-		            
 				</ul>				
 			</div>
 		);
