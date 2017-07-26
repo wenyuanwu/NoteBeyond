@@ -2,7 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {Editor, EditorState, RichUtils, convertToRaw, convertFromRaw, getCurrentContent, ContentState} from 'draft-js';
 import { blockRenderMap, CheckableListItem, CheckableListItemUtils, CHECKABLE_LIST_ITEM } from 'draft-js-checkable-list-item';
-import { InlineStyleControls, BlockStyleControls, styleMap, blocksStyleFn } from '../editor/style_controls';
+import { InlineStyleControls, BlockStyleControls, styleMap, blocksStyleFn, getBlockStyle } from '../editor/style_controls';
+import StyleButton from '../editor/style_button';
 import { Link } from 'react-router-dom';
 
 class NoteEdit extends React.Component {
@@ -11,13 +12,13 @@ class NoteEdit extends React.Component {
 	    super(props);
 	    this.state = {};
 	   	this.handleKeyCommand = this.handleKeyCommand.bind(this);
+      this.focus = () => this.refs.editor.focus();
 	    this.saveContent = this.saveContent.bind(this);
 	   	this.updatetitle = this.updatetitle.bind(this);
 	   	this.onChange = this.onChange.bind(this);
-      // this.onTab = e => this._onTab(e);
-      // this.toggleBlockType = type => this._toggleBlockType(type);
-      // this.toggleInlineStyle = style => this._toggleInlineStyle(style);
-      // this.blockRendererFn = this.blockRendererFn.bind(this);
+      this.onTab = e => this._onTab(e);
+      this.toggleBlockType = type => this._toggleBlockType(type);
+      this.toggleInlineStyle = style => this._toggleInlineStyle(style);
   }
 
   componentWillReceiveProps(newProps){
@@ -123,50 +124,63 @@ class NoteEdit extends React.Component {
    				return <h3 className="loading"> Loading...</h3>;
    			}
 	
+    let className = 'RichEditor-editor';
+          var contentState = editorState.getCurrentContent();
+          if (!contentState.hasText()) {
+            if (contentState.getBlockMap().first().getType() !== 'unstyled') {
+              className += ' RichEditor-hidePlaceholder';
+            }
+          }
+
    	return(
 
-			<div className="note-edit">
+			<div className="RichEditor-root">
 
-			  <div className="editor">	
+      				<Link to={`/deletenote`} >
+      					<img className="delete-button" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAjCAYAAADmOUiuAAACbElEQVR42u2XP2gTURzHg5aKQ5dSig5OtlgcstgidnAyWC2YRVPEwUVS0cGpRlwylVQcHEohggGH5nJ3uaQd5CCBgmJTSEDQoYiBDkFMIYKgg0iVxt+Tb8ur3jtyd+8Fhxw8km/uvd/v877vb0Kh3tN7/n3y+XyUyjaVdoeF1Y12E9AL3D5kNwH/JFVVvwfYFUAKWPExz/yWyv8O+DqQm6Zp3kOgJ0FHxrKsRRaLPu9KG27DMG4C8LmEqbOMWDekAZKDVxB0lduo2/T7ig/AF3DwskwHzwPoFdOFQmFPv/QxxOvo7KQ0QE3Twgj6DknCcOGtDwc30bnT0gBzudwJADactEfAT6wtjcJxaYCZTGYAQN/+0l99AH6Hg0dlb9w/qewmk8k+XlOiw53GsG37CDr2Q/rxRiCfWXCaj0MAbPG6wxjHlN1sKGidBc9ms6NumiBGXFbwGADfq3CwxoLruj4BoKqbFsQ4B8ANFYBlFrxYLEYAVHLSVC/iMgqXAGirADSx98UwXDqv6bvBNG3qMZchvg5ATQXgUwDFcbqkkWwWgGn+vcDBO2izJB2QgB4heALAKV4T2AEtAHyIOvMqHHwAh1JIdh/JFtCBBK8FgI8xT+ekAxLYbQCkARx304JOPkOdW9IB6eycgYM63LiGZIaTFgBacPCqCgcvAqCEZBEkK/N6770AcA0r/YIKwLMAqEKPA7DGNNugeS0AfIM6Z1QsklMY4g/QIwCuO2nBItnCaXNSOiCdGMMAaAXo5Bc4OKjCwX4A7vhpT9e0Q9T2l9crmtcbzUcJ/4EbIVUP9XyKEjQDwDUpxrSXnL8BI9Tv3UAALyAAAAAASUVORK5CYII=" />
+      				</Link>
 
-         <div className="richtext-toolbar"> 
-  				<InlineStyleControls
-            editorState={editorState}
-            onToggle={this.toggleInlineStyle}
-          />
+              <BlockStyleControls
+                editorState={editorState}
+                onToggle={this.toggleBlockType}
+              />
 
-          <BlockStyleControls
-            editorState={editorState}
-            onToggle={this.toggleInlineStyle}
-          />
-        </div>
+              <InlineStyleControls
+                editorState={editorState}
+                onToggle={this.toggleInlineStyle}
+              />
 
-  				<Editor editorState={editorState} 
-  						onChange={this.onChange} 
-  						placeholder="Start typing..."
-  						handleKeyCommand={this.handleKeyCommand}
-  				/>
+      				<ul className="current-note">
+      					<input
+      					  className="note-edit-title"
+      		              type="text"
+      		              onChange={this.updatetitle}
+      		              value={currentNote.title}
+      			            />
+      				</ul>				
+              
+              <div className={className} onClick={this.focus}>
+                <Editor
+                  blockStyleFn={getBlockStyle}
+                  customStyleMap={styleMap}
+                  editorState={editorState}
+                  handleKeyCommand={this.handleKeyCommand}
+                  onChange={this.onChange}
+                  onTab={this.onTab}
+                  placeholder="Tell a story..."
+                  ref="editor"
+                  spellCheck={true}
+                />
+              </div>  
 
-			  </div>	
-
-				<Link to={`/deletenote`} >
-					<img className="delete-button" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAjCAYAAADmOUiuAAACbElEQVR42u2XP2gTURzHg5aKQ5dSig5OtlgcstgidnAyWC2YRVPEwUVS0cGpRlwylVQcHEohggGH5nJ3uaQd5CCBgmJTSEDQoYiBDkFMIYKgg0iVxt+Tb8ur3jtyd+8Fhxw8km/uvd/v877vb0Kh3tN7/n3y+XyUyjaVdoeF1Y12E9AL3D5kNwH/JFVVvwfYFUAKWPExz/yWyv8O+DqQm6Zp3kOgJ0FHxrKsRRaLPu9KG27DMG4C8LmEqbOMWDekAZKDVxB0lduo2/T7ig/AF3DwskwHzwPoFdOFQmFPv/QxxOvo7KQ0QE3Twgj6DknCcOGtDwc30bnT0gBzudwJADactEfAT6wtjcJxaYCZTGYAQN/+0l99AH6Hg0dlb9w/qewmk8k+XlOiw53GsG37CDr2Q/rxRiCfWXCaj0MAbPG6wxjHlN1sKGidBc9ms6NumiBGXFbwGADfq3CwxoLruj4BoKqbFsQ4B8ANFYBlFrxYLEYAVHLSVC/iMgqXAGirADSx98UwXDqv6bvBNG3qMZchvg5ATQXgUwDFcbqkkWwWgGn+vcDBO2izJB2QgB4heALAKV4T2AEtAHyIOvMqHHwAh1JIdh/JFtCBBK8FgI8xT+ekAxLYbQCkARx304JOPkOdW9IB6eycgYM63LiGZIaTFgBacPCqCgcvAqCEZBEkK/N6770AcA0r/YIKwLMAqEKPA7DGNNugeS0AfIM6Z1QsklMY4g/QIwCuO2nBItnCaXNSOiCdGMMAaAXo5Bc4OKjCwX4A7vhpT9e0Q9T2l9crmtcbzUcJ/4EbIVUP9XyKEjQDwDUpxrSXnL8BI9Tv3UAALyAAAAAASUVORK5CYII=" />
-				</Link>
-
-				<ul className="current-note">
-					<input
-					  className="note-edit-title"
-		              type="text"
-		              onChange={this.updatetitle}
-		              value={currentNote.title}
-			            />
-				</ul>				
 			</div>
 		);
   }
 }
 
 export default NoteEdit;
+
+
 
 
 

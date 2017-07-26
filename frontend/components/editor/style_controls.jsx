@@ -1,7 +1,7 @@
 import React from 'react';
+import {Editor, EditorState, RichUtils} from 'draft-js';
 import { CHECKABLE_LIST_ITEM } from 'draft-js-checkable-list-item';
 
-import StyleButton from './style_button';
 
 export const styleMap = {
   CODE: {
@@ -18,21 +18,56 @@ export const styleMap = {
   },
 };
 
-const INLINE_STYLES = [
-  { className: 'fa fa-bold', title: 'Bold', style: 'BOLD' },
-  { className: 'fa fa-italic', title: 'Italic', style: 'ITALIC' },
-  { className: 'fa fa-underline', title: 'Underline', style: 'UNDERLINE' },
-  { className: 'fa fa-strikethrough', title: 'Strikethrough', style: 'STRIKETHROUGH' },
-  { className: 'fa fa-pencil', title: 'Highlight', style: 'HIGHLIGHT' },
-  { className: 'fa fa-code', title: 'Code Block', style: 'CODE' },
-];
+export const getBlockStyle = (block) => {
+        switch (block.getType()) {
+          case 'blockquote': return 'RichEditor-blockquote';
+          default: return null;
+        }
+      };
+
+class StyleButton extends React.Component {
+        constructor() {
+          super();
+          this.onToggle = (e) => {
+            e.preventDefault();
+            this.props.onToggle(this.props.style);
+          };
+        }
+
+        render() {
+          let className = 'RichEditor-styleButton';
+          if (this.props.active) {
+            className += ' RichEditor-activeButton';
+          }
+          console.log(this.props);
+
+          return (
+            <span className={className} onMouseDown={this.onToggle}>
+              {this.props.label}
+            </span>
+          );
+        }
+      }
+
+var INLINE_STYLES = [
+        {label: 'Bold', style: 'BOLD'},
+        {label: 'Italic', style: 'ITALIC'},
+        {label: 'Underline', style: 'UNDERLINE'},
+        {label: 'Monospace', style: 'CODE'},
+      ];
 
 const BLOCK_TYPES = [
-  { className: 'fa fa-check-square-o', title: 'Checkbox', style: CHECKABLE_LIST_ITEM },
-  { className: 'fa fa-list-ul', title: 'Unordered List', style: 'unordered-list-item' },
-  { className: 'fa fa-list-ol', title: 'Ordered List', style: 'ordered-list-item' },
-];
-
+        {label: 'H1', style: 'header-one'},
+        {label: 'H2', style: 'header-two'},
+        {label: 'H3', style: 'header-three'},
+        {label: 'H4', style: 'header-four'},
+        {label: 'H5', style: 'header-five'},
+        {label: 'H6', style: 'header-six'},
+        {label: 'Blockquote', style: 'blockquote'},
+        {label: 'UL', style: 'unordered-list-item'},
+        {label: 'OL', style: 'ordered-list-item'},
+        {label: 'Code Block', style: 'code-block'},
+      ];
 
 export const blocksStyleFn = (block) => {
   switch (block.getType()) {
@@ -44,28 +79,27 @@ export const blocksStyleFn = (block) => {
   }
 };
 
-export const BlockStyleControls = ({ editorState, onToggle }) => {
-  const selection = editorState.getSelection();
-  const blockType = editorState
-    .getCurrentContent()
-    .getBlockForKey(selection.getStartKey())
-    .getType();
-
-  return (
-    <div className="blocktype-controls">
-      { BLOCK_TYPES.map(type =>
-        <StyleButton
-          key={type.title}
-          active={type.style === blockType}
-          className={type.className}
-          title={type.title}
-          onToggle={onToggle}
-          style={type.style}
-        />
-      )}
-    </div>
-  );
-};
+export const BlockStyleControls = (props) => {
+        const {editorState} = props;
+        const selection = editorState.getSelection();
+        const blockType = editorState
+          .getCurrentContent()
+          .getBlockForKey(selection.getStartKey())
+          .getType();
+        return (
+          <div className="RichEditor-controls">
+            {BLOCK_TYPES.map((type) =>
+              <StyleButton
+                key={type.label}
+                active={type.style === blockType}
+                label={type.label}
+                onToggle={props.onToggle}
+                style={type.style}
+              />
+            )}
+          </div>
+        );
+      };
 
 export const InlineStyleControls = (props) => {
   const currentStyle = props.editorState.getCurrentInlineStyle();
@@ -84,13 +118,3 @@ export const InlineStyleControls = (props) => {
     </div>
   );
 };
-
-// small: {
-//   fontSize: '8px',
-// },
-// medium: {
-//   fontSize: '12px',
-// },
-// large: {
-//   fontSize: '16px',
-// },
