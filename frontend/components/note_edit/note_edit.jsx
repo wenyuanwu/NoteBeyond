@@ -120,11 +120,12 @@ class NoteEdit extends React.Component {
     const {editorState} = this.state;
 
 
-		if(!currentNote){
+		if(!currentNote || !editorState){
    				return <h3 className="loading"> Loading...</h3>;
    			}
 	
     let className = 'RichEditor-editor';
+
           var contentState = editorState.getCurrentContent();
           if (!contentState.hasText()) {
             if (contentState.getBlockMap().first().getType() !== 'unstyled') {
