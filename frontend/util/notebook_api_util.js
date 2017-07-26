@@ -15,23 +15,23 @@ export const updateNotebook = notebook => (
   })
 );
 
-export const fetchSingleNote = id => (
+export const fetchSingleNotebook = id => (
   $.ajax({
     method: 'GET',
     url: `/api/notebooks/${id}`
   })
 );
 
-export const fetchAllNotes = () => (
+export const fetchAllNotebooks = () => (
   $.ajax({
     method: 'GET',
     url: '/api/notebooks'
   })
 );
 
-export const deleteNote = note => (
+export const deleteNotebook = notebook => (
   $.ajax({
     method: 'DELETE',
-    url: `/api/notes/${note.id}`
+    url: `/api/notebooks/${notebook.id}`
   })
 );
