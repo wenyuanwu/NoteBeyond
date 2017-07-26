@@ -1,11 +1,42 @@
+@import "../base/colors.scss";
+@import "../base/fonts.scss";
+
 .deleteNotePage{
+	height: 100vh;
 	display: flex;
 	align-items: center;
 	flex-direction: column;
+	justify-content: center;
+	background-color: white;
 }
 
 .delete-button-delete-page{
-	width: 3%;
-	height: 3%;
+	width: 4%;
+	height: 9%;
 	padding-bottom: 15px;
+}
+
+.lineOne{
+	color: $font_dark_grey;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	letter-spacing: 1px;
+	font-family: helvetica, arial, sans-serif;
+	border-bottom: 1px solid $bar-border-grey;
+}
+
+.lineTwo{
+	font-size: 26px;
+	font-family: times, serif;
+	font-weight: 200;
+	letter-spacing: 1px;
+	padding-top: 30px;
+	color: $font_dark_grey;
+	align-self: center;
+	/*vertical-align: baseline;*/
+
+}
+
+.noteName{
+	font-weight: bold;
 }
