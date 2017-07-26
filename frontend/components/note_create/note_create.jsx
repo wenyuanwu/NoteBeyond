@@ -1,17 +1,26 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
+import {Editor, EditorState, RichUtils, convertToRaw, convertFromRaw, getCurrentContent, ContentState} from 'draft-js';
+import { blockRenderMap, CheckableListItem, CheckableListItemUtils, CHECKABLE_LIST_ITEM } from 'draft-js-checkable-list-item';
+import { InlineStyleControls, BlockStyleControls, styleMap, blocksStyleFn, getBlockStyle } from '../editor/style_controls';
+import StyleButton from '../editor/style_button';
 import { Link } from 'react-router-dom';
 
 class NoteCreate extends React.Component {
 
 	constructor(props) {
 	    super(props);
-	    this.state={
-	    	title: "",
-	    	body: "",
-	    	user_id: "",
-	    	notebook_id: ""
-	    };
+	    this.state = {editorState: EditorState.createEmpty(), 
+	    			  "title": "",
+	    			  "body": "" };
+	    this.focus = () => this.refs.editor.focus();			  
+	    this.update = this.update.bind(this);			  
+	    this.onChange = (editorState) => this.setState({editorState});
 	    this.handleSubmit = this.handleSubmit.bind(this);
+	    this.onTab = e => this._onTab(e);
+      	this.toggleBlockType = type => this._toggleBlockType(type);
+      	this.toggleInlineStyle = style => this._toggleInlineStyle(style);
+      	this.handleKeyCommand = this.handleKeyCommand.bind(this);
 	}
 
 	update(property) {
@@ -20,18 +29,45 @@ class NoteCreate extends React.Component {
 
 	handleSubmit(e){
 		e.preventDefault();
+		const JScontent = JSON.stringify(convertToRaw(this.state.editorState.getCurrentContent()));
+		console.log(this.props.currentUser.notebooks);
 		let newNote = {note: {
 			title: this.state.title,
-			body: this.state.body,
-			user_id: this.props.notes[0].user_id,
-			notebook_id: this.props.notes[0].notebook_id	
+			body: JScontent,
+			user_id: this.props.currentUser.id,
+			notebook_id: 16
 		}};
 		this.props.createNote(newNote);
 		this.props.history.push('/');
 	}
 
-	render(){
+	handleKeyCommand(command) {
+	    const newState = RichUtils.handleKeyCommand(this.state.editorState, command);
+	    if (newState) {
+	      this.onChange(newState);
+	      return 'handled';
+	    }
+	    return 'not-handled';
+	}
 
+  	_onTab(e) {
+    	const maxDepth = 4;
+    	this.onChange(RichUtils.onTab(e, this.state.editorState, maxDepth));
+  	}
+
+	 _toggleBlockType(blockType) {
+	    this.onChange(
+	    RichUtils.toggleBlockType(this.state.editorState, blockType)
+	    );
+	 }
+
+	 _toggleInlineStyle(inlineStyle) {
+	    this.onChange(
+	    RichUtils.toggleInlineStyle(this.state.editorState, inlineStyle)
+	    );
+	 }
+
+	render(){
 		let button;
 		if(this.state.title===""){
 			button = <Link to={"/"}>Cancel</Link>;
@@ -39,27 +75,46 @@ class NoteCreate extends React.Component {
 			button = <button>Done</button>; 
 		}
 
+		const {editorState, title, body} = this.state;
+
 		return(
-			<section className="form">
-		        <form className="post-form" onSubmit={this.handleSubmit}>
-		            <header>Header placehoder</header>
-		 
-		             <input
+
+			<form className="post-form" onSubmit={this.handleSubmit}>
+
+				<div className="RichEditor-root">
+
+              		{button}
+
+	                <BlockStyleControls
+	  	              editorState={editorState}
+	    	            onToggle={this.toggleBlockType}
+	                />
+
+	          	    <InlineStyleControls
+	            	    editorState={editorState}
+	                	onToggle={this.toggleBlockType}
+	             	/>
+              	
+              		<input
 		              type="text"
 		              className ="form-title"
 		              value={this.state.title}
 		              placeholder="Title your note" 
 		              onChange={this.update('title')} />
 
-		            <input
-		              type="text"
-		              className ="form-body"
-		              value={this.state.body}
-		              placeholder="Drag files here or just start typing..."
-		              onChange={this.update('body')} />     
-		          {button}
-		        </form>
-	        </section>
+	                <Editor
+	                  blockStyleFn={getBlockStyle}
+	                  customStyleMap={styleMap}
+	                  editorState={editorState}
+	                  handleKeyCommand={this.handleKeyCommand}
+	                  onChange={this.onChange}
+	                  onTab={this.onTab}
+	                  placeholder="Tell a story..."
+	                  ref="editor"
+	                  spellCheck={true}
+	                />
+              	</div>  
+            </form>
 		);
 	}
 }

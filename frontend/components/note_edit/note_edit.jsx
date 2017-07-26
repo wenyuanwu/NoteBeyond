@@ -16,6 +16,7 @@ class NoteEdit extends React.Component {
 	    this.saveContent = this.saveContent.bind(this);
 	   	this.updatetitle = this.updatetitle.bind(this);
 	   	this.onChange = this.onChange.bind(this);
+      this.idleTimeout = null;
       this.onTab = e => this._onTab(e);
       this.toggleBlockType = type => this._toggleBlockType(type);
       this.toggleInlineStyle = style => this._toggleInlineStyle(style);
@@ -25,8 +26,9 @@ class NoteEdit extends React.Component {
   	if((newProps.currentNote !== null) && (this.props.currentNote !== newProps.currentNote)){
 
   		let content = newProps.currentNote.body;
-      clearInterval(this.idleTimeout);
 
+      clearInterval(this.idleTimeout);
+      console.log(EditorState.createWithContent(convertFromRaw(JSON.parse(content))));
   		if( typeof JSON.parse(content) === 'object'){
   			this.setState({
   				editorState: EditorState.createWithContent(convertFromRaw(JSON.parse(content)))
@@ -61,7 +63,7 @@ class NoteEdit extends React.Component {
       });
 
       clearTimeout(this.idleTimeout);
-      this.idleTimeout = setTimeout(this.saveContent, 1800);
+      this.idleTimeout = setTimeout(this.saveContent, 500);
 
   }
 
@@ -132,7 +134,7 @@ class NoteEdit extends React.Component {
               className += ' RichEditor-hidePlaceholder';
             }
           }
-
+          console.log(this.state.editorState.getSelection());
    	return(
 
 			<div className="RichEditor-root">

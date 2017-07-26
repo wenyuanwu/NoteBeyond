@@ -3,7 +3,7 @@ class Api::NotebooksController < ApplicationController
 	def create 
 		@notebook = Notebook.create(note_params)
 
-		if@notebook.save 
+		if @notebook.save 
 			render "api/notebooks/show"
 		else 
 			render(
@@ -25,7 +25,7 @@ class Api::NotebooksController < ApplicationController
 	def destroy 
 		@notebook = current_user.notebooks.find_by(id: params[:id])
 		@notebook.destroy 
-		render "api/notes/show" 
+		render "api/notebooks/show" 
 	end
 
 	def show 
@@ -34,7 +34,7 @@ class Api::NotebooksController < ApplicationController
 
 	def index 
 		@notebooks = Notebook.find_notebooks_by_user(current_user)
-		render "api/notes/index"
+		render "api/notebooks/index"
 	end 
 
 	private

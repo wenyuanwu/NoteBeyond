@@ -12,7 +12,7 @@
 
 .delete-button-delete-page{
 	width: 4%;
-	height: 9%;
+	height: 6%;
 	padding-bottom: 15px;
 }
 
@@ -39,4 +39,35 @@
 
 .noteName{
 	font-weight: bold;
+}
+
+.buttons{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around; 
+}
+
+.cancelButton{
+	margin-top: 10%;
+	margin-right: 5%; 
+	width: 200px;
+	background-color: $dark_grey;
+	border-color: $darker_green;
+	color: white;
+	font-weight: normal;
+	font-size: 10px;
+	font-weight: normal;
+	padding: 7px 9px;
+	border-radius: 3px;
+	transition: background-color 0.3s;
+	font-family: $sans-serif;
+	text-transform: capitalize;
+	font-size: 16px;
+	text-align: center;
+}
+
+.deleteButton{
+	margin-top: 10%;	
+	margin-left: 5%;
+	width: 200px;
 }

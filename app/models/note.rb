@@ -9,6 +9,6 @@ class Note < ApplicationRecord
 	def self.find_notes_by_user(user)	
 		notes = Note.where(user_id: user.id) 
 		return notes
-	end 
+	end
 
 end
