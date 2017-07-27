@@ -24,6 +24,7 @@
 	justify-content: space-around;
 	align-items: center;
 	border-right: 1px solid $bar-border-grey;
+	z-index: 2000;
 }
 
 .navBar >img{

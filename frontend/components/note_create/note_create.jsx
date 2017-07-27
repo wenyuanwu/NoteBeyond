@@ -70,9 +70,9 @@ class NoteCreate extends React.Component {
 	render(){
 		let button;
 		if(this.state.title===""){
-			button = <Link to={"/"} onClick={() => this.props.updateCurrentNote(null)}>Cancel</Link>;
+			button = <Link to={"/"} className="create-cancel" onClick={() => this.props.updateCurrentNote(null)}>Cancel</Link>;
 		} else{
-			button = <button>Done</button>; 
+			button = <button className="create-create">Done</button>; 
 		}
 
 		const {editorState, title, body} = this.state;
@@ -83,7 +83,7 @@ class NoteCreate extends React.Component {
 
 				<div className="RichEditor-root">
 
-              		{button}
+              		<div className="create-button">{button}</div>
 
 	                <BlockStyleControls
 	  	              editorState={editorState}
@@ -109,7 +109,7 @@ class NoteCreate extends React.Component {
 	                  handleKeyCommand={this.handleKeyCommand}
 	                  onChange={this.onChange}
 	                  onTab={this.onTab}
-	                  placeholder="Tell a story..."
+	                  placeholder="Just start typing..."
 	                  ref="editor"
 	                  spellCheck={true}
 	                />
