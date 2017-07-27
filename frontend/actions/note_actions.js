@@ -6,6 +6,7 @@ export const RECEIVE_SINGLE_NOTE = 'RECEIVE_SINGLE_NOTE';
 export const REMOVE_NOTE = 'REMOVE_NOTE';
 export const RESET_NOTES = 'RESET_NOTES';
 export const UPDATE_CURRENT_NOTE = 'UPDATE_CURRENT_NOTE';
+export const UPDATE_NOTE_ENTITIES = 'UPDATE_NOTE_ENTITIES';
 
 
 //sync actions 
@@ -33,6 +34,11 @@ export const resetNotes = () => ({
 export const updateCurrentNote = note => ({
   type: UPDATE_CURRENT_NOTE, 
   note
+});
+
+export const updateNoteEntities = notes => ({
+  type: UPDATE_NOTE_ENTITIES,
+  notes
 });
 
 //async actions 

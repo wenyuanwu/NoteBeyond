@@ -8,6 +8,8 @@
 }
 
 .flyoutMenu {
+        display: flex;
+        flex-direction: row;
         width: 93vw;
         height: 100vh;
         position: fixed;
@@ -21,3 +23,15 @@
     }
 
 
+.notebookIndex{
+    width: 35vw;
+    background-color: white;
+}
+
+.notebook-item-click{
+    cursor: pointer;
+}
+
+.placeholder{
+    width: 58vw;
+}

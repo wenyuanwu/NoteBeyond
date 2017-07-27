@@ -23,24 +23,12 @@ class NoteEdit extends React.Component {
   }
 
   componentWillReceiveProps(newProps){
-  	// if((newProps.currentNote !== null) && (this.props.currentNote !== newProps.currentNote)){
 
-  	// 	let content = newProps.currentNote.body;
+    if(this.props.currentNote && !newProps.currentNote){
+      return null;
+    }
 
-   //    clearInterval(this.idleTimeout);
-   //    console.log(EditorState.createWithContent(convertFromRaw(JSON.parse(content))));
-  	// 	if( typeof JSON.parse(content) === 'object'){
-  	// 		this.setState({
-  	// 			editorState: EditorState.createWithContent(convertFromRaw(JSON.parse(content)))
-  	// 		});
-  	// 	} else{
-  	// 		this.setState({
-  	// 			editorState: EditorState.createWithContent(ContentState.createFromText(content))
-  	// 		});
-  	// 	}
-  	// }
-
-    if (!this.props.currentNote || this.props.currentNote.id !== newProps.currentNote.id ) {
+    if ( !this.props.currentNote || (this.props.currentNote.id !== newProps.currentNote.id) ) {
           let content = newProps.currentNote.body;
           this.setState({
           editorState: EditorState.createWithContent(convertFromRaw(JSON.parse(content)))
@@ -130,7 +118,7 @@ class NoteEdit extends React.Component {
 
 
 		if(!currentNote || !editorState){
-   				return <h3 className="loading"> Loading...</h3>;
+   				return <h3 className="loading"> </h3>;
    			}
 	
     let className = 'RichEditor-editor';

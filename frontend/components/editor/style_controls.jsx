@@ -106,10 +106,9 @@ export const InlineStyleControls = (props) => {
     <div className="inline-controls">
       { INLINE_STYLES.map(type =>
         <StyleButton
-          key={type.title}
+          key={type.label}
           active={currentStyle.has(type.style)}
-          className={type.className}
-          title={type.title}
+          label={type.label}
           onToggle={props.onToggle}
           style={type.style}
         />

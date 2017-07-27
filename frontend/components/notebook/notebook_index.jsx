@@ -23,14 +23,13 @@ class NotebookIndex extends React.Component {
 
 
 	render(){
-		console.log("notebook props", this.props);
+		
 		const {notebooks, errors} = this.props;
  		
 		const notebookItems = notebooks.map(notebook => 
-			<NoteBookListItem key={notebook.id} notebook={notebook} />
+			<NoteBookListItem key={notebook.id} notebook={notebook} handleNotebookIcon={this.props.handleNotebookIcon} updateNoteEntities={this.props.updateNoteEntities}/>
 			);
 
-		let self = this;
 
    		return(
    			<Motion style={{x: spring(this.getVisibleState())}} >
@@ -39,12 +38,15 @@ class NotebookIndex extends React.Component {
    				function({x}) {
    					return(
 						<div  className="flyoutMenu" style={{
-                  transform: "translate3d(" + x + "vw, 0vw, 0)"
-                }}>
-							<header className="notebookHeader">NOTEBOOKS</header>
-							<ul className="notebook-list">
-								{notebookItems}
-							</ul>
+                  			transform: "translate3d(" + x + "vw, 0vw, 0)" }}>
+							<div className="notebookIndex">
+									<header className="notebookHeader">NOTEBOOKS</header>
+									<ul className="notebook-list">
+										{notebookItems}
+									</ul>
+							</div>
+							<div className="placeholder">
+							</div>
 						</div>
 					);
 				}

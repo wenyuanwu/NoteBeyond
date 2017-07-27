@@ -5,8 +5,6 @@ export const RECEIVE_ALL_NOTEBOOKS = 'RECEIVE_ALL_NOTEBOOKS';
 export const RECEIVE_SINGLE_NOTEBOOK = 'RECEIVE_SINGLE_NOTEBOOK';
 export const REMOVE_NOTEBOOK = 'REMOVE_NOTEBOOK';
 export const RESET_NOTEBOOK = 'RESET_NOTEBOOK';
-// export const UPDATE_CURRENT_NOTE = 'UPDATE_CURRENT_NOTE';
-
 
 //sync actions 
 
@@ -30,10 +28,6 @@ export const resetNotebook = () => ({
   note: null
 }); 
 
-// export const updateCurrentNote = note => ({
-//   type: UPDATE_CURRENT_NOTE, 
-//   note
-// });
 
 //async actions 
 export const createNotebook = notebook => dispatch => (

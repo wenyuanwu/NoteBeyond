@@ -5,16 +5,18 @@ class NoteBookListItem extends React.Component {
 
 	constructor(props) {
     	super(props);
-    	// this.onClick = this.onClick.bind(this);
+    	this.onClick = this.onClick.bind(this);
     	
 	}
 
-	// onClick(e){
-	// 	e.preventDefault();
-	// 	this.props.updateCurrentNote(this.props.note);
-	// }
+	onClick(e){
+		e.preventDefault();
+		this.props.updateNoteEntities(this.props.notebook.notes);
+		this.props.handleNotebookIcon(e);
+	}
 
 	render(){
+
 		const{notebook} = this.props;
 		
 		return(
