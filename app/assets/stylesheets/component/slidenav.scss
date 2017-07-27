@@ -1,0 +1,23 @@
+.theMenu{
+    position: fixed;
+    left: 0;
+    top: 0;
+    transform: translate3d(-100vw, 0, 0);     
+    width: 100vw;
+    height: 100vw;
+}
+
+.flyoutMenu {
+        width: 100vw;
+        height: 100vh;
+        background-color: #FFE600;
+        position: fixed;
+        top: 0;
+        left: 0;
+        transform: translate3d(-100vw, 0, 0);
+        transition: transform .3s cubic-bezier(0, .52, 0, 1);
+        overflow: scroll;
+        z-index: 1000;
+    }
+
+

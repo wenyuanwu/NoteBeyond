@@ -21,8 +21,9 @@ const NotebookReducer = (state = nullNotebook, action) => {
   		nextState = merge({}, state);
   		delete nextState.entities[action.notebook.id];
   		return nextState;
+    default:
+      return state;
   }
-
 };
 
 export default NotebookReducer;

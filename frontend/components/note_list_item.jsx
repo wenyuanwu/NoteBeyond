@@ -1,6 +1,5 @@
 import React from 'react';
 import merge from 'lodash/merge';
-import {getPlainText} from 'draft-js';
 
 class NoteListItem extends React.Component {
 
