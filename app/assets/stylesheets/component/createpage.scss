@@ -52,6 +52,12 @@
 	text-align: center;
 }
 
+.selector-icon{
+	width: 1.5%;
+	height: 2.5%;
+	padding-bottom: 1.5%;
+}
+
 .inline-controls{
 	padding-bottom: 5px;
 }
@@ -67,5 +73,9 @@
 
 input[type="text"]::-webkit-input-placeholder {
     color: $green;
+}
+
+.DraftEditor-root{
+	padding-top: 1%;
 }
 

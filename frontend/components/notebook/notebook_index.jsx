@@ -30,7 +30,6 @@ class NotebookIndex extends React.Component {
 			<NoteBookListItem key={notebook.id} notebook={notebook} handleNotebookIcon={this.props.handleNotebookIcon} updateNoteEntities={this.props.updateNoteEntities}/>
 			);
 
-
    		return(
    			<Motion style={{x: spring(this.getVisibleState())}} >
    			{	

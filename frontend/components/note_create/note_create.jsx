@@ -4,6 +4,7 @@ import {Editor, EditorState, RichUtils, convertToRaw, convertFromRaw, getCurrent
 import { blockRenderMap, CheckableListItem, CheckableListItemUtils, CHECKABLE_LIST_ITEM } from 'draft-js-checkable-list-item';
 import { InlineStyleControls, BlockStyleControls, styleMap, blocksStyleFn, getBlockStyle } from '../editor/style_controls';
 import StyleButton from '../editor/style_button';
+import NoteBookListItem from '../notebook/notebook_list_item';
 import { Link } from 'react-router-dom';
 
 class NoteCreate extends React.Component {
@@ -12,7 +13,8 @@ class NoteCreate extends React.Component {
 	    super(props);
 	    this.state = {editorState: EditorState.createEmpty(), 
 	    			  "title": "",
-	    			  "body": "" };
+	    			  "body": "", 
+	    			  notebook_id: null};
 	    this.focus = () => this.refs.editor.focus();			  
 	    this.update = this.update.bind(this);			  
 	    this.onChange = (editorState) => this.setState({editorState});
@@ -21,24 +23,47 @@ class NoteCreate extends React.Component {
       	this.toggleBlockType = type => this._toggleBlockType(type);
       	this.toggleInlineStyle = style => this._toggleInlineStyle(style);
       	this.handleKeyCommand = this.handleKeyCommand.bind(this);
+      	this.revealDropDown = this.revealDropDown.bind(this);
+      	this.hideDropdown = this.hideDropdown.bind(this);
+      	this.handleDropDownList = this.handleDropDownList.bind(this);
 	}
 
 	update(property) {
     	return e => this.setState({ [property]: e.target.value });
   	}
 
+  	compomentDidMount(){
+  		this.props.fetchAllNotebooks();
+  	}
+
 	handleSubmit(e){
 		e.preventDefault();
 		const JScontent = JSON.stringify(convertToRaw(this.state.editorState.getCurrentContent()));
-		console.log(this.props.currentUser.notebooks);
 		let newNote = {note: {
 			title: this.state.title,
 			body: JScontent,
 			user_id: this.props.currentUser.id,
-			notebook_id: 16
+			notebook_id: this.state.notebook_id
 		}};
 		this.props.createNote(newNote);
 		this.props.history.push('/');
+	}
+
+	revealDropDown (e){
+		event.stopPropagation();
+		$('#gear-dropdown').removeClass('hidden');
+		// $('#gear-dropdown-btn').off('click', this.revealDropdown);
+		$(document).on('click', this.hideDropdown);
+	}
+
+	hideDropdown(){
+		$('#gear-dropdown').addClass('hidden');
+		$(document).off('click', this.hideDropdown);
+	}
+
+	handleDropDownList(e){
+		// e.preventDefault();
+		this.setState({notebook_id: e.target.value});
 	}
 
 	handleKeyCommand(command) {
@@ -68,14 +93,22 @@ class NoteCreate extends React.Component {
 	 }
 
 	render(){
+
+		console.log("notebooks", this.props.notebooks);
 		let button;
+		const {notebooks} = this.props; //refactor later 
+		const {editorState, title, body} = this.state;
+
+		const notebookItems = notebooks.map(notebook => 
+			<option key={notebook.id} value={notebook.id} >{notebook.title}</option> 
+			);
+
 		if(this.state.title===""){
 			button = <Link to={"/"} className="create-cancel" onClick={() => this.props.updateCurrentNote(null)}>Cancel</Link>;
 		} else{
 			button = <button className="create-create">Done</button>; 
 		}
 
-		const {editorState, title, body} = this.state;
 
 		return(
 
@@ -85,6 +118,16 @@ class NoteCreate extends React.Component {
 
               		<div className="create-button">{button}</div>
 
+              		<Link to={`/createnote`} onClick={this.revealDropDown} className="dropdown-subtitle">
+              				<img className="selector-icon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAANCAYAAACdKY9CAAAAQ0lEQVR42mNgAIIjR478h9G48NGjRz8wwAAxGmBqqKOBAQ1QXwPt/UAbDUTgT8ga/hw6dEiUAQ8AqnmBzPlMkg2kAAAQSjr0OXc0oAAAAABJRU5ErkJggg"/>
+              		</Link>
+
+              		<div id="gear-dropdown" className="gear-dropdown hidden">
+		              		<select id="dropdownlist" onChange={this.handleDropDownList}>
+		              			{notebookItems}
+		              		</select>
+	              	</div>
+
 	                <BlockStyleControls
 	  	              editorState={editorState}
 	    	            onToggle={this.toggleBlockType}
@@ -92,7 +135,7 @@ class NoteCreate extends React.Component {
 
 	          	    <InlineStyleControls
 	            	    editorState={editorState}
-	                	onToggle={this.toggleBlockType}
+	                	onToggle={this.toggleInlineStyle}
 	             	/>
               	
               		<input
