@@ -70,7 +70,7 @@ class NoteCreate extends React.Component {
 	render(){
 		let button;
 		if(this.state.title===""){
-			button = <Link to={"/"}>Cancel</Link>;
+			button = <Link to={"/"} onClick={() => this.props.updateCurrentNote(null)}>Cancel</Link>;
 		} else{
 			button = <button>Done</button>; 
 		}

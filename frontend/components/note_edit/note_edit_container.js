@@ -16,7 +16,7 @@ const mapDispatchToProps = dispatch => ({
   fetchAllNotes: () => dispatch(fetchAllNotes())
 });
 
-export default withRouter (connect( 
+export default connect( 
   mapStateToProps,
   mapDispatchToProps
-)(NoteEdit));
+)(NoteEdit);

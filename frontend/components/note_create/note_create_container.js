@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { createNote } from '../../actions/note_actions';
+import { createNote, updateCurrentNote } from '../../actions/note_actions';
 import NoteCreate from './note_create';
 
 const mapStateToProps = ({session, note}) => {	
@@ -10,7 +10,8 @@ const mapStateToProps = ({session, note}) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  createNote: note => dispatch(createNote(note))
+  createNote: note => dispatch(createNote(note)), 
+  updateCurrentNote: note => dispatch(updateCurrentNote(note)) 
 });
 
 export default connect( 
