@@ -1,4 +1,4 @@
-import { RECEIVE_ALL_NOTEBOOKS, RECEIVE_SINGLE_NOTEBOOK, REMOVE_NOTEBOOK} from '../actions/notebook_actions';
+import { RECEIVE_ALL_NOTEBOOKS, RECEIVE_SINGLE_NOTEBOOK, REMOVE_NOTEBOOK, RESET_NOTEBOOK} from '../actions/notebook_actions';
 import {RECEIVE_ERRORS, CLEAR_ERRORS} from '../actions/error_actions'; 
 import merge from 'lodash/merge';
 
@@ -21,6 +21,9 @@ const NotebookReducer = (state = nullNotebook, action) => {
   		nextState = merge({}, state);
   		delete nextState.entities[action.notebook.id];
   		return nextState;
+    case RESET_NOTEBOOK:
+      nextState = nullNotebook;
+      return nextState;
     default:
       return state;
   }

@@ -4,7 +4,7 @@ import {receiveErrors, clearErrors} from './error_actions';
 export const RECEIVE_ALL_NOTEBOOKS = 'RECEIVE_ALL_NOTEBOOKS';
 export const RECEIVE_SINGLE_NOTEBOOK = 'RECEIVE_SINGLE_NOTEBOOK';
 export const REMOVE_NOTEBOOK = 'REMOVE_NOTEBOOK';
-// export const RESET_NOTES = 'RESET_NOTES';
+export const RESET_NOTEBOOK = 'RESET_NOTEBOOK';
 // export const UPDATE_CURRENT_NOTE = 'UPDATE_CURRENT_NOTE';
 
 
@@ -25,10 +25,10 @@ export const removeNotebook = notebook => ({
   notebook
 });
 
-// export const resetNotes = () => ({
-//   type: RESET_NOTES, 
-//   note: null
-// }); 
+export const resetNotebook = () => ({
+  type: RESET_NOTEBOOK, 
+  note: null
+}); 
 
 // export const updateCurrentNote = note => ({
 //   type: UPDATE_CURRENT_NOTE, 
