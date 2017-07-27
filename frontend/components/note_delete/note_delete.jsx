@@ -27,7 +27,7 @@ class NoteDelete extends React.Component {
 				<div className="lineOne">DELETE NOTE</div>
 				<div className="lineTwo">Are you sure you want to delete <span className="noteName">{currentNote.title}</span> ?</div>
 				<div className="buttons">
-					<div className="cancelButton"> <Link to={"/"}>Cancel</Link></div>
+					<div className="cancelButton" onClick={() => this.props.updateCurrentNote(null)}> <Link to={"/"}>Cancel</Link></div>
 					<button className="deleteButton" onClick={this.handleDelete}>Delete</button>
 				</div>
 			</ div>

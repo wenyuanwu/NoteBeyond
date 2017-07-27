@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { deleteNote } from '../../actions/note_actions';
+import { deleteNote, updateCurrentNote } from '../../actions/note_actions';
 import NoteDelete from './note_delete';
 
 const mapStateToProps = ({session, note}) => {	
@@ -11,7 +11,8 @@ const mapStateToProps = ({session, note}) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  deleteNote: note => dispatch(deleteNote(note))
+  deleteNote: note => dispatch(deleteNote(note)), 
+  updateCurrentNote: note => dispatch(updateCurrentNote(note))
 });
 
 export default connect( 
