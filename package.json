@@ -17,6 +17,7 @@
     "react-router-dom": "^4.1.2",
     "react-sidenav": "^2.1.2",
     "react-tag-input": "^4.7.2",
+    "react-tagsinput": "^3.17.0",
     "redux": "^3.7.2",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.2.0",

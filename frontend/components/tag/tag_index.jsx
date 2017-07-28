@@ -1,12 +1,16 @@
 import React from 'react';
 import TagListItem from './tag_list_item';
 import {Motion, spring} from 'react-motion';
+// import TagsInput from 'react-tagsinput';
 
 class TagIndex extends React.Component {
 
 	constructor(props) {
     	super(props);
     	this.getVisibleState = this.getVisibleState.bind(this);
+    	// this.state = {tags: [], tag: ''};
+    	// this.handleChange = this.handleChange.bind(this);
+    	// this.handleChangeInput = this.handleChangeInput.bind(this);
 	}
 
 	getVisibleState(){
@@ -21,6 +25,17 @@ class TagIndex extends React.Component {
 		this.props.fetchAllTags();
 	}
 
+	// handleChange(tags) {
+ //    	this.setState({tags});
+ //    	// this.props.updateNoteEntities(this.props.tag.notes);
+ //    	this.props.handleTagIcon();
+ //  	}
+
+  	// handleChangeInput(tag) {
+   //  	this.setState({tag});
+   //  	this.props.updateNoteEntities(this.props.tag.notes);
+   //  	this.props.handleTagIcon();
+  	// }
 
 	render(){
 		

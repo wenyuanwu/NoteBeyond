@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import TagsInput from 'react-tagsinput';
 import {Editor, EditorState, RichUtils, convertToRaw, convertFromRaw, getCurrentContent, ContentState} from 'draft-js';
 import { blockRenderMap, CheckableListItem, CheckableListItemUtils, CHECKABLE_LIST_ITEM } from 'draft-js-checkable-list-item';
 import { InlineStyleControls, BlockStyleControls, styleMap, blocksStyleFn, getBlockStyle } from '../editor/style_controls';
@@ -14,7 +15,9 @@ class NoteCreate extends React.Component {
 	    this.state = {editorState: EditorState.createEmpty(), 
 	    			  "title": "",
 	    			  "body": "", 
-	    			  notebook_id: null};
+	    			  notebook_id: null,
+	    			  tags: [], 
+	    			  tag:""};
 	    this.focus = () => this.refs.editor.focus();			  
 	    this.update = this.update.bind(this);			  
 	    this.onChange = (editorState) => this.setState({editorState});
@@ -26,7 +29,17 @@ class NoteCreate extends React.Component {
       	this.revealDropDown = this.revealDropDown.bind(this);
       	this.hideDropdown = this.hideDropdown.bind(this);
       	this.handleDropDownList = this.handleDropDownList.bind(this);
+      	this.handleChange = this.handleChange.bind(this);
+    	this.handleChangeInput = this.handleChangeInput.bind(this);
 	}
+
+	handleChange(tags) {
+    	this.setState({tags});
+  	}
+
+  	handleChangeInput(tag) {
+    	this.setState({tag});
+  	}
 
 	update(property) {
     	return e => this.setState({ [property]: e.target.value });
@@ -134,6 +147,13 @@ class NoteCreate extends React.Component {
 		              			{notebookItems}
 		              		</select>
 	              	</div>
+
+	              	<TagsInput
+				        value={this.state.tags}
+				        onChange={this.handleChange}
+				        inputValue={this.state.tag}
+				        onChangeInput={this.handleChangeInput}
+      				/>
 
 	                <BlockStyleControls
 	  	              editorState={editorState}
