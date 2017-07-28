@@ -1,8 +1,8 @@
 import React from 'react';
-import NoteBookListItem from './notebook_list_item';
+import TagListItem from './tag_list_item';
 import {Motion, spring} from 'react-motion';
 
-class NotebookIndex extends React.Component {
+class TagIndex extends React.Component {
 
 	constructor(props) {
     	super(props);
@@ -18,16 +18,16 @@ class NotebookIndex extends React.Component {
 	}
 
 	componentDidMount(){
-		this.props.requestNotebooks();
+		this.props.fetchAllTags();
 	}
 
 
 	render(){
 		
-		const {notebooks, errors} = this.props;
+		const {tags, errors} = this.props;
  		
-		const notebookItems = notebooks.map(notebook => 
-			<NoteBookListItem key={notebook.id} notebook={notebook} handleNotebookIcon={this.props.handleNotebookIcon} updateNoteEntities={this.props.updateNoteEntities}/>
+		const tagItems = tags.map(tag => 
+			<TagListItem key={tag.id} tag={tag} handleTagIcon={this.props.handleTagIcon} updateNoteEntities={this.props.updateNoteEntities}/>
 			);
 
    		return(
@@ -39,9 +39,9 @@ class NotebookIndex extends React.Component {
 						<div  className="flyoutMenu" style={{
                   			transform: "translate3d(" + x + "vw, 0vw, 0)" }}>
 							<div className="notebookIndex">
-									<header className="noteHeader">NOTEBOOKS</header>
+									<header className="noteHeader">TAGS</header>
 									<ul className="note-list">
-										{notebookItems}
+										{tagItems}
 									</ul>
 							</div>
 							<div className="placeholder">
@@ -56,4 +56,4 @@ class NotebookIndex extends React.Component {
 
 }
 
-export default NotebookIndex;
+export default TagIndex;

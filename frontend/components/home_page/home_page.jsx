@@ -1,6 +1,7 @@
 import React from 'react';
 import NoteIndexContainer from '../note_index/note_index_container';
 import NotebookIndexContainer from '../notebook/notebook_index_container';
+import TagIndexContainer from '../tag/tag_index_container';
 import NoteEditContainer from '../note_edit/note_edit_container';
 import { Link } from 'react-router-dom';
 
@@ -11,11 +12,12 @@ class HomePage extends React.Component {
     	super(props);
     	this.state = {
     		notebookvisible: false,
-
+    		tagvisible: false
     	};
     	this.handleLogOut = this.handleLogOut.bind(this);
     	this.handleNotebookIcon = this.handleNotebookIcon.bind(this);
     	this.handleNoteIcon = this.handleNoteIcon.bind(this);
+    	this.handleTagIcon = this.handleTagIcon.bind(this);
 	}
 
 	handleLogOut(e){
@@ -27,6 +29,9 @@ class HomePage extends React.Component {
 
 	handleNotebookIcon(e) {
 		e.preventDefault();
+		if(this.state.tagvisible){
+			this.setState({tagvisible: !this.state.tagvisible});
+		}
 		this.setState({notebookvisible: !this.state.notebookvisible});
 	}
 
@@ -37,7 +42,19 @@ class HomePage extends React.Component {
 			this.setState({notebookvisible: !this.state.notebookvisible});
 		}
 
+		if(this.state.tagvisible){
+			this.setState({tagvisible: !this.state.tagvisible});
+		}
+
 		this.props.fetchAllNotes();	
+	}
+
+	handleTagIcon(e){
+		e.preventDefault();
+		if(this.state.notebookvisible === true){
+			this.setState({notebookvisible: !this.state.notebookvisible});
+		}
+		this.setState({tagvisible: !this.state.tagvisible});
 	}
 
 
@@ -74,7 +91,9 @@ class HomePage extends React.Component {
 							<Link to={`/`} onClick={this.handleNotebookIcon} >
 								<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAYAAADhAJiYAAAB90lEQVR42s2YvU7DMBCAPbD0Abp1AsaEZ0CCV8gGcbJ14ilgYWOmcwYegKUkWRCqEAxlycAjVCBGIlUtdwlJiBLic+KktnRS1Prns+98dz7GJJs5d/cN35maPvdAlkbAV2bgfKMk3/Ab/pf0gb6slxYe7xkP9hks+AiygcW3FMG+yRgYi3MoYTHn9qkZ8IgK0SARztUaZHJnjWB3M5hoowAmEzyx2eTJGknBHN5bY7CBZ4UgZVXC3LgGHQaPtyeYwr6cSAiFR9nnydSdVKP6jJDfDgWTQ8GaDbdJqQGTDf0o4CcVPyO62ln7+01pq/hre/F2I3QJJT+Fjku0k7ZAGZRQdeg8cyDwpn0CZeMEsihiEyEcDAC0MXx+wJIgSDC+/4AoY4hA6AamLInamgAhC4PbtdQGCFjYbz6z1cCGUD5QZbE2QD5f6wYUa6UyZOls1GptCIy667VXrDIPUg45x9imUWJZ4RglQ0cbGEK0L0JHGlwdUnA9f7lslfNcv3v04EpNP3CnbYDs1yv59CNN0JoTezx2nLgnlUWVh6QZ7i6FxbXrk/z0YahHkr+TZ1AoeAYN/1B0qa9Xd4z0/T6liTAl9elSbKi5fWrKMWGHckxdwQq9qeSJYd+F0oJVxTVAvMlLeknqwj9h0TUmV2luVZT08tgk0X4ASkfZj4ss8JEAAAAASUVORK5CYII=" />
 							</Link>
+							<Link to={`/`} onClick={this.handleTagIcon}>
 							<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAYAAADhAJiYAAACXUlEQVR42s1YvU7DQAzOwMIDsDEBYwMbrEjwCGRDXDLRCcELsLCyMMMCAwMPgECQRIiAqkr8lIGIDTogIBQBC42oetgX2lKatr4krWLJ0im1z1/tO/+cokiSemSMZEw9q5psF7iQsZinWnoZWazhG/4mZEBW6QnZ0wOZ44V5MOgAV8E4pzDKCh3QxT0SwaIeLcyqFnOpIDqwi3tFBjK8pw3Cv9uCjaoJgKkxemxr+FwblAIztq8NwRnIJwikOZSwN9qgg0H39ghM43zpbldQ6Moonhm3DMFRPNUxfBmbbcpuuni9zkv+h2BcS4MCmx1uk9wBXrvb5pVqhdfoG9b4Tfagj1tspiXPyFztCQjPTvGQt6Od4oGQkUkJTXkKExdVeepkkdveFe9GlnfJJ0GWHDpMnnVAkE0pSrNnK9z9fGgybL5c8GlnSTCu/9Lt5z2fcZapoHKN2kQoB1p+lT+X31o8gUBqMrj+T0/lEp8DXVLSNNmoIoog4R+EgaEAQnr8eqWmgawiqjZBuB2JkJ2Gh+wvkcIGWBS4XYU4gKhEO0esoPz2MykBpJcwZH5qAJmskjZAfqSQUZOdrA5iSd+hjnvtEw7ZLrQctMTYl5CJxEgsHX3wUFA6guKqOykAlJNqPzz/PTIY1JVqP4IGrXNjv3SzEQkU6qCuVIMm2hBbvoVNalZD2+FNfjAY9hVQ2yY/zhgUHUyXMaj/g6JBnV6NIUTf21GaCKYpfGl5bAi5fck8x9gxnmPCHqwwm0p6DGVziT5YtaQGqDf1Jz3RurA3MFrB5irorRpPevXaJEE/gW31vBzI7JIAAAAASUVORK5CYII=" />
+							</Link>
 						</div>
 
 						<div className="groupThree">
@@ -87,6 +106,7 @@ class HomePage extends React.Component {
 		    		<div className="noteIndex">
 						<NoteIndexContainer />
 						<NotebookIndexContainer visibleState={this.state.notebookvisible} handleNotebookIcon={this.handleNotebookIcon}/>
+						<TagIndexContainer visibleState={this.state.tagvisible} handleTagIcon={this.handleTagIcon} />
 		    		</div>  	
 
 		    		<div className="noteShow">
