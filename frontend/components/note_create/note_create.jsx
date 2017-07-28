@@ -72,8 +72,6 @@ class NoteCreate extends React.Component {
 
 		this.props.createNote(newNote);
 
-		this.state.tags.map(tag => this.props.createTag({tag:{name:tag, user_id:this.props.currentUser.id}}));
-
 		this.props.history.push('/');
 	}
 
