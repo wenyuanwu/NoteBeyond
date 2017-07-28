@@ -38,9 +38,10 @@ class NoteEdit extends React.Component {
 
     if ( !this.props.currentNote || (this.props.currentNote.id !== newProps.currentNote.id) ) {
           let content = newProps.currentNote.body;
+          console.log("newProps.currentNote",newProps.currentNote);
           this.setState({
           editorState: EditorState.createWithContent(convertFromRaw(JSON.parse(content))),
-          tags: newProps.currentNote.tags
+          tags: newProps.currentNote.tags || []
          });
     }
   }
