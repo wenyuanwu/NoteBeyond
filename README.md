@@ -1,24 +1,16 @@
-# README
+# NoteBeyond
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+[NoteBeyond](https://notebeyond.herokuapp.com/#/)is a note-editing application inspired by [Evernote](https://www.evernote.com). Technology framework and tools involved during development include but not limited to Ruby on Rails, PostGreSQL database and React/Redux. 
 
-Things you may want to cover:
+## Main Features
 
-* Ruby version
+* New account creation, login, and guest/demo login, with secure authentification both on 	backend and front end  
+* Users could create, edit and delete notes equipped with a built-in text editor
+* Users could use Notebook to categorize and manage notes 
+* Users could add and remove tag to organize notes 
+* Notes are autosaved regularly 
 
-* System dependencies
+## Screen Shots
 
-* Configuration
+*[Main Page](./mainpage.png)
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
