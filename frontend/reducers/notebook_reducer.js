@@ -13,7 +13,7 @@ const NotebookReducer = (state = nullNotebook, action) => {
 
   switch(action.type){
   	case RECEIVE_ALL_NOTEBOOKS:
-  		return merge({}, state, {entities: action.notebooks});
+  		return Object.assign({}, state, {entities: action.notebooks});
   	case RECEIVE_SINGLE_NOTEBOOK: 
   		const newNotebook = {[action.notebook.id]: action.notebook};
   		return merge({}, state, {entities: newNotebook});

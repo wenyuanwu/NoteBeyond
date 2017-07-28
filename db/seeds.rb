@@ -24,8 +24,8 @@ notebook1 = Notebook.create!(title: "Notebook_title_1",user_id: user1.id)
 notebook2 = Notebook.create!(title: "Notebook_title_2",user_id: user1.id)
 notebook3 = Notebook.create!(title: "Notebook_title_3",user_id: user2.id)
 
-tag1 = Tag.create!(name: "tag1")
-tag2 = Tag.create!(name: "tag2")
+# tag1 = Tag.create!(name: "tag1", user_id: user1.id)
+# tag2 = Tag.create!(name: "tag2", user_id: user1.id)
 
 
 # note1 = Note.create!(title:"note1", body:"body1", user_id: user1.id, notebook_id: notebook1.id)
