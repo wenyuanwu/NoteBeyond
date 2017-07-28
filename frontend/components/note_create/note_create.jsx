@@ -32,7 +32,13 @@ class NoteCreate extends React.Component {
     	return e => this.setState({ [property]: e.target.value });
   	}
 
-  	compomentDidMount(){
+  	componentWillReceiveProps(nextProps) {
+  		if (!this.state.notebook_id && nextProps.notebooks[0]) {
+  			this.setState({notebook_id: nextProps.notebooks[0].id});
+  		}
+  	}
+
+  	componentDidMount(){
   		this.props.fetchAllNotebooks();
   	}
 
@@ -118,12 +124,13 @@ class NoteCreate extends React.Component {
 
               		<div className="create-button">{button}</div>
 
-              		<Link to={`/createnote`} onClick={this.revealDropDown} className="dropdown-subtitle">
-              				<img className="selector-icon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAANCAYAAACdKY9CAAAAQ0lEQVR42mNgAIIjR478h9G48NGjRz8wwAAxGmBqqKOBAQ1QXwPt/UAbDUTgT8ga/hw6dEiUAQ8AqnmBzPlMkg2kAAAQSjr0OXc0oAAAAABJRU5ErkJggg"/>
-              		</Link>
-
               		<div id="gear-dropdown" className="gear-dropdown hidden">
-		              		<select id="dropdownlist" onChange={this.handleDropDownList}>
+
+              			<img className="selector-icon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAANCAYAAACdKY9CAAAAQ0lEQVR42mNgAIIjR478h9G48NGjRz8wwAAxGmBqqKOBAQ1QXwPt/UAbDUTgT8ga/hw6dEiUAQ8AqnmBzPlMkg2kAAAQSjr0OXc0oAAAAABJRU5ErkJggg"/>
+
+		              		<select
+		              		id="dropdownlist"
+		              		onChange={this.handleDropDownList}>
 		              			{notebookItems}
 		              		</select>
 	              	</div>
