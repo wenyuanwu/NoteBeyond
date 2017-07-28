@@ -21,7 +21,10 @@ const NoteReducer = (state = nullNote, action) => {
           return Object.assign({}, state, { entities: newNotes, currentNote: newNotes[Object.keys(newNotes)[0]]});
         }
     case RECEIVE_SINGLE_NOTE:
-      const newNote = {[action.note.id]: action.note};
+      let newNote = {[action.note.id]: action.note};
+      let tags = action.note.tags;
+      let newState = merge({}, state, {entities: newNote, currentNote: action.note});
+      newState.currentNote.tags = tags;
       return merge({}, state, {entities: newNote, currentNote: action.note});
     case REMOVE_NOTE:
       nextState = merge({}, state);
@@ -35,8 +38,11 @@ const NoteReducer = (state = nullNote, action) => {
       nextState = nullNote;
       return nextState;  
     case UPDATE_CURRENT_NOTE: 
-      nextState = action.note;
-      return merge({}, state, {currentNote: nextState});
+      newNote = {[action.note.id]: action.note};
+      tags = action.note.tags;
+      newState = merge({}, state, {entities: newNote, currentNote: action.note});
+      newState.currentNote.tags = tags;
+      return newState;
     case UPDATE_NOTE_ENTITIES:
       nextState = action.notes;
       if(nextState.length === 0){

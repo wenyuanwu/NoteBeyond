@@ -1,7 +1,7 @@
 class Note < ApplicationRecord
 	belongs_to :user
 	belongs_to :notebook
-	has_many :taggings, dependent: :destroy, inverse_of: :post
+	has_many :taggings, dependent: :destroy
 	has_many :tags, through: :taggings 
 
 	validates :user, :notebook, presence: true
@@ -12,5 +12,11 @@ class Note < ApplicationRecord
 		notes = Note.where(user_id: user.id) 
 		return notes
 	end
+
+	def tag_names=(tag_names)
+    	self.tags = tag_names.map do |tag_name|
+      	Tag.find_or_create_by(name: tag_name, user_id: self.user_id)
+    	end
+	end 
 
 end

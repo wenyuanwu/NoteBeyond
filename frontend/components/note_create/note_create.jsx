@@ -26,8 +26,8 @@ class NoteCreate extends React.Component {
       	this.toggleBlockType = type => this._toggleBlockType(type);
       	this.toggleInlineStyle = style => this._toggleInlineStyle(style);
       	this.handleKeyCommand = this.handleKeyCommand.bind(this);
-      	this.revealDropDown = this.revealDropDown.bind(this);
-      	this.hideDropdown = this.hideDropdown.bind(this);
+      	// this.revealDropDown = this.revealDropDown.bind(this);
+      	// this.hideDropdown = this.hideDropdown.bind(this);
       	this.handleDropDownList = this.handleDropDownList.bind(this);
       	this.handleChange = this.handleChange.bind(this);
     	this.handleChangeInput = this.handleChangeInput.bind(this);
@@ -58,27 +58,36 @@ class NoteCreate extends React.Component {
 	handleSubmit(e){
 		e.preventDefault();
 		const JScontent = JSON.stringify(convertToRaw(this.state.editorState.getCurrentContent()));
+		console.log("state.tags",this.state.tags);
+		console.log("state.tag",this.state.tag);
+		// const tag_names = this.state.tags.map(tag => tag.name);
+		// console.log("tag_names",tag_names);
 		let newNote = {note: {
 			title: this.state.title,
 			body: JScontent,
 			user_id: this.props.currentUser.id,
-			notebook_id: this.state.notebook_id
+			notebook_id: this.state.notebook_id,
+			tag_names: this.state.tags,
 		}};
+
 		this.props.createNote(newNote);
+
+		this.state.tags.map(tag => this.props.createTag({tag:{name:tag, user_id:this.props.currentUser.id}}));
+
 		this.props.history.push('/');
 	}
 
-	revealDropDown (e){
-		event.stopPropagation();
-		$('#gear-dropdown').removeClass('hidden');
-		// $('#gear-dropdown-btn').off('click', this.revealDropdown);
-		$(document).on('click', this.hideDropdown);
-	}
+	// revealDropDown (e){
+	// 	event.stopPropagation();
+	// 	$('#gear-dropdown').removeClass('hidden');
+	// 	// $('#gear-dropdown-btn').off('click', this.revealDropdown);
+	// 	$(document).on('click', this.hideDropdown);
+	// }
 
-	hideDropdown(){
-		$('#gear-dropdown').addClass('hidden');
-		$(document).off('click', this.hideDropdown);
-	}
+	// hideDropdown(){
+	// 	$('#gear-dropdown').addClass('hidden');
+	// 	$(document).off('click', this.hideDropdown);
+	// }
 
 	handleDropDownList(e){
 		// e.preventDefault();
@@ -142,8 +151,8 @@ class NoteCreate extends React.Component {
               			<img className="selector-icon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAANCAYAAACdKY9CAAAAQ0lEQVR42mNgAIIjR478h9G48NGjRz8wwAAxGmBqqKOBAQ1QXwPt/UAbDUTgT8ga/hw6dEiUAQ8AqnmBzPlMkg2kAAAQSjr0OXc0oAAAAABJRU5ErkJggg"/>
 
 		              		<select
-		              		id="dropdownlist"
-		              		onChange={this.handleDropDownList}>
+		              			id="dropdownlist"
+		              			onChange={this.handleDropDownList}>
 		              			{notebookItems}
 		              		</select>
 	              	</div>

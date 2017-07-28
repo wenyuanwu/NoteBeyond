@@ -16,7 +16,7 @@ const TagReducer = (state = nullTag, action) => {
   		return Object.assign({}, state, {entities: action.tags});
   	case RECEIVE_SINGLE_TAG: 
   		const newTag = {[action.tag.id]: action.tag};
-  		return Object.assign({}, state, {entities: newTag});
+  		return merge({}, state, {entities: newTag});
   	case REMOVE_TAG: 
   		nextState = merge({}, state);
   		delete nextState.entities[action.tag.id];

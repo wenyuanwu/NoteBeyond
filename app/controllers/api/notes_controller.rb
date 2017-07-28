@@ -2,7 +2,7 @@ class Api::NotesController < ApplicationController
 	
 	def create 
 		@note = Note.create(note_params)
-		@note.tags = params[:note][:tags] ||=[]
+		@note.tag_names = params[:note][:tag_names] ||=[]
 
 		if@note.save 
 			render "api/notes/show"
@@ -20,7 +20,7 @@ class Api::NotesController < ApplicationController
 	def update 
 		@note = current_user.notes.find_by(id: params[:id])
 		@note.update_attributes(note_params)
-		@note.tags = params[:note][:tags] ||=[]
+		@note.tag_names = params[:note][:tag_names] ||=[]
 		render "api/notes/show"
 	end 
 

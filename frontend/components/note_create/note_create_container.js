@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import { createNote, updateCurrentNote } from '../../actions/note_actions';
+import { createTag } from '../../actions/tag_actions';
 import { fetchAllNotebooks } from '../../actions/notebook_actions';
 import NoteCreate from './note_create';
 
@@ -15,7 +16,8 @@ const mapStateToProps = ({session, note, notebook}) => {
 const mapDispatchToProps = dispatch => ({
   createNote: note => dispatch(createNote(note)), 
   updateCurrentNote: note => dispatch(updateCurrentNote(note)), 
-  fetchAllNotebooks: () => dispatch(fetchAllNotebooks()) 
+  fetchAllNotebooks: () => dispatch(fetchAllNotebooks()), 
+  createTag: tag => dispatch(createTag(tag))
 });
 
 export default connect( 

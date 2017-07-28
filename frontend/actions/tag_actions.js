@@ -25,7 +25,7 @@ export const removeTag = tag => ({
 
 
 //async actions 
-export const createtag = tag => dispatch => (
+export const createTag = tag => dispatch => (
   APIUtil.createTag(tag).then(new_tag => {
     dispatch(receiveSingleTag(new_tag)); dispatch(clearErrors());},
     err => dispatch(receiveErrors(err.responseJSON)))

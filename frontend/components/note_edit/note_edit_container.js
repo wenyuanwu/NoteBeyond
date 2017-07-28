@@ -13,7 +13,7 @@ const mapStateToProps = ({ note }) => {
 const mapDispatchToProps = dispatch => ({
   updateNote: note => dispatch(updateNote(note)),
   deleteNote: note => dispatch(deleteNote(note)),
-  fetchAllNotes: () => dispatch(fetchAllNotes())
+  fetchAllNotes: () => dispatch(fetchAllNotes()),
 });
 
 export default connect( 

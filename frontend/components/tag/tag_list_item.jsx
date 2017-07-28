@@ -23,7 +23,7 @@ class TagListItem extends React.Component {
 		this.props.handleTagIcon(e);
 	}
 
-	handleChange(tags) {
+	  handleChange(tags) {
     	this.setState({tags});
   	}
 

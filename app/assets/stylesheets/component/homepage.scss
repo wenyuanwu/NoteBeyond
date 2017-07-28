@@ -4,19 +4,20 @@
 
 .wrapper{
 	width: 100%;
-	max-height: 960px;
+	max-height: 100%;
 	margin: 0 auto;
 }
 
 .homePage{
 	display: flex;
 	flex-direction: row;
+	height: 100vh
 }
 
 /*nav bar style*/
 	
 .navBar{
-	height: 100vh;
+	height: 100%;
 	width: 7%;
 	background: $bar-grey;
 	display: flex;
@@ -36,15 +37,19 @@
 	margin-top: 15px;
 }
 
-.groupTwo >img{
-	margin-top: 20px;
+
+.groupTwo >a{
+	margin-top: 15px;
+	justify-content: space-around;
+	display: flex;
 }
+
 
 .groupThree {
 	display: flex;
 	align-items: center;
 	flex-direction: column;
-
+	justify-content: space-around;
 }
 
 .logout-button{
@@ -70,10 +75,11 @@
 /*noteIndex style*/
 
 .noteIndex{
-	height: 100vh;
+	height: 100%;
 	width: 30%;
 	background: white;
 	border-right: 1px solid $bar-border-grey;
+	overflow: scroll;
 }
 
 .noteHeader{
@@ -94,6 +100,7 @@
 .note-list{
 	padding-right: 3%;
 	padding-left: 3%;
+	overflow: scroll;
 }
 
 .note-list-item{
@@ -126,7 +133,7 @@
 /*note show style*/
 
 .noteShow{
-	height: 100vh;
+	height: 100%;
 	width: 63%;
 	background: white;
 	border-right: 1px solid $bar-border-grey;

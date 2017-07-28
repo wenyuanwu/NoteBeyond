@@ -1,25 +1,33 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import TagsInput from 'react-tagsinput';
 import {Editor, EditorState, RichUtils, convertToRaw, convertFromRaw, getCurrentContent, ContentState} from 'draft-js';
 import { blockRenderMap, CheckableListItem, CheckableListItemUtils, CHECKABLE_LIST_ITEM } from 'draft-js-checkable-list-item';
 import { InlineStyleControls, BlockStyleControls, styleMap, blocksStyleFn, getBlockStyle } from '../editor/style_controls';
 import StyleButton from '../editor/style_button';
 import { Link } from 'react-router-dom';
+import { values } from 'lodash';
 
 class NoteEdit extends React.Component {
 
   constructor(props) {
 	    super(props);
-	    this.state = {};
+	    this.state = {
+        tags: [], 
+        tag:""
+      };
 	   	this.handleKeyCommand = this.handleKeyCommand.bind(this);
       this.focus = () => this.refs.editor.focus();
 	    this.saveContent = this.saveContent.bind(this);
 	   	this.updatetitle = this.updatetitle.bind(this);
 	   	this.onChange = this.onChange.bind(this);
       this.idleTimeout = null;
+      this.idleTagTimeout = null;
       this.onTab = e => this._onTab(e);
       this.toggleBlockType = type => this._toggleBlockType(type);
       this.toggleInlineStyle = style => this._toggleInlineStyle(style);
+      this.handleChange = this.handleChange.bind(this);
+      this.handleChangeInput = this.handleChangeInput.bind(this);
   }
 
   componentWillReceiveProps(newProps){
@@ -31,7 +39,8 @@ class NoteEdit extends React.Component {
     if ( !this.props.currentNote || (this.props.currentNote.id !== newProps.currentNote.id) ) {
           let content = newProps.currentNote.body;
           this.setState({
-          editorState: EditorState.createWithContent(convertFromRaw(JSON.parse(content)))
+          editorState: EditorState.createWithContent(convertFromRaw(JSON.parse(content))),
+          tags: newProps.currentNote.tags
          });
     }
   }
@@ -40,6 +49,17 @@ class NoteEdit extends React.Component {
     clearInterval(this.idleTimeout);
   }
 
+  handleChange(tags) {
+      this.setState({tags});
+      clearTimeout(this.idleTagTimeout);
+      this.idleTagTimeout = setTimeout(this.saveContent, 500);
+    }
+
+  handleChangeInput(tag) {
+      this.setState({tag});
+    }
+
+
   saveContent(){
       const JScontent = JSON.stringify(convertToRaw(this.state.editorState.getCurrentContent()));
       
@@ -47,6 +67,7 @@ class NoteEdit extends React.Component {
             note: {title: this.props.currentNote.title,
                  body: JScontent,
                  user_id: this.props.currentNote.user_id,
+                 tag_names: this.state.tags,
                  notebook_id: this.props.currentNote.notebook_id}
              };
       this.props.updateNote(newBody);
@@ -137,6 +158,13 @@ class NoteEdit extends React.Component {
       				<Link to={`/deletenote`}  >
       					<img className="delete-button" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAjCAYAAADmOUiuAAACbElEQVR42u2XP2gTURzHg5aKQ5dSig5OtlgcstgidnAyWC2YRVPEwUVS0cGpRlwylVQcHEohggGH5nJ3uaQd5CCBgmJTSEDQoYiBDkFMIYKgg0iVxt+Tb8ur3jtyd+8Fhxw8km/uvd/v877vb0Kh3tN7/n3y+XyUyjaVdoeF1Y12E9AL3D5kNwH/JFVVvwfYFUAKWPExz/yWyv8O+DqQm6Zp3kOgJ0FHxrKsRRaLPu9KG27DMG4C8LmEqbOMWDekAZKDVxB0lduo2/T7ig/AF3DwskwHzwPoFdOFQmFPv/QxxOvo7KQ0QE3Twgj6DknCcOGtDwc30bnT0gBzudwJADactEfAT6wtjcJxaYCZTGYAQN/+0l99AH6Hg0dlb9w/qewmk8k+XlOiw53GsG37CDr2Q/rxRiCfWXCaj0MAbPG6wxjHlN1sKGidBc9ms6NumiBGXFbwGADfq3CwxoLruj4BoKqbFsQ4B8ANFYBlFrxYLEYAVHLSVC/iMgqXAGirADSx98UwXDqv6bvBNG3qMZchvg5ATQXgUwDFcbqkkWwWgGn+vcDBO2izJB2QgB4heALAKV4T2AEtAHyIOvMqHHwAh1JIdh/JFtCBBK8FgI8xT+ekAxLYbQCkARx304JOPkOdW9IB6eycgYM63LiGZIaTFgBacPCqCgcvAqCEZBEkK/N6770AcA0r/YIKwLMAqEKPA7DGNNugeS0AfIM6Z1QsklMY4g/QIwCuO2nBItnCaXNSOiCdGMMAaAXo5Bc4OKjCwX4A7vhpT9e0Q9T2l9crmtcbzUcJ/4EbIVUP9XyKEjQDwDUpxrSXnL8BI9Tv3UAALyAAAAAASUVORK5CYII=" />
       				</Link>
+
+              <TagsInput
+                value={this.state.tags}
+                onChange={this.handleChange}
+                inputValue={this.state.tag}
+                onChangeInput={this.handleChangeInput}
+              />
 
               <BlockStyleControls
                 editorState={editorState}
