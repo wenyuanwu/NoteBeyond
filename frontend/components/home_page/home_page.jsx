@@ -66,7 +66,7 @@ class HomePage extends React.Component {
 		const personalGreeting = (currentUser) => (
 		    <hgroup className="header-group">
 		      <button className="logout-button" onClick={this.handleLogOut}>
-		      	<img src="http://res.cloudinary.com/dltydzsmu/image/upload/v1500916065/logout-16_yg7fr5.png"/>
+		      	<img src="https://res.cloudinary.com/dltydzsmu/image/upload/v1500916065/logout-16_yg7fr5.png"/>
 		      </button>
 		    </hgroup>);
 
@@ -76,7 +76,7 @@ class HomePage extends React.Component {
 			<div className="wrapper">
 				<div className="homePage">
 					<div className="navBar">
-						<img src="http://res.cloudinary.com/dltydzsmu/image/upload/v1500915656/folder_icon_snyvtd.png" />
+						<img src="https://res.cloudinary.com/dltydzsmu/image/upload/v1500915656/folder_icon_snyvtd.png" />
 						<div className="groupOne">
 							<Link to={`/createnote`} >
 								<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAYAAADhAJiYAAABvElEQVR42s1YzUrDQBDeg5c+QG89qceNzyDoK+Qm3c2t72TPHnwALzXZi0gRRHoK+gqi9GihRGc2NiE0pJPsJp2FgdBsZr7O/4wQLU+wiE5lrGdBrO6AVjJRn0Gif5DsM/yG7+wduCt6OebyRD5Ob0DgE1AGwn8phHftN/At8vCCJVhMr4NEpVQQDZQir85AJvfhCP7dHBhlHsDsCDU2nzyHo1Zgzh/CMfjAi0cgVVMCb5RBB4Pq7QlM6V86PQgKVdmnZuo01Wg+adTtUGAKUCCzIZq8OjDZ0S8SdbWXZzyFdueUUMlTmLhcGL6tPyw5mQ6TZwEIsqkLs91x1NKyrE0tykGPgDIZqzNhi6CjD3gChGlgJmzVZgIIsQiIrhUbQIBF/PczTADpLzTZhhraXQ85JcRqOwig1/U7FdCGlckQCz+nZhf20nBLjNxKR15cNZ/i6qv9IIc2pf3IGzTNp0GzbYg5XguLsuub/Hww5NHkH2UMMgfGoOEHxYg6vUZjRN/vKE0EUzEfl2VDTfT5WccYh3VM3cIKs2lLjeHdpdeF1V5qgHpTrPRs66K+QegWm6u8typXekVtanH+ABqtwq/7bw5UAAAAAElFTkSuQmCC" />

@@ -17,12 +17,14 @@ Tagging.delete_all
 Tag.delete_all
 
 user1 = User.create!(username: "Guest", password: "guestpassword")
-user2 = User.create!(username: "user2", password: "123456")
+# user2 = User.create!(username: "user2", password: "123456")
 
 
-notebook1 = Notebook.create!(title: "Notebook_title_1",user_id: user1.id)
-notebook2 = Notebook.create!(title: "Notebook_title_2",user_id: user1.id)
-notebook3 = Notebook.create!(title: "Notebook_title_3",user_id: user2.id)
+notebook1 = Notebook.create!(title: "Ruby 101",user_id: user1.id)
+notebook2 = Notebook.create!(title: "Funky JS",user_id: user1.id)
+notebook3 = Notebook.create!(title: "Cooding Bootcamp",user_id: user1.id)
+notebook4 = Notebook.create!(title: "Sorting Algorithm",user_id: user1.id)
+notebook5 = Notebook.create!(title: "Random Thoughts",user_id: user1.id)
 
 # tag1 = Tag.create!(name: "tag1", user_id: user1.id)
 # tag2 = Tag.create!(name: "tag2", user_id: user1.id)
