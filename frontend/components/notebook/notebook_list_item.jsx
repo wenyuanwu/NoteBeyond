@@ -20,8 +20,8 @@ class NoteBookListItem extends React.Component {
 		const{notebook} = this.props;
 		
 		return(
-			<a onClick={this.onClick} className="note-list-item">
-					<div className="note-body">{notebook.title}</div>
+			<a onClick={this.onClick} className="notebook-list-item">
+					<div className="notebook-body">{notebook.title}</div>
 			</a>
 			);
 	}

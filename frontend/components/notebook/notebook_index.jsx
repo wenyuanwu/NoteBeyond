@@ -40,7 +40,7 @@ class NotebookIndex extends React.Component {
                   			transform: "translate3d(" + x + "vw, 0vw, 0)" }}>
 							<div className="notebookIndex">
 									<header className="noteHeader">NOTEBOOKS</header>
-									<ul className="note-list">
+									<ul className="notebook-list">
 										{notebookItems}
 									</ul>
 							</div>

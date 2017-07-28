@@ -37,9 +37,9 @@ class TagIndex extends React.Component {
    					return(
 						<div  className="flyoutMenu" style={{
                   			transform: "translate3d(" + x + "vw, 0vw, 0)" }}>
-							<div className="notebookIndex">
+							<div className="tagIndex">
 									<header className="noteHeader">TAGS</header>
-									<ul className="note-list">
+									<ul className="tag-list">
 										{tagItems}
 									</ul>
 							</div>

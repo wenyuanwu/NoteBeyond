@@ -11,7 +11,6 @@ class TagListItem extends React.Component {
 	}
 
 	onClick(e){
-    debugger;
 		e.preventDefault();
 		this.props.updateNoteEntities(this.props.tag.notes);
 		this.props.handleTagIcon(e);
@@ -23,8 +22,8 @@ class TagListItem extends React.Component {
 		const{tag} = this.props;
 		
 		return(
-			<a onClick={this.onClick} className="note-list-item">
-                <div className="note-body">{tag.name}</div>
+			<a onClick={this.onClick} className="tag-list-item">
+                <div className="tag-body">{tag.name}</div>
 			</a>
 			);
 	}

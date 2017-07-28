@@ -1,3 +1,6 @@
+@import "../base/colors.scss";
+@import "../base/fonts.scss";
+
 .theMenu{
     position: fixed;
     left: 0;
@@ -10,8 +13,8 @@
 .flyoutMenu {
         display: flex;
         flex-direction: row;
-        width: 93vw;
-        height: 100vh;
+        width: 93%;
+        height: 100%;
         position: fixed;
         top: 0;
         left: 7%;
@@ -26,11 +29,73 @@
 .notebookIndex{
     width: 35vw;
     background-color: white;
+    border-right: 2px solid $bar-border-grey;
 }
 
-.notebook-item-click{
-    cursor: pointer;
+.notebook-list{
+    overflow: scroll;
+    padding: 10%;
+    padding-top: 0;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
 }
+
+.notebook-list-item{
+    width: 100%;
+    padding: 5%;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid $bar-border-grey;
+    height: 100px;
+}
+
+.notebook-body{
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: normal;
+    margin-left: 25%;
+    color:$font-light-grey;
+    letter-spacing: 0.5px;
+    font-family: helvetica, arial, sans-serif;
+}
+
+.tagIndex{
+    width: 35vw;
+    background-color: white;
+    border-right: 2px solid $bar-border-grey;
+}
+
+.tag-list{
+    height: 100%;
+    overflow: scroll;
+    padding: 10%;
+    padding-top: 0;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.tag-list-item{
+    width: 100%;
+    padding: 5%;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid $bar-border-grey;
+    height: 100px;
+}
+
+.tag-body{
+    cursor: pointer;
+    font-size: 10px;
+    font-weight: normal;
+    margin-left: 25%;
+    color:$green;
+    letter-spacing: 0.5px;
+    font-family: helvetica, arial, sans-serif;
+}
+
 
 .placeholder{
     width: 58vw;
