@@ -12,6 +12,10 @@ Notebook.delete_all
 
 User.delete_all 
 
+Tagging.delete_all
+
+Tag.delete_all
+
 user1 = User.create!(username: "Guest", password: "guestpassword")
 user2 = User.create!(username: "user2", password: "123456")
 
@@ -19,6 +23,10 @@ user2 = User.create!(username: "user2", password: "123456")
 notebook1 = Notebook.create!(title: "Notebook_title_1",user_id: user1.id)
 notebook2 = Notebook.create!(title: "Notebook_title_2",user_id: user1.id)
 notebook3 = Notebook.create!(title: "Notebook_title_3",user_id: user2.id)
+
+tag1 = Tag.create!(name: "tag1")
+tag2 = Tag.create!(name: "tag2")
+
 
 # note1 = Note.create!(title:"note1", body:"body1", user_id: user1.id, notebook_id: notebook1.id)
 # note2 = Note.create!(title:"note2", body:"body2", user_id: user1.id, notebook_id: notebook2.id)

@@ -11,6 +11,7 @@ class User < ApplicationRecord
 
 	has_many :notes 
 	has_many :notebooks
+	has_many :tags
 	
 	def password=(password)
 		self.password_digest = BCrypt::Password.create(password)

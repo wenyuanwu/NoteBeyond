@@ -1,6 +1,8 @@
 class Note < ApplicationRecord
 	belongs_to :user
 	belongs_to :notebook
+	has_many :taggings, dependent: :destroy, inverse_of: :post
+	has_many :tags, through: :taggings 
 
 	validates :user, :notebook, presence: true
 	validates :title, presence: {message: "must have title for new note"}
