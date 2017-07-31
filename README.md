@@ -12,5 +12,5 @@
 
 ## Screen Shots
 
-*[Main Page](./mainpage.png)
+![Main Page](./mainpage.png)
 
