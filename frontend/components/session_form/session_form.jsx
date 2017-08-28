@@ -72,9 +72,16 @@ render() {
 
     return (
       <div className="login-form-container">
+        
         <div className="logo">
           <img src="https://res.cloudinary.com/dltydzsmu/image/upload/v1500915656/folder_icon_snyvtd.png" />
         </div>
+        
+        <video playsinline autoplay muted loop poster="http://res.cloudinary.com/dltydzsmu/image/upload/v1503941075/White-Keyboard_limyyq.jpg" id="white-keyboard-jpg">
+          <source src="http://res.cloudinary.com/dltydzsmu/video/upload/v1503941070/White-Keyboard_u6ypnu.webm" type="video/webm"/>
+          <source src="http://res.cloudinary.com/dltydzsmu/video/upload/v1503941083/White-Keyboard_mtu04j.mp4" type="video/mp4"/>
+          <source src="http://res.cloudinary.com/dltydzsmu/video/upload/v1503941079/White-Keyboard_dtbtun.ogv" type="video/ogv"/>
+        </video>
 
         <h3 className="status">{value}</h3>
 

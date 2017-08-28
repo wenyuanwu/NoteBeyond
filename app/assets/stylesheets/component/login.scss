@@ -86,4 +86,20 @@
 	margin:5px 5px 0;
 }
 
+video#white-keyboard-jpg{
+	position: fixed;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -100;
+    -ms-transform: translateX(-50%) translateY(-50%);
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+    background: url(http://res.cloudinary.com/dltydzsmu/image/upload/v1503941075/White-Keyboard_limyyq.jpg) no-repeat;
+    background-size: cover; 
+}
 
