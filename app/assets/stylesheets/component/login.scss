@@ -6,7 +6,6 @@
 	justify-content: center;
 	align-items: center;
 	text-align: center;
-	/*border-top: 4px solid $green;*/
 	flex-direction: column;
 	width: 100%;
 	margin: 0 auto;
@@ -14,18 +13,45 @@
 
 .header{
 	display: flex;
-	height: 10%; 
 	width: 100%;
 	background: $light_grey;
+	justify-content: space-between;
 	border-bottom: 4px solid $green;
 }
 
+.left-side{
+	display: flex;
+	justify-content: space-between;
+	max-width: 260px;
+	margin-left: 5%;
+	flex: 1 1 0;
+}
+
 .logo{
-	position: fixed;
-	margin-top: 20px;
 	padding: 10px;
+	width: 100%;
+	height: auto;
+}
+
+.logo-name{
+	font-size: 20pt;
+	color: $green;
+	text-transform: uppercase;
+	padding: 10px;
+}
+
+.right-side{
+	display: flex;
+	justify-content: space-between;
 	max-width: 100px;
-	}
+	margin-right: 5%;
+	flex: 1 1 0;
+}
+
+.github, .linkedin{
+	cursor: pointer;
+	padding: 10px;
+}
 
 .login-form{
 	display: flex;

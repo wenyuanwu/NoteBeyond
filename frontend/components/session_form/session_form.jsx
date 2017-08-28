@@ -73,17 +73,21 @@ render() {
     return (
       <div className="login-form-container">
         <div className="header">
-          <div className="logo">
-            <img src="https://res.cloudinary.com/dltydzsmu/image/upload/v1500915656/folder_icon_snyvtd.png" />
-          </div>  
-          <div className="logo-name">
-            NoteBeyond
+          <div className="left-side">
+            <div className="logo">
+              <img src="https://res.cloudinary.com/dltydzsmu/image/upload/v1500915656/folder_icon_snyvtd.png" />
+            </div>  
+            <div className="logo-name">
+              NoteBeyond
+            </div>
           </div>
-          <div className="github">
-            <img src="http://res.cloudinary.com/dltydzsmu/image/upload/v1503945724/github_awpd8m.png"/>
-          </div>
-          <div className="linkedin">
-            <img src="http://res.cloudinary.com/dltydzsmu/image/upload/v1503945722/linkedin_osv2nf.png"/>
+          <div className="right-side">
+            <a className="github" href="https://github.com/wenyuanwu/NoteBeyond">
+              <img src="http://res.cloudinary.com/dltydzsmu/image/upload/v1503945724/github_awpd8m.png"/>
+            </a>
+            <a className="linkedin" href="https://www.linkedin.com/in/wenyuanlydiawu/">
+              <img src="http://res.cloudinary.com/dltydzsmu/image/upload/v1503950423/linkedin-grey_we1uee.png"/>
+            </a>
           </div>
         </div>   
         
