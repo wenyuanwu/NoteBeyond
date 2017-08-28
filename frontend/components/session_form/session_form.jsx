@@ -72,49 +72,61 @@ render() {
 
     return (
       <div className="login-form-container">
-        
-        <div className="logo">
-          <img src="https://res.cloudinary.com/dltydzsmu/image/upload/v1500915656/folder_icon_snyvtd.png" />
-        </div>
-        
-        <video playsInline autoPlay muted loop poster="http://res.cloudinary.com/dltydzsmu/image/upload/v1503941075/White-Keyboard_limyyq.jpg" id="white-keyboard-jpg">
-          <source src="http://res.cloudinary.com/dltydzsmu/video/upload/v1503941070/White-Keyboard_u6ypnu.webm" type="video/webm"/>
-          <source src="http://res.cloudinary.com/dltydzsmu/video/upload/v1503941083/White-Keyboard_mtu04j.mp4" type="video/mp4"/>
-          <source src="http://res.cloudinary.com/dltydzsmu/video/upload/v1503941079/White-Keyboard_dtbtun.ogv" type="video/ogv"/>
-        </video>
-
-        <h3 className="status">{value}</h3>
-
-        <form onSubmit={this.handleSubmit} className="login-form-box">
-        
-          <div className="login-form">
-            
-            <label>
-              <input type="text"
-                value={this.state.username}
-                onChange={this.update('username')}
-                placeholder="Username"
-                className="login-input"
-              />
-            </label>
-            
-            <label>
-              <input type="password"
-                value={this.state.password}
-                onChange={this.update('password')}
-                placeholder ="Password"
-                className="login-input"
-              />
-            </label>
-            <div className="error_msg"/>
-              {this.renderErrors()}
-            <div/>
-            <input className="submit-button" type="submit" value={value} />
-            <button className="demo-button" onClick={this.handleDemoSubmit}> Demo Login</button>
+        <div className="header">
+          <div className="logo">
+            <img src="https://res.cloudinary.com/dltydzsmu/image/upload/v1500915656/folder_icon_snyvtd.png" />
+          </div>  
+          <div className="logo-name">
+            NoteBeyond
           </div>
-        </form>
-        <div className="login-prop-words">{loginPropWord}</div>
-        <div className ="login-signup">{login_prop}</div>
+          <div className="github">
+            <img src="http://res.cloudinary.com/dltydzsmu/image/upload/v1503945724/github_awpd8m.png"/>
+          </div>
+          <div className="linkedin">
+            <img src="http://res.cloudinary.com/dltydzsmu/image/upload/v1503945722/linkedin_osv2nf.png"/>
+          </div>
+        </div>   
+        
+        <div className= "login-form">
+          <video playsInline autoPlay muted loop poster="http://res.cloudinary.com/dltydzsmu/image/upload/v1503941075/White-Keyboard_limyyq.jpg" id="white-keyboard-jpg">
+            <source src="http://res.cloudinary.com/dltydzsmu/video/upload/v1503941070/White-Keyboard_u6ypnu.webm" type="video/webm"/>
+            <source src="http://res.cloudinary.com/dltydzsmu/video/upload/v1503941083/White-Keyboard_mtu04j.mp4" type="video/mp4"/>
+            <source src="http://res.cloudinary.com/dltydzsmu/video/upload/v1503941079/White-Keyboard_dtbtun.ogv" type="video/ogv"/>
+          </video>
+
+          <h3 className="status">{value}</h3>
+
+          <form onSubmit={this.handleSubmit} className="login-form-box">
+          
+            <div className="login-form">
+              
+              <label>
+                <input type="text"
+                  value={this.state.username}
+                  onChange={this.update('username')}
+                  placeholder="Username"
+                  className="login-input"
+                />
+              </label>
+              
+              <label>
+                <input type="password"
+                  value={this.state.password}
+                  onChange={this.update('password')}
+                  placeholder ="Password"
+                  className="login-input"
+                />
+              </label>
+              <div className="error_msg"/>
+                {this.renderErrors()}
+              <div/>
+              <input className="submit-button" type="submit" value={value} />
+              <button className="demo-button" onClick={this.handleDemoSubmit}> Demo Login</button>
+            </div>
+          </form>
+          <div className="login-prop-words">{loginPropWord}</div>
+          <div className ="login-signup">{login_prop}</div>
+        </div>
       </div>
     );
   }

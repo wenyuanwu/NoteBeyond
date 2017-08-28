@@ -6,17 +6,30 @@
 	justify-content: center;
 	align-items: center;
 	text-align: center;
-	border-top: 4px solid $green;
+	/*border-top: 4px solid $green;*/
 	flex-direction: column;
 	width: 100%;
 	margin: 0 auto;
 	}
 
+.header{
+	display: flex;
+	height: 10%; 
+	width: 100%;
+	background: $light_grey;
+	border-bottom: 4px solid $green;
+}
+
 .logo{
+	position: fixed;
 	margin-top: 20px;
 	padding: 10px;
 	max-width: 100px;
 	}
+
+.login-form{
+	display: flex;
+}
 
 .status{
 	font-size: 32px;
