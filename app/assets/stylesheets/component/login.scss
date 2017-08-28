@@ -55,13 +55,15 @@
 
 .login-form{
 	display: flex;
+	flex-direction: column;
+	/*margin: auto 0;*/
 }
 
 .status{
 	font-size: 32px;
 	font-weight: 300;
 	line-height: 36px;
-	color: $font_dark_grey;
+	color: white;
 	}
 
 .login-form-box{
@@ -72,7 +74,6 @@
 	background: white;
 	border-radius: 5px;
 	border: 1px solid $border_grey;
-	display: flex;
 	height: 350px;
 	width:450px;
 	font-size: 16px;
@@ -115,7 +116,7 @@
 	}
 
 .login-prop-words{
-	color: $font_light_grey;
+	color: white;
 	font-size: 14px;
 	margin-top: 15px;
 }
