@@ -121,13 +121,16 @@ render() {
                   className="login-input"
                 />
               </label>
-              <div className="error_msg"/>
+
+              <div className="error_msg">
                 {this.renderErrors()}
-              <div/>
+              </div>
+
               <input className="submit-button" type="submit" value={value} />
               <button className="demo-button" onClick={this.handleDemoSubmit}> Demo Login</button>
             </div>
           </form>
+
           <div className="login-prop-words">{loginPropWord}</div>
           <div className ="login-signup">{login_prop}</div>
         </div>
