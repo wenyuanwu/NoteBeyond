@@ -104,23 +104,19 @@ render() {
           
             <div className="login-form">
               
-              <label>
-                <input type="text"
-                  value={this.state.username}
-                  onChange={this.update('username')}
-                  placeholder="Username"
-                  className="login-input"
-                />
-              </label>
-              
-              <label>
-                <input type="password"
-                  value={this.state.password}
-                  onChange={this.update('password')}
-                  placeholder ="Password"
-                  className="login-input"
-                />
-              </label>
+              <input type="text"
+                value={this.state.username}
+                onChange={this.update('username')}
+                placeholder="Username"
+                className="login-input"
+              />
+            
+              <input type="password"
+                value={this.state.password}
+                onChange={this.update('password')}
+                placeholder ="Password"
+                className="login-input"
+              />
 
               <div className="error_msg">
                 {this.renderErrors()}

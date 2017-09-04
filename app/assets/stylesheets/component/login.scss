@@ -59,6 +59,7 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	width: 80%;
 	height: 90vh;
 }
 
@@ -83,16 +84,22 @@
 	font-weight: 300;
 	}
 
-.login-form-box input[type="text"], .login-form-box input[type="password"],
+/*.login-form-box input[type="text"], .login-form-box input[type="password"],*/
 .login-form-box input[type="submit"], .login-form-box button{
 	width: 70%;
 	border-radius: 0.25rem;
+	box-sizing: border-box;
   	padding: 1rem;
   	margin: 15px 15px 0;
 }
 
 .login-form-box input[type="text"], .login-form-box input[type="password"]{
-	border: 1px solid $border_grey;
+	width: 70%;
+	border: 0.5px solid $border_grey;
+	padding: 1rem;
+  	margin: 15px 15px 0;
+	box-sizing: border-box;
+
 }
 
 .submit-button{
@@ -113,7 +120,7 @@
 }
 
 .login-signup{
-	color: $green;	
+	color: $login_green;	
 	font-size: 16px;
 	margin-top: 15px;
 	}
