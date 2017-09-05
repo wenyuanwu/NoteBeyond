@@ -7,9 +7,13 @@
 	display: flex;
 	padding: 5%;
 }
-	.RichEditor-root{
-		width: 100vw;
-	} 
+.RichEditor-root{
+    background: #fff;
+    font-family: 'Georgia', serif;
+    font-size: 14px;
+    padding: 15px;
+    width: 100vw;
+} 
 #gear-dropdown{
 	display: flex;
 	align-items: row;
