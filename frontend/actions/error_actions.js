@@ -8,5 +8,5 @@ export const receiveErrors = errors => ({
 });
 
 export const clearErrors = () => ({
-  type: CLEAR_ERRORS,
+  type: CLEAR_ERRORS
 });
