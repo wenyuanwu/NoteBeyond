@@ -49,10 +49,10 @@ class StyleButton extends React.Component {
       }
 
 var INLINE_STYLES = [
-        {label: 'Bold', style: 'BOLD'},
-        {label: 'Italic', style: 'ITALIC'},
-        {label: 'Underline', style: 'UNDERLINE'},
-        {label: 'Monospace', style: 'CODE'},
+        {label: 'Bold', style: 'BOLD', icon: <i className='fa fa-bold'></i>},
+        {label: 'Italic', style: 'ITALIC', icon: <i className='fa fa-italic'></i>},
+        {label: 'Underline', style: 'UNDERLINE',icon:<i className='fa fa-underline'></i>},
+        {label: 'Strikethrough', style: 'STRIKETHROUGH', icon:<i className='fa fa-strikethrough'></i>}
       ];
 
 const BLOCK_TYPES = [
@@ -108,7 +108,7 @@ export const InlineStyleControls = (props) => {
         <StyleButton
           key={type.label}
           active={currentStyle.has(type.style)}
-          label={type.label}
+          label={type.icon}
           onToggle={props.onToggle}
           style={type.style}
         />

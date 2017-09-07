@@ -22,6 +22,10 @@
 @import "./base/layout";
 @import "./base/draft";
 
+/*font-awesome*/
+@import "font-awesome-sprockets";
+@import "font-awesome";
+
 /*Component*/
 @import "./component/login";
 @import "./component/homepage";
