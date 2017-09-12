@@ -3,8 +3,7 @@ import ReactDOM from 'react-dom';
 import TagsInput from 'react-tagsinput';
 import {Editor, EditorState, RichUtils, convertToRaw, convertFromRaw, getCurrentContent, ContentState} from 'draft-js';
 import { blockRenderMap, CheckableListItem, CheckableListItemUtils, CHECKABLE_LIST_ITEM } from 'draft-js-checkable-list-item';
-import { InlineStyleControls, BlockStyleControls, styleMap, blocksStyleFn, getBlockStyle } from '../editor/style_controls';
-import StyleButton from '../editor/style_button';
+import { InlineStyleControls, BlockStyleControls, styleMap, blocksStyleFn } from '../editor/style_controls';
 import NoteBookListItem from '../notebook/notebook_list_item';
 import { Link } from 'react-router-dom';
 
@@ -180,7 +179,7 @@ class NoteCreate extends React.Component {
 		              onChange={this.update('title')} />
 
 	                <Editor
-	                  blockStyleFn={getBlockStyle}
+	                  blockStyleFn={blocksStyleFn}
 	                  customStyleMap={styleMap}
 	                  editorState={editorState}
 	                  handleKeyCommand={this.handleKeyCommand}
