@@ -49,16 +49,10 @@ var INLINE_STYLES = [
       ];
 
 const BLOCK_TYPES = [
-        // {label: 'H1', style: 'header-one'},
-        // {label: 'H2', style: 'header-two'},
-        // {label: 'H3', style: 'header-three'},
-        // {label: 'H4', style: 'header-four'},
-        // {label: 'H5', style: 'header-five'},
-        // {label: 'H6', style: 'header-six'},
-        // {label: 'Blockquote', style: 'blockquote'},
+        {label: 'Blockquote', style: 'blockquote', icon: <i className='fa fa-quote-left'></i> },
         {label: 'UL', style: 'unordered-list-item', icon: <i className='fa fa-list-ul'></i>},
         {label: 'OL', style: 'ordered-list-item', icon: <i className='fa fa-list-ol'></i>},
-        // {label: 'Code Block', style: 'code-block'},
+        {label: 'Code Block', style: 'code-block', icon: <i className='fa fa-code'></i>},
       ];
 
 export const blocksStyleFn = (block) => {
@@ -66,7 +60,6 @@ export const blocksStyleFn = (block) => {
     case 'unordered-list-item': return 'ul-block-style';
     case 'ordered-list-item': return 'ol-block-style';
     case 'blockquote': return 'RichEditor-blockquote';
-    case CHECKABLE_LIST_ITEM: return CHECKABLE_LIST_ITEM;
     default: return null;
   }
 };
