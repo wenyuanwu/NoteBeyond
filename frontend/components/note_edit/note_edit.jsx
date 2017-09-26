@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import TagsInput from 'react-tagsinput';
 import {Editor, EditorState, RichUtils, convertToRaw, convertFromRaw, getCurrentContent, ContentState} from 'draft-js';
-import { blockRenderMap, CheckableListItem, CheckableListItemUtils, CHECKABLE_LIST_ITEM } from 'draft-js-checkable-list-item';
 import { InlineStyleControls, BlockStyleControls, styleMap, blocksStyleFn } from '../editor/style_controls';
 import { Link } from 'react-router-dom';
 import { values } from 'lodash';

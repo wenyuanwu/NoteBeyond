@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import TagsInput from 'react-tagsinput';
 import {Editor, EditorState, RichUtils, convertToRaw, convertFromRaw, getCurrentContent, ContentState} from 'draft-js';
-import { blockRenderMap, CheckableListItem, CheckableListItemUtils, CHECKABLE_LIST_ITEM } from 'draft-js-checkable-list-item';
 import { InlineStyleControls, BlockStyleControls, styleMap, blocksStyleFn } from '../editor/style_controls';
 import NoteBookListItem from '../notebook/notebook_list_item';
 import { Link } from 'react-router-dom';
@@ -144,9 +143,7 @@ class NoteCreate extends React.Component {
               		<div className="create-button">{button}</div>
 
               		<div id="gear-dropdown" className="gear-dropdown hidden">
-
               			<img className="selector-icon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAANCAYAAACdKY9CAAAAQ0lEQVR42mNgAIIjR478h9G48NGjRz8wwAAxGmBqqKOBAQ1QXwPt/UAbDUTgT8ga/hw6dEiUAQ8AqnmBzPlMkg2kAAAQSjr0OXc0oAAAAABJRU5ErkJggg"/>
-
 		              		<select
 		              			id="dropdownlist"
 		              			onChange={this.handleDropDownList}>
@@ -178,7 +175,7 @@ class NoteCreate extends React.Component {
 		              placeholder="Title your note" 
 		              onChange={this.update('title')} />
 
-	                <Editor
+	                <Editor className = 'RichEditor-editor'
 	                  blockStyleFn={blocksStyleFn}
 	                  customStyleMap={styleMap}
 	                  editorState={editorState}
