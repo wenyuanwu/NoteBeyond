@@ -152,11 +152,8 @@ class NoteEdit extends React.Component {
    	return(
 
 			<div className="RichEditor-root-show">
-
-      				<Link to={`/deletenote`}  >
-      				<img className="delete-button" src="http://res.cloudinary.com/dltydzsmu/image/upload/v1506468020/delete_sqsdtp.png" />
+            <div className = "tool_bar">
               <img className="selector-icon" src="http://res.cloudinary.com/dltydzsmu/image/upload/v1506467913/notebook_obz1qs.png"/>
-      				</Link>
               <img className = "tag_icon" src ="http://res.cloudinary.com/dltydzsmu/image/upload/v1506467545/tag_gnllkm.png"/>
               <TagsInput
                 value={this.state.tags}
@@ -175,6 +172,12 @@ class NoteEdit extends React.Component {
                 editorState={editorState}
                 onToggle={this.toggleInlineStyle}
               />
+
+              <Link to={`/deletenote`} className="delete-button">
+              <img src="http://res.cloudinary.com/dltydzsmu/image/upload/v1506468020/delete_sqsdtp.png" />
+              </Link>
+              
+            </div>
 
       				<ul className="current-note">
       					<input

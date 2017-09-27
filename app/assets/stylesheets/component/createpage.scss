@@ -29,9 +29,10 @@
 }
 
 .selector-icon{
-	width: 1.5%;
+	width: 2%;
 	height: 2.5%;
-	padding-bottom: 1.5%;
+	padding-right: 3%;
+	border-right: 1px solid $border_grey;
 }
 
 .create-cancel{
@@ -72,12 +73,6 @@
 	text-transform: capitalize;
 	font-size: 14px;
 	text-align: center;
-}
-
-
-
-.inline-controls{
-	padding-bottom: 5px;
 }
 
 .form-title{

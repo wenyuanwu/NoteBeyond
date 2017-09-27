@@ -152,7 +152,6 @@
 .delete-button{
 	width: 3%;
 	height: 5%;
-	padding-bottom: 15px;
 }
 
 
@@ -160,6 +159,19 @@
 	border-top: 1px solid $bar-border-grey;
 }
 */
+
+.tool_bar{
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	width: 100%;
+}
+
+.delete-button{
+	padding-left: 1%;
+	z-index: 2000;
+}
+
 .note-edit-title{
 	padding-top: 15px;
 	font-size: 22px;
@@ -175,5 +187,6 @@
 	letter-spacing: 0.5px;
 	font-family: helvetica, arial, sans-serif;
 }
+
 
 
