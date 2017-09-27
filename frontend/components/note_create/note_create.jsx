@@ -15,7 +15,7 @@ class NoteCreate extends React.Component {
 	    			  "body": "", 
 	    			  notebook_id: null,
 	    			  tags: [], 
-	    			  tag:""};
+	    			  tag:"New Tag..."};
 	    this.focus = () => this.refs.editor.focus();			  
 	    this.update = this.update.bind(this);			  
 	    this.onChange = (editorState) => this.setState({editorState});

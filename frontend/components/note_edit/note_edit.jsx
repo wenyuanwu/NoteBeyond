@@ -12,7 +12,7 @@ class NoteEdit extends React.Component {
 	    super(props);
 	    this.state = {
         tags: [], 
-        tag:"New Tag..."
+        tag:""
       };
 	   	this.handleKeyCommand = this.handleKeyCommand.bind(this);
       this.focus = () => this.refs.editor.focus();
