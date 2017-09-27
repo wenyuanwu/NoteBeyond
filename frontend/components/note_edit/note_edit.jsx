@@ -163,6 +163,7 @@ class NoteEdit extends React.Component {
                 onChange={this.handleChange}
                 inputValue={this.state.tag}
                 onChangeInput={this.handleChangeInput}
+                inputProps={{placeholder: '+'}}
               />
 
               <BlockStyleControls

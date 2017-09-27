@@ -15,7 +15,7 @@ class NoteCreate extends React.Component {
 	    			  "body": "", 
 	    			  notebook_id: null,
 	    			  tags: [], 
-	    			  tag:"New Tag..."};
+	    			  tag:""};
 	    this.focus = () => this.refs.editor.focus();			  
 	    this.update = this.update.bind(this);			  
 	    this.onChange = (editorState) => this.setState({editorState});
@@ -155,6 +155,7 @@ class NoteCreate extends React.Component {
 				        onChange={this.handleChange}
 				        inputValue={this.state.tag}
 				        onChangeInput={this.handleChangeInput}
+				        inputProps={{placeholder: '+'}}
       				/>
 
 	                <BlockStyleControls
