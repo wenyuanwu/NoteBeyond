@@ -118,7 +118,6 @@ class NoteCreate extends React.Component {
 
 	render(){
 
-		console.log("notebooks", this.props.notebooks);
 		let button;
 		const {notebooks} = this.props; //refactor later 
 		const {editorState, title, body} = this.state;
@@ -143,7 +142,7 @@ class NoteCreate extends React.Component {
               		<div className="create-button">{button}</div>
 
               		<div id="gear-dropdown" className="gear-dropdown hidden">
-              			<img className="selector-icon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAANCAYAAACdKY9CAAAAQ0lEQVR42mNgAIIjR478h9G48NGjRz8wwAAxGmBqqKOBAQ1QXwPt/UAbDUTgT8ga/hw6dEiUAQ8AqnmBzPlMkg2kAAAQSjr0OXc0oAAAAABJRU5ErkJggg"/>
+              			<img className="selector-icon" src="http://res.cloudinary.com/dltydzsmu/image/upload/v1506467913/notebook_obz1qs.png"/>
 		              		<select
 		              			id="dropdownlist"
 		              			onChange={this.handleDropDownList}>
