@@ -3,7 +3,15 @@
 
 .notebook-drop-down-list-btn{
 	background-color: white;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
 }
+
+.notebook-drop-down-list-btn:hover{
+	background-color: white;
+}
+
 
 .notebook-drop-down-list-title{
 	color: $font_dark_grey;
