@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import TagsInput from 'react-tagsinput';
 import {Editor, EditorState, RichUtils, convertToRaw, convertFromRaw, getCurrentContent, ContentState} from 'draft-js';
 import { InlineStyleControls, BlockStyleControls, styleMap, blocksStyleFn } from '../editor/style_controls';
+import NoteDropDownListContainer from '../note_dropdown_list/note_dropdown_list_container';
 import { Link } from 'react-router-dom';
 import { values } from 'lodash';
 
@@ -153,6 +154,7 @@ class NoteEdit extends React.Component {
 
 			<div className="RichEditor-root-show">
             <div className = "tool_bar">
+              <NoteDropDownListContainer />
               <img className="selector-icon" src="http://res.cloudinary.com/dltydzsmu/image/upload/v1506467913/notebook_obz1qs.png"/>
               <img className = "tag_icon" src ="http://res.cloudinary.com/dltydzsmu/image/upload/v1506467545/tag_gnllkm.png"/>
               <TagsInput

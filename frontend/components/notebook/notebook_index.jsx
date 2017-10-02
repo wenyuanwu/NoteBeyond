@@ -36,7 +36,7 @@ class NotebookIndex extends React.Component {
 
    				function({x}) {
    					return(
-						<div  className="flyoutMenu" style={{
+						<div className="flyoutMenu" style={{
                   			transform: "translate3d(" + x + "vw, 0vw, 0)" }}>
 							<div className="notebookIndex">
 									<header className="noteHeader">NOTEBOOKS</header>

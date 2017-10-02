@@ -4,6 +4,7 @@ import TagsInput from 'react-tagsinput';
 import {Editor, EditorState, RichUtils, convertToRaw, convertFromRaw, getCurrentContent, ContentState} from 'draft-js';
 import { InlineStyleControls, BlockStyleControls, styleMap, blocksStyleFn } from '../editor/style_controls';
 import NoteBookListItem from '../notebook/notebook_list_item';
+import NoteDropDownListContainer from '../note_dropdown_list/note_dropdown_list_container';
 import { Link } from 'react-router-dom';
 
 class NoteCreate extends React.Component {
@@ -140,6 +141,8 @@ class NoteCreate extends React.Component {
 				<div className="RichEditor-root">
 
               		<div className="create-button">{button}</div>
+
+              		<NoteDropDownListContainer />
 
               		<div id="gear-dropdown" className="gear-dropdown hidden">
               			<img className="selector-icon" src="http://res.cloudinary.com/dltydzsmu/image/upload/v1506467913/notebook_obz1qs.png"/>
