@@ -38,6 +38,7 @@ class NoteEdit extends React.Component {
     if ( !this.props.currentNote || (this.props.currentNote.id !== newProps.currentNote.id) ) {
           let content = newProps.currentNote.body;
           this.setState({
+          title: newProps.currentNote.title || "",  
           editorState: EditorState.createWithContent(convertFromRaw(JSON.parse(content))),
           tags: newProps.currentNote.tags || []
          });
@@ -60,15 +61,16 @@ class NoteEdit extends React.Component {
 
 
   saveContent(){
-      const JScontent = JSON.stringify(convertToRaw(this.state.editorState.getCurrentContent()));
-      
-        let newBody = {id: this.props.currentNote.id,
-            note: {title: this.props.currentNote.title,
+
+    const JScontent = JSON.stringify(convertToRaw(this.state.editorState.getCurrentContent()));
+    
+      let newBody = {id: this.props.currentNote.id,
+          note: {title: this.state.title,
                  body: JScontent,
                  user_id: this.props.currentNote.user_id,
                  tag_names: this.state.tags,
                  notebook_id: this.props.currentNote.notebook_id}
-             };
+                };
       this.props.updateNote(newBody);
   }
   
@@ -84,16 +86,10 @@ class NoteEdit extends React.Component {
 
   updatetitle(e){
   	let title = e.target.value;
-  	let newNote = {id: this.props.currentNote.id,
-  					note: {title: title,
-		  				   body: this.props.currentNote.body,
-		  				   user_id: this.props.currentNote.user_id,
-		  				   notebook_id: this.props.currentNote.notebook_id}
-		  		   };
-
-    this.props.updateNote(newNote);
+    this.setState({title: title});
+    clearTimeout(this.idleTimeout);
+    this.idleTimeout = setTimeout(this.saveContent, 500);  	
   }
-
 
   errors() {
     if (this.props.errors) {
@@ -185,7 +181,7 @@ class NoteEdit extends React.Component {
       					  className="note-edit-title"
       		        type="text"
 		              onChange={this.updatetitle}
-		              value={currentNote.title}
+		              value={this.state.title}
       			    />
       				</ul>				
               
