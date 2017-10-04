@@ -19,6 +19,7 @@ class NoteEdit extends React.Component {
       this.focus = () => this.refs.editor.focus();
 	    this.saveContent = this.saveContent.bind(this);
 	   	this.updatetitle = this.updatetitle.bind(this);
+      this.updateNotebook = this.updateNotebook.bind(this);
 	   	this.onChange = this.onChange.bind(this);
       this.idleTimeout = null;
       this.idleTagTimeout = null;
@@ -39,6 +40,7 @@ class NoteEdit extends React.Component {
           let content = newProps.currentNote.body;
           this.setState({
           title: newProps.currentNote.title || "",  
+          notebook_id: newProps.currentNote.notebook_id || null,  
           editorState: EditorState.createWithContent(convertFromRaw(JSON.parse(content))),
           tags: newProps.currentNote.tags || []
          });
@@ -69,7 +71,7 @@ class NoteEdit extends React.Component {
                  body: JScontent,
                  user_id: this.props.currentNote.user_id,
                  tag_names: this.state.tags,
-                 notebook_id: this.props.currentNote.notebook_id}
+                 notebook_id: this.state.notebook_id}
                 };
       this.props.updateNote(newBody);
   }
@@ -89,6 +91,12 @@ class NoteEdit extends React.Component {
     this.setState({title: title});
     clearTimeout(this.idleTimeout);
     this.idleTimeout = setTimeout(this.saveContent, 500);  	
+  }
+
+  updateNotebook(notebook_id){
+    this.setState({notebook_id:notebook_id});
+    clearTimeout(this.idleTimeout);
+    this.idleTimeout = setTimeout(this.saveContent, 500);   
   }
 
   errors() {
@@ -150,7 +158,7 @@ class NoteEdit extends React.Component {
 
 			<div className="RichEditor-root-show">
             <div className = "tool_bar">
-              <NoteDropDownListContainer />
+              <NoteDropDownListContainer updateNotebook= {this.updateNotebook}/>
               <img className = "tag_icon" src ="http://res.cloudinary.com/dltydzsmu/image/upload/v1506467545/tag_gnllkm.png"/>
               <TagsInput
                 value={this.state.tags}

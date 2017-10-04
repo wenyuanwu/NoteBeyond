@@ -7,6 +7,7 @@ class NoteDropDownList extends React.Component {
 		this.toggleListStatus = this.toggleListStatus.bind(this);
 		this.isCurrentNotebook = this.isCurrentNotebook.bind(this);
 		this.hideList = this.hideList.bind(this);
+		this.onChange = this.onChange.bind(this);
 	}
 
 	componentDidMount(){
@@ -19,6 +20,12 @@ class NoteDropDownList extends React.Component {
 
 	hideList(){
 		this.setState({listStatus: false});
+	}
+
+	onChange(e){
+		let notebook_id = e.target.getAttribute('value');
+		this.hideList();
+		this.props.updateNotebook(notebook_id);
 	}
 
 	isCurrentNotebook(notebook){
@@ -56,13 +63,14 @@ class NoteDropDownList extends React.Component {
 						return(
 							<li className = {liClass}
 								key = {notebook.id}
-								onClick = {this.hideList}>
-								<div>{notebook.title}</div>
+								onClick = {this.onChange}
+							 >
+								<div value = {notebook.id}> 
+									{notebook.title} 
+								</div>
 							</li>
 						);
 					})}
-					
-
 				</ul>	
 			</div>	
 
