@@ -53,12 +53,12 @@ class NoteDropDownList extends React.Component {
 				</button>
 				<ul className = {listName}>
 					<li key = {0} className = "notebook-list-header">
-						<div> notebook </div>
+						<div> Notebook </div>
 					</li>
 					{notebooks.map(notebook => {
 						let liClass = "notebook-item";
 						if(this.isCurrentNotebook(notebook)) {
-							liClass += "current";
+							liClass += "-current";
 						}
 						return(
 							<li className = {liClass}
