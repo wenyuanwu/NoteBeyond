@@ -42,10 +42,11 @@ const NoteReducer = (state = nullNote, action) => {
       return nextState;  
 
     case UPDATE_CURRENT_NOTE: 
-      newNote = {[action.note.id]: action.note};
-      tags = action.note.tags;
-      newState = merge({}, state, {entities: newNote, currentNote: action.note});
-      newState.currentNote.tags = tags;
+      // newNote = {[action.note.id]: action.note};
+      // tags = action.note.tags;
+      // newState = merge({}, state, {entities: newNote, currentNote: action.note});
+      newState = merge({}, state, {currentNote: action.note});
+      // newState.currentNote.tags = tags;
       return newState;
 
     case UPDATE_CURRENT_NOTEBOOK:
