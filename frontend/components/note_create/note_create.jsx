@@ -25,8 +25,6 @@ class NoteCreate extends React.Component {
       	this.toggleBlockType = type => this._toggleBlockType(type);
       	this.toggleInlineStyle = style => this._toggleInlineStyle(style);
       	this.handleKeyCommand = this.handleKeyCommand.bind(this);
-      	// this.revealDropDown = this.revealDropDown.bind(this);
-      	// this.hideDropdown = this.hideDropdown.bind(this);
       	this.handleDropDownList = this.handleDropDownList.bind(this);
       	this.handleChange = this.handleChange.bind(this);
     	this.handleChangeInput = this.handleChangeInput.bind(this);
@@ -52,20 +50,21 @@ class NoteCreate extends React.Component {
 
   	componentDidMount(){
   		this.props.fetchAllNotebooks();
+  		this.props.requestNotes();
   	}
+
+  	handleDropDownList(notebook_id){
+		this.setState({notebook_id: notebook_id});
+	}
 
 	handleSubmit(e){
 		e.preventDefault();
 		const JScontent = JSON.stringify(convertToRaw(this.state.editorState.getCurrentContent()));
-		console.log("state.tags",this.state.tags);
-		console.log("state.tag",this.state.tag);
-		// const tag_names = this.state.tags.map(tag => tag.name);
-		// console.log("tag_names",tag_names);
 		let newNote = {note: {
 			title: this.state.title,
 			body: JScontent,
 			user_id: this.props.currentUser.id,
-			notebook_id: this.state.notebook_id,
+			notebook_id: this.props.currentNote.notebook_id,
 			tag_names: this.state.tags,
 		}};
 
@@ -74,22 +73,6 @@ class NoteCreate extends React.Component {
 		this.props.history.push('/');
 	}
 
-	// revealDropDown (e){
-	// 	event.stopPropagation();
-	// 	$('#gear-dropdown').removeClass('hidden');
-	// 	// $('#gear-dropdown-btn').off('click', this.revealDropdown);
-	// 	$(document).on('click', this.hideDropdown);
-	// }
-
-	// hideDropdown(){
-	// 	$('#gear-dropdown').addClass('hidden');
-	// 	$(document).off('click', this.hideDropdown);
-	// }
-
-	handleDropDownList(e){
-		// e.preventDefault();
-		this.setState({notebook_id: e.target.value});
-	}
 
 	handleKeyCommand(command) {
 	    const newState = RichUtils.handleKeyCommand(this.state.editorState, command);
@@ -130,47 +113,40 @@ class NoteCreate extends React.Component {
 		if(this.state.title===""){
 			button = <Link to={"/"} className="create-cancel" onClick={() => this.props.updateCurrentNote(null)}>Cancel</Link>;
 		} else{
-			button = <button className="create-create">Done</button>; 
+			button = <button className="create-create" onClick = {this.handleSubmit}> Done </button>; 
 		}
 
 
 		return(
 
-			<form className="post-form" onSubmit={this.handleSubmit}>
+			<form className="post-form" >
 
 				<div className="RichEditor-root">
 
               		<div className="create-button">{button}</div>
 
-              		<NoteDropDownListContainer />
+              		<div className = "tool_bar">
+	              		<NoteDropDownListContainer handleDropDownList={this.handleDropDownList} notebook_id_create = {this.state.notebook_id} />
+	              		<img className = "tag_icon_create" src ="http://res.cloudinary.com/dltydzsmu/image/upload/v1506467545/tag_gnllkm.png"/>
+		              	<TagsInput
+					        value={this.state.tags}
+					        onChange={this.handleChange}
+					        inputValue={this.state.tag}
+					        onChangeInput={this.handleChangeInput}
+					        inputProps={{placeholder: '+'}}
+	      				/>
 
-              		<div id="gear-dropdown" className="gear-dropdown hidden">
-              			<img className="selector-icon" src="http://res.cloudinary.com/dltydzsmu/image/upload/v1506467913/notebook_obz1qs.png"/>
-		              		<select
-		              			id="dropdownlist"
-		              			onChange={this.handleDropDownList}>
-		              			{notebookItems}
-		              		</select>
-	              	</div>
+		                <BlockStyleControls
+		  	              editorState={editorState}
+		    	            onToggle={this.toggleBlockType}
+		                />
 
-	              	<TagsInput
-				        value={this.state.tags}
-				        onChange={this.handleChange}
-				        inputValue={this.state.tag}
-				        onChangeInput={this.handleChangeInput}
-				        inputProps={{placeholder: '+'}}
-      				/>
+		          	    <InlineStyleControls
+		            	    editorState={editorState}
+		                	onToggle={this.toggleInlineStyle}
+		             	/>
+              		</div>
 
-	                <BlockStyleControls
-	  	              editorState={editorState}
-	    	            onToggle={this.toggleBlockType}
-	                />
-
-	          	    <InlineStyleControls
-	            	    editorState={editorState}
-	                	onToggle={this.toggleInlineStyle}
-	             	/>
-              	
               		<input
 		              type="text"
 		              className ="form-title"

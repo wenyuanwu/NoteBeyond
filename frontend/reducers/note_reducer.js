@@ -1,4 +1,4 @@
-import { RECEIVE_ALL_NOTES, RECEIVE_SINGLE_NOTE, REMOVE_NOTE, RESET_NOTES, UPDATE_CURRENT_NOTE, UPDATE_NOTE_ENTITIES} from '../actions/note_actions';
+import { RECEIVE_ALL_NOTES, RECEIVE_SINGLE_NOTE, REMOVE_NOTE, RESET_NOTES, UPDATE_CURRENT_NOTE, UPDATE_NOTE_ENTITIES, UPDATE_CURRENT_NOTEBOOK} from '../actions/note_actions';
 import {RECEIVE_ERRORS, CLEAR_ERRORS} from '../actions/error_actions'; 
 import merge from 'lodash/merge';
 
@@ -32,18 +32,27 @@ const NoteReducer = (state = nullNote, action) => {
       delete nextState.entities[action.note.id];
       nextState.currentNote= null;
       return nextState;
+
     case RECEIVE_ERRORS:
       const errors = action.errors;
       return merge({}, nullNote, {errors});
+
     case RESET_NOTES:
       nextState = nullNote;
       return nextState;  
+
     case UPDATE_CURRENT_NOTE: 
       newNote = {[action.note.id]: action.note};
       tags = action.note.tags;
       newState = merge({}, state, {entities: newNote, currentNote: action.note});
       newState.currentNote.tags = tags;
       return newState;
+
+    case UPDATE_CURRENT_NOTEBOOK:
+      let newNoteBook_id = action.notebook_id;
+      newState = merge({}, state, {currentNote: {notebook_id: newNoteBook_id}});
+      return newState;
+
     case UPDATE_NOTE_ENTITIES:
       nextState = action.notes;
       if(nextState.length === 0){
@@ -51,6 +60,7 @@ const NoteReducer = (state = nullNote, action) => {
       } else{
         return Object.assign({}, state, {entities: nextState, currentNote: nextState[Object.keys(nextState)[0]]});
       }  
+
     default:
       return state;
   }

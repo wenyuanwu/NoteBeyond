@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import { fetchAllNotebooks } from '../../actions/notebook_actions';
+import {updateCurrentNotebook} from '../../actions/note_actions';
 import NoteDropDownList from './note_dropdown_list';
 
 const mapStateToProps = ({notebook, note}) => {
@@ -17,7 +18,8 @@ const mapStateToProps = ({notebook, note}) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-	fetchAllNotebooks: () => dispatch(fetchAllNotebooks())
+	fetchAllNotebooks: () => dispatch(fetchAllNotebooks()),
+	updateCurrentNotebook: notebook_id => dispatch(updateCurrentNotebook(notebook_id))
 });
 
 export default connect(
