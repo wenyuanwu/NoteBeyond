@@ -19,10 +19,8 @@ class NoteEdit extends React.Component {
       this.focus = () => this.refs.editor.focus();
 	    this.saveContent = this.saveContent.bind(this);
 	   	this.updatetitle = this.updatetitle.bind(this);
-      this.updateNotebook = this.updateNotebook.bind(this);
 	   	this.onChange = this.onChange.bind(this);
       this.idleTimeout = null;
-      this.idleTagTimeout = null;
       this.onTab = e => this._onTab(e);
       this.toggleBlockType = type => this._toggleBlockType(type);
       this.toggleInlineStyle = style => this._toggleInlineStyle(style);
@@ -40,11 +38,14 @@ class NoteEdit extends React.Component {
           let content = newProps.currentNote.body;
           this.setState({
           title: newProps.currentNote.title || "",  
-          notebook_id: newProps.currentNote.notebook_id || null,  
           editorState: EditorState.createWithContent(convertFromRaw(JSON.parse(content))),
           tags: newProps.currentNote.tags || []
          });
     }
+  }
+
+  componentDidMount(){
+    this.idleTimeout = setInterval(this.saveContent, 1000);
   }
 
   componentWillUnmount() {
@@ -53,8 +54,6 @@ class NoteEdit extends React.Component {
 
   handleChange(tags) {
       this.setState({tags});
-      clearTimeout(this.idleTagTimeout);
-      this.idleTagTimeout = setTimeout(this.saveContent, 500);
     }
 
   handleChangeInput(tag) {
@@ -62,8 +61,7 @@ class NoteEdit extends React.Component {
     }
 
 
-  saveContent(){
-
+  saveContent(){    
     const JScontent = JSON.stringify(convertToRaw(this.state.editorState.getCurrentContent()));
     
       let newBody = {id: this.props.currentNote.id,
@@ -71,7 +69,7 @@ class NoteEdit extends React.Component {
                  body: JScontent,
                  user_id: this.props.currentNote.user_id,
                  tag_names: this.state.tags,
-                 notebook_id: this.state.notebook_id}
+                 notebook_id: this.props.currentNote.notebook_id}
                 };
       this.props.updateNote(newBody);
   }
@@ -80,23 +78,11 @@ class NoteEdit extends React.Component {
       this.setState({
         editorState: editorState
       });
-
-      clearTimeout(this.idleTimeout);
-      this.idleTimeout = setTimeout(this.saveContent, 500);
-
   }
 
   updatetitle(e){
   	let title = e.target.value;
     this.setState({title: title});
-    clearTimeout(this.idleTimeout);
-    this.idleTimeout = setTimeout(this.saveContent, 500);  	
-  }
-
-  updateNotebook(notebook_id){
-    this.setState({notebook_id:notebook_id});
-    clearTimeout(this.idleTimeout);
-    this.idleTimeout = setTimeout(this.saveContent, 500);   
   }
 
   errors() {
@@ -147,12 +133,12 @@ class NoteEdit extends React.Component {
 	
     let className = 'RichEditor-editor';
 
-          var contentState = editorState.getCurrentContent();
-          if (!contentState.hasText()) {
-            if (contentState.getBlockMap().first().getType() !== 'unstyled') {
-              className += ' RichEditor-hidePlaceholder';
-            }
-          }
+    var contentState = editorState.getCurrentContent();
+    if (!contentState.hasText()) {
+      if (contentState.getBlockMap().first().getType() !== 'unstyled') {
+        className += ' RichEditor-hidePlaceholder';
+      }
+    }
 
    	return(
 
