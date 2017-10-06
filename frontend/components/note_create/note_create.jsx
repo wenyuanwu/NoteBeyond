@@ -49,8 +49,8 @@ class NoteCreate extends React.Component {
   	}
 
   	componentDidMount(){
-  		this.props.fetchAllNotebooks();
   		this.props.requestNotes();
+  		this.props.fetchAllNotebooks();
   	}
 
   	handleDropDownList(notebook_id){
@@ -103,8 +103,12 @@ class NoteCreate extends React.Component {
 	render(){
 
 		let button;
-		const {notebooks} = this.props; //refactor later 
+		const {notebooks, currentNote} = this.props; 
 		const {editorState, title, body} = this.state;
+
+		if (!currentNote){
+   			return <h3 className="loading"></h3>;
+   		}
 
 		const notebookItems = notebooks.map(notebook => 
 			<option key={notebook.id} value={notebook.id} >{notebook.title}</option> 

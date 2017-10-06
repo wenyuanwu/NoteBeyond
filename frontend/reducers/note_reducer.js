@@ -20,12 +20,6 @@ const NoteReducer = (state = nullNote, action) => {
       } else{
           return Object.assign({}, state, { entities: newNotes, currentNote: newNotes[Object.keys(newNotes)[0]]});
         }
-    case RECEIVE_SINGLE_NOTE:
-      let newNote = {[action.note.id]: action.note};
-      let tags = action.note.tags;
-      let newState = merge({}, state, {entities: newNote, currentNote: action.note});
-      newState.currentNote.tags = tags;
-      return newState;
 
     case REMOVE_NOTE:
       nextState = merge({}, state);
@@ -42,11 +36,12 @@ const NoteReducer = (state = nullNote, action) => {
       return nextState;  
 
     case UPDATE_CURRENT_NOTE: 
-      // newNote = {[action.note.id]: action.note};
-      // tags = action.note.tags;
-      // newState = merge({}, state, {entities: newNote, currentNote: action.note});
-      newState = merge({}, state, {currentNote: action.note});
-      // newState.currentNote.tags = tags;
+      let newNote = {[action.note.id]: action.note};
+      let newState = merge({}, state, {entities: newNote, currentNote: action.note});
+      let tags = action.note.tags;
+      let tag_ids = action.note.tag_ids;
+      newState.currentNote.tags = tags;
+      newState.currentNote.tag_ids = tag_ids;
       return newState;
 
     case UPDATE_CURRENT_NOTEBOOK:
@@ -55,7 +50,9 @@ const NoteReducer = (state = nullNote, action) => {
       return newState;
 
     case UPDATE_NOTE_ENTITIES:
-      nextState = action.notes;
+      let notes = action.notes;
+      let nextState = {};
+      notes.forEach(note => nextState[note.id] = note);
       if(nextState.length === 0){
         return nullNote;
       } else{

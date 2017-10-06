@@ -32,3 +32,11 @@ button:hover{
 	background-color: $darker_green;
 }
 
+.loading{
+	position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 1;
+	background: url(https://media.giphy.com/media/14gJNUXyWxEEjS/giphy.gif); 
+	background-color: white;
+}

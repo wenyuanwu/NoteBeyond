@@ -158,7 +158,7 @@ class NoteEdit extends React.Component {
 
 			<div className="RichEditor-root-show">
             <div className = "tool_bar">
-              <NoteDropDownListContainer updateNotebook= {this.updateNotebook}/>
+              <NoteDropDownListContainer />
               <img className = "tag_icon" src ="http://res.cloudinary.com/dltydzsmu/image/upload/v1506467545/tag_gnllkm.png"/>
               <TagsInput
                 value={this.state.tags}

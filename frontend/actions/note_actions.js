@@ -16,11 +16,6 @@ export const receiveAllNotes = notes => ({
   notes
 });
 
-export const receiveSingleNote = note => ({
-  type: RECEIVE_SINGLE_NOTE,
-  note
-});
-
 export const removeNote = note => ({
   type: REMOVE_NOTE,
   note
@@ -49,7 +44,7 @@ export const updateCurrentNotebook = notebook_id => ({
 //async actions 
 export const createNote = note => dispatch => (
   APIUtil.createNote(note).then(new_note => {
-    dispatch(receiveSingleNote(new_note)); dispatch(clearErrors());},
+    dispatch(updateCurrentNote(new_note)); dispatch(clearErrors());},
     err => dispatch(receiveErrors(err.responseJSON)))
 );
 
@@ -61,12 +56,12 @@ export const fetchAllNotes = () => dispatch => (
 
 export const fetchSingleNote = id => dispatch => (
   APIUtil.fetchSingleNote(id).then(note => (
-    dispatch(receiveSingleNote(note))
+    dispatch(updateCurrentNote(note))
   ))
 );
 
 export const updateNote = note => dispatch => (
-  APIUtil.updateNote(note).then(new_note => dispatch(receiveSingleNote(new_note)))
+  APIUtil.updateNote(note).then(new_note => dispatch(updateCurrentNote(new_note)))
 );
 
 export const deleteNote = note => dispatch => (
