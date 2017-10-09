@@ -32,8 +32,9 @@ const NoteReducer = (state = nullNote, action) => {
 
     case UPDATE_CURRENT_NOTE: 
       let newState = Object.assign({}, state);
-      newState.entities[action.note.id] = action.note;
-      newState.currentNote = action.note;
+      if (action.note){
+        newState.entities[action.note.id] = action.note;
+        newState.currentNote = action.note;}
       return newState;
 
     case UPDATE_CURRENT_NOTEBOOK:
@@ -43,7 +44,7 @@ const NoteReducer = (state = nullNote, action) => {
 
     case UPDATE_NOTE_ENTITIES:
       let notes = action.notes;
-      let nextState = {};
+      nextState = {};
       notes.forEach(note => nextState[note.id] = note);
       if(nextState.length === 0){
         return nullNote;
