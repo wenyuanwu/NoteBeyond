@@ -16,9 +16,7 @@ class NoteListItem extends React.Component {
 
 	render(){
 		const{note} = this.props;
-
 		const newBody = JSON.parse(this.props.note.body).blocks[0].text; 
-		// refactor for multiple paragraph
 		
 		return(
 			<a onClick={this.onClick} className="click-to-show">

@@ -22,14 +22,21 @@ user1 = User.create!(username: "Guest", password: "guestpassword")
 
 notebook1 = Notebook.create!(title: "Ruby 101",user_id: user1.id)
 notebook2 = Notebook.create!(title: "Funky JS",user_id: user1.id)
-notebook3 = Notebook.create!(title: "Cooding Bootcamp",user_id: user1.id)
-notebook4 = Notebook.create!(title: "Sorting Algorithm",user_id: user1.id)
-notebook5 = Notebook.create!(title: "Random Thoughts",user_id: user1.id)
+notebook3 = Notebook.create!(title: "Random Thoughts",user_id: user1.id)
+# notebook4 = Notebook.create!(title: "Sorting Algorithm",user_id: user1.id)
 
-# tag1 = Tag.create!(name: "tag1", user_id: user1.id)
+
+tag1 = Tag.create!(name: "welcome", user_id: user1.id)
 # tag2 = Tag.create!(name: "tag2", user_id: user1.id)
 
 
-# note1 = Note.create!(title:"note1", body:"body1", user_id: user1.id, notebook_id: notebook1.id)
+note1 = Note.create!(title:"Welcome to NoteBeyond", body:"{\"entityMap\":{},\"blocks\":[{\"key\":\"8f9a2\",\"text\":\"Capture, organize, and share notes from anywhere. Your best ideas are always with you and always in sync!\",\"type\":\"code-block\",\"depth\":0,\"inlineStyleRanges\":[{\"offset\":0,\"length\":105,\"style\":\"BOLD\"}],\"entityRanges\":[],\"data\":{}}]}", user_id: user1.id, notebook_id: notebook3.id)
 # note2 = Note.create!(title:"note2", body:"body2", user_id: user1.id, notebook_id: notebook2.id)
 # note3 = Note.create!(title:"note3", body:"body3", user_id: user2.id, notebook_id: notebook1.id)
+
+tagging1 = Tagging.create!(note_id: note1.id, tag_id: tag1.id);
+
+
+
+
+
