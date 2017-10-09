@@ -13,7 +13,8 @@ const mapStateToProps = ({notebook, note}) => {
 
 	return {
 		notebooks: Object.keys(notebookObj).map(id => notebookObj[id]),
-		currentNotebook: currentNotebook
+		currentNotebook: currentNotebook, 
+		currentNote: note.currentNote
 	};
 };
 

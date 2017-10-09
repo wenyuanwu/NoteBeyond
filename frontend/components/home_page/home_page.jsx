@@ -29,6 +29,7 @@ class HomePage extends React.Component {
 
 	handleNotebookIcon(e) {
 		e.preventDefault();
+		this.props.fetchAllNotebooks();
 		if(this.state.tagvisible){
 			this.setState({tagvisible: !this.state.tagvisible});
 		}

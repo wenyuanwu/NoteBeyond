@@ -2,7 +2,6 @@ import * as APIUtil from '../util/note_api_util';
 import {receiveErrors, clearErrors} from './error_actions';
 
 export const RECEIVE_ALL_NOTES = 'RECEIVE_ALL_NOTES';
-export const RECEIVE_SINGLE_NOTE = 'RECEIVE_SINGLE_NOTE';
 export const REMOVE_NOTE = 'REMOVE_NOTE';
 export const RESET_NOTES = 'RESET_NOTES';
 export const UPDATE_CURRENT_NOTE = 'UPDATE_CURRENT_NOTE';
@@ -21,11 +20,6 @@ export const removeNote = note => ({
   note
 });
 
-export const resetNotes = () => ({
-  type: RESET_NOTES, 
-  note: null
-}); 
-
 export const updateCurrentNote = note => ({
   type: UPDATE_CURRENT_NOTE, 
   note
@@ -36,9 +30,9 @@ export const updateNoteEntities = notes => ({
   notes
 });
 
-export const updateCurrentNotebook = notebook_id => ({
+export const updateCurrentNotebook = (notebook_id) => ({
   type: UPDATE_CURRENT_NOTEBOOK,
-  notebook_id
+  notebook_id: notebook_id,
 });
 
 //async actions 

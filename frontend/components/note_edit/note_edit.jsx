@@ -45,7 +45,7 @@ class NoteEdit extends React.Component {
   }
 
   componentDidMount(){
-    this.idleTimeout = setInterval(this.saveContent, 1000);
+    this.idleTimeout = setInterval(this.saveContent, 500);
   }
 
   componentWillUnmount() {

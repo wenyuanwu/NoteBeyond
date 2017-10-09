@@ -23,11 +23,9 @@ class NoteDropDownList extends React.Component {
 	}
 
 	onChange(e){
-		// console.log(e.target, "e.target");
-		// console.log(e.target.getAttribute('value'), "e.target.getAttribute('value')");
-		let notebook = e.target.getAttribute('value');
+		let notebook_id = e.target.getAttribute('value');
 		this.hideList();
-		this.props.updateCurrentNotebook(notebook);
+		this.props.updateCurrentNotebook(notebook_id);
 	}
 
 	isCurrentNotebook(notebook){
