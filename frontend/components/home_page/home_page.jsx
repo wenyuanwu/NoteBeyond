@@ -23,7 +23,6 @@ class HomePage extends React.Component {
 	handleLogOut(e){
 		e.preventDefault();
 		this.props.resetNotes();
-		this.props.resetNotebook();
 		this.props.logout();
 	}
 

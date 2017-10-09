@@ -35,6 +35,10 @@ export const updateCurrentNotebook = (notebook_id) => ({
   notebook_id: notebook_id,
 });
 
+export const resetNotes = () => ({
+  type: RESET_NOTES,
+});
+
 //async actions 
 export const createNote = note => dispatch => (
   APIUtil.createNote(note).then(new_note => {

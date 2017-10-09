@@ -45,6 +45,7 @@ class NoteEdit extends React.Component {
   }
 
   componentDidMount(){
+    this.props.fetchAllNotes();
     this.idleTimeout = setInterval(this.saveContent, 5000);
   }
 
@@ -61,7 +62,8 @@ class NoteEdit extends React.Component {
     }
 
 
-  saveContent(){    
+  saveContent(){   
+    if(this.state.editorState){
     const JScontent = JSON.stringify(convertToRaw(this.state.editorState.getCurrentContent()));
     
       let newBody = {id: this.props.currentNote.id,
@@ -71,7 +73,7 @@ class NoteEdit extends React.Component {
                  tag_names: this.state.tags,
                  notebook_id: this.props.currentNote.notebook_id}
                 };
-      this.props.updateNote(newBody);
+      this.props.updateNote(newBody);} 
   }
   
   onChange(editorState){
@@ -128,6 +130,7 @@ class NoteEdit extends React.Component {
 
 
 		if(!currentNote || !editorState){
+          console.log(editorState, "editorState");
    				return <h3 className="loading"> </h3>;
    			}
 	
