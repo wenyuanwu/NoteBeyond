@@ -22,7 +22,7 @@ user1 = User.create!(username: "Guest", password: "guestpassword")
 
 notebook1 = Notebook.create!(title: "Ruby 101",user_id: user1.id)
 notebook2 = Notebook.create!(title: "Funky JS",user_id: user1.id)
-notebook3 = Notebook.create!(title: "Random Thoughts",user_id: user1.id)
+notebook3 = Notebook.create!(title: "Fun Fact",user_id: user1.id)
 # notebook4 = Notebook.create!(title: "Sorting Algorithm",user_id: user1.id)
 
 

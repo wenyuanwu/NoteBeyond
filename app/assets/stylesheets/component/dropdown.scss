@@ -1,7 +1,12 @@
 @import "../base/colors.scss";
 @import "../base/fonts.scss";
 
+.notebook-drop-down-list{
+	width: 12%;
+}
+
 .notebook-drop-down-list-btn{
+	width: 100%;
 	background-color: white;
 	display: flex;
 	flex-direction: row;
@@ -16,6 +21,9 @@
 .notebook-drop-down-list-title{
 	color: $font_dark_grey;
 	font-size: 12px;
+	margin: 0;
+	padding: 0;
+	/*width: 90%;*/
 }
 
 .drop-down-list-show{
