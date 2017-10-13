@@ -1,6 +1,6 @@
 # NoteBeyond
 
-[NoteBeyond](https://notebeyond.herokuapp.com/#/)is a note-editing application inspired by [Evernote](https://www.evernote.com). Technology framework and tools involved during development include but not limited to Ruby on Rails, PostGreSQL database and React/Redux. 
+[NoteBeyond](https://notebeyond.herokuapp.com/#/) is a note-editing application inspired by [Evernote](https://www.evernote.com). Technology framework and tools involved during development include but not limited to Ruby on Rails, PostGreSQL database and React/Redux. 
 
 ## Main Features
 
