@@ -26,8 +26,8 @@ export const removeTag = tag => ({
 
 //async actions 
 export const createTag = tag => dispatch => (
-  APIUtil.createTag(tag).then(new_tag => {
-    dispatch(receiveSingleTag(new_tag)); dispatch(clearErrors());},
+  APIUtil.createTag(tag).then(newTag => {
+    dispatch(receiveSingleTag(newTag)); dispatch(clearErrors());},
     err => dispatch(receiveErrors(err.responseJSON)))
 );
 
@@ -44,11 +44,11 @@ export const fetchSingleTag = id => dispatch => (
 );
 
 export const updateTag = tag => dispatch => (
-  APIUtil.updateTag(tag).then(new_tag => dispatch(receiveSingleTag(new_tag)))
+  APIUtil.updateTag(tag).then(newTag => dispatch(receiveSingleTag(newTag)))
 );
 
 export const deleteTag = tag => dispatch => (
-  APIUtil.deleteTag(tag).then(new_tag => dispatch(removeTag(new_tag)))
+  APIUtil.deleteTag(tag).then(newTag => dispatch(removeTag(newTag)))
 );
 
 

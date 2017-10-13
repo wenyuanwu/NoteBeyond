@@ -20,7 +20,8 @@ const mapStateToProps = ({notebook, note}) => {
 
 const mapDispatchToProps = dispatch => ({
 	fetchAllNotebooks: () => dispatch(fetchAllNotebooks()),
-	updateCurrentNotebook: notebook_id => dispatch(updateCurrentNotebook(notebook_id))
+	updateCurrentNotebook: notebookId => dispatch(
+	updateCurrentNotebook(notebookId))
 });
 
 export default connect(

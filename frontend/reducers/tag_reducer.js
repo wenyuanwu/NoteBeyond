@@ -1,4 +1,5 @@
-import { RECEIVE_ALL_TAGS, RECEIVE_SINGLE_TAG, REMOVE_TAG } from '../actions/tag_actions';
+import { RECEIVE_ALL_TAGS, RECEIVE_SINGLE_TAG, REMOVE_TAG } from 
+'../actions/tag_actions';
 import {RECEIVE_ERRORS, CLEAR_ERRORS} from '../actions/error_actions'; 
 import merge from 'lodash/merge';
 

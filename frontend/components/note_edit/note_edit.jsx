@@ -45,7 +45,6 @@ class NoteEdit extends React.Component {
   }
 
   componentDidMount(){
-    // this.props.fetchAllNotes();
     this.idleTimeout = setInterval(this.saveContent, 1000);
   }
 

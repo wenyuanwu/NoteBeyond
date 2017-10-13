@@ -30,9 +30,9 @@ export const updateNoteEntities = notes => ({
   notes
 });
 
-export const updateCurrentNotebook = (notebook_id) => ({
+export const updateCurrentNotebook = (notebookId) => ({
   type: UPDATE_CURRENT_NOTEBOOK,
-  notebook_id: notebook_id,
+  notebook_id: notebookId,
 });
 
 export const resetNotes = () => ({
@@ -41,8 +41,8 @@ export const resetNotes = () => ({
 
 //async actions 
 export const createNote = note => dispatch => (
-  APIUtil.createNote(note).then(new_note => {
-    dispatch(updateCurrentNote(new_note)); dispatch(clearErrors());},
+  APIUtil.createNote(note).then(newNote => {
+    dispatch(updateCurrentNote(newNote)); dispatch(clearErrors());},
     err => dispatch(receiveErrors(err.responseJSON)))
 );
 
@@ -59,11 +59,12 @@ export const fetchSingleNote = id => dispatch => (
 );
 
 export const updateNote = note => dispatch => (
-  APIUtil.updateNote(note).then(new_note => dispatch(updateCurrentNote(new_note)))
+  APIUtil.updateNote(note).then(newNote => 
+    dispatch(updateCurrentNote(newNote)))
 );
 
 export const deleteNote = note => dispatch => (
-  APIUtil.deleteNote(note).then(new_note => dispatch(removeNote(new_note)))
+  APIUtil.deleteNote(note).then(newNote => dispatch(removeNote(newNote)))
 );
 
 

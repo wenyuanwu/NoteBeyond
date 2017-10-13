@@ -31,8 +31,8 @@ export const resetNotebook = () => ({
 
 //async actions 
 export const createNotebook = notebook => dispatch => (
-  APIUtil.createNotebook(notebook).then(new_notebook => {
-    dispatch(receiveSingleNotebook(new_notebook)); dispatch(clearErrors());},
+  APIUtil.createNotebook(notebook).then(newNotebook => {
+    dispatch(receiveSingleNotebook(newNotebook)); dispatch(clearErrors());},
     err => dispatch(receiveErrors(err.responseJSON)))
 );
 
@@ -49,11 +49,13 @@ export const fetchSingleNotebook = id => dispatch => (
 );
 
 export const updateNotebook = notebook => dispatch => (
-  APIUtil.updateNotebook(notebook).then(new_notebook => dispatch(receiveSingleNotebook(new_notebook)))
+  APIUtil.updateNotebook(notebook).then(newNotebook => 
+    dispatch(receiveSingleNotebook(newNotebook)))
 );
 
 export const deleteNotebook = notebook => dispatch => (
-  APIUtil.deleteNotebook(notebook).then(new_notebook => dispatch(removeNotebook(new_notebook)))
+  APIUtil.deleteNotebook(notebook).then(newNotebook => 
+    dispatch(removeNotebook(newNotebook)))
 );
 
 

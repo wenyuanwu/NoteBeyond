@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
-import { createNote, updateCurrentNote, fetchAllNotes } from '../../actions/note_actions';
+import { createNote, updateCurrentNote, fetchAllNotes } from 
+'../../actions/note_actions';
 import { createTag } from '../../actions/tag_actions';
 import { fetchAllNotebooks } from '../../actions/notebook_actions';
 import NoteCreate from './note_create';

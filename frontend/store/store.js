@@ -8,7 +8,7 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const logger = createLogger;
 if (process.env.NODE_ENV !== 'production') {
   // must use 'require' (import only allowed at top of file)
-  const createLogger = require('redux-logger');
+  createLogger = require('redux-logger');
 }
 
 const configureStore = (preloadedState = {}) => (
